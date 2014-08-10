@@ -1,0 +1,26 @@
+# Emacs
+*~
+*.elc
+backups
+auto-save-list
+abbrev_defs
+
+# Installed with Makefile and MELPA
+elpa
+site-lisp/*
+!site-lisp/Makefile
+
+# Third party
+data/*
+!data/.keep
+places
+session.*
+tramp
+swank
+.yas-compiled-snippets.el
+.litable-lists.el
+*.dat
+.python-environments
+
+# OS
+.DS_Store
