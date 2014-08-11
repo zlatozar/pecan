@@ -20,7 +20,9 @@
           slime-net-coding-system 'utf-8-unix
           slime-complete-symbol*-fancy t
           slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
-    (slime-setup '(slime-repl slime-fuzzy slime-scheme))
+    (slime-setup '(slime-repl
+                   slime-fuzzy
+                   slime-scheme))
     (add-hook 'slime-mode-hook 'my/slime-setup)
     (add-hook 'slime-repl-mode-hook 'my/slime-setup))
 

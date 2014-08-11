@@ -42,8 +42,8 @@ endef
 default: all
 
 # Do not forget to update .PHONY
-all: dash flycheck flycheck-pos-tip slime mit-scheme-swank helm helm-ag \
-     ac-cider-compliment prolog.elc
+all: dash flycheck flycheck-pos-tip slime helm helm-ag \
+	 cider ac-cider prolog.elc
 
 .el.elc:
 	@ echo "\n** Bite compiling ===> " $@
@@ -91,14 +91,6 @@ _hippie-expand-slime:
 	  else cd hippie-expand-slime; git pull --rebase; cd ..; fi;
 
 #_______________________________________________________________________________
-#                                                                    MIT Scheme
-
-mit-scheme-swank:
-	@ echo "$(OK_COLOR)===> Checkout or update mit-scheme-swank...(this one is better)$(NO_COLOR)"
-	@ if [ ! -d mit-scheme-swank ]; then git clone https://github.com/ecraven/mit-scheme-swank.git; \
-	  else cd mit-scheme-swank; git pull --rebase; cd ..; fi;
-
-#_______________________________________________________________________________
 #                                                                         Helm
 
 helm:
@@ -112,12 +104,19 @@ helm-ag:
 	  else cd emacs-helm-ag; git pull --rebase; cd ..; fi;
 
 #_______________________________________________________________________________
-#                                                                        Clojre
+#                                                                       Clojure
 
-ac-cider-compliment:
-	@ echo "$(OK_COLOR)===> Checkout or update ac-cider-compliment...$(NO_COLOR)"
-	@ if [ ! -d ac-cider-compliment ]; then git clone http://github.com/alexander-yakushev/ac-cider-compliment.git; \
-	  else cd ac-cider-compliment; git pull --rebase; cd ..; fi;
+cider:
+	@ echo "$(OK_COLOR)===> Checkout or update to latest tag cider...$(NO_COLOR)"
+	@ if [ ! -d cider ]; then git clone https://github.com/clojure-emacs/cider.git; \
+	  else cd cider; git fetch --tags; cd ..; fi;
+	@ cd cider; sha=`git rev-list --tags --max-count=1`; latestTag=`git describe --tags $$sha`; echo "Latest Tag: " $$latestTag; \
+	  git checkout $$latestTag; cd ..;
+
+ac-cider:
+	@ echo "$(OK_COLOR)===> Checkout or update ac-cider...$(NO_COLOR)"
+	@ if [ ! -d ac-cider ]; then git clone https://github.com/clojure-emacs/ac-cider.git; \
+	  else cd ac-cider; git pull --rebase; cd ..; fi;
 
 #_______________________________________________________________________________
 #                                                                        Prolog
@@ -143,8 +142,8 @@ jslint-v8: _v8
 #_______________________________________________________________________________
 #                                                                  SYSTEM RULES
 
-.PHONY: clean dash flycheck flycheck-pos-tip mit-scheme-swank slime ac-slime \
-        hippie-expand-slime helm helm-ag ac-cider-compliment
+.PHONY: clean dash flycheck flycheck-pos-tip slime ac-slime \
+		hippie-expand-slime helm helm-ag cider ac-cider
 
 clean:
 	rm -f $(ELC)

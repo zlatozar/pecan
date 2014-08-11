@@ -20,6 +20,10 @@
 (setq european-calendar-style 't)
 (setq calendar--week--start--day 1)
 
+;; Currently I use MAC with Microsoft keyboard
+(setq mac-command-modifier 'super)
+(setq mac-option-modifier 'meta)
+
 (provide 'emacs-personal)
 
 ;;; personal.el ends here

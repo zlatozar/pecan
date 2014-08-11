@@ -410,7 +410,9 @@
   :init
   (use-package flycheck-pos-tip
     :load-path "site-lisp/flycheck-pos-tip/")
-  :config (global-flycheck-mode 1))
+  :config (progn
+            (setq flycheck-display-errors-function nil)
+            (global-flycheck-mode 1)))
 
 ;; Paredit during programming
 (require 'setup-paredit)
@@ -438,7 +440,6 @@
  :doc-spec '(("(ansicl)Symbol Index" nil nil nil)))
 
 (require 'setup-slime)
-(require 'setup-mit-scheme)
 (require 'setup-common-lisp)
 
 ;;; Clojure:
@@ -454,7 +455,9 @@
   :bind ("C-c m k" . markdown-mode)
   :mode (("\\.md" . markdown-mode)
          ("\\.markdown" . markdown-mode))
-  :config (add-hook 'markdown-mode-hook 'flyspell-mode))
+  :config (progn
+            (add-hook 'markdown-mode-hook 'flyspell-mode)
+            (add-hook 'markdown-mode-hook 'auto-fill-mode)))
 
 ;; Allows users to select a piece of text and perform actions
 ;; based on predefined patterns

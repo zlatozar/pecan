@@ -8,9 +8,13 @@
 
 ;; `go-to-definition' with M-. and back again with M-,
 (use-package elisp-slime-nav
-  :ensure elisp-slime-nav)
+  :ensure elisp-slime-nav
+  :config
+  (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
+    (add-hook hook 'turn-on-elisp-slime-nav-mode)))
 
 (defun my/byte-compile-current-elisp-file ()
+  "Quick way to compile current buffer."
   (interactive)
   (byte-compile-file (buffer-file-name) t))
 
@@ -51,7 +55,6 @@
 ;; Hit C-h f (for function) or C-h v (for variable)
 (defun my/emacs-lisp-setup ()
   "Enable features useful when working with elisp."
-  (elisp-slime-nav-mode t)
   (paredit-mode 1)
   (my/set-up-hippie-expand-for-elisp)
   (my/ielm-auto-complete)
