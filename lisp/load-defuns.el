@@ -90,39 +90,30 @@ Including indent-buffer, which should not be called automatically on save."
                            (progn (setq old-fullscreen current-value)
                                   'fullboth)))))
 
-;;; Cycle between () {} []
-
-(defun live-delete-and-extract-sexp ()
-  "Delete the sexp and return it."
-  (interactive)
-  (let* ((begin (point)))
-    (forward-sexp)
-    (let* ((result (buffer-substring-no-properties begin (point))))
-      (delete-region begin (point))
-      result)))
-
-(defun live-cycle-clj-coll ()
-  "Convert the coll at (point) from (x) -> {x} -> [x] -> (x) recur."
-  (interactive)
-  (let* ((original-point (point)))
-    (while (and (> (point) 1)
-                (not (equal "(" (buffer-substring-no-properties (point) (+ 1 (point)))))
-                (not (equal "{" (buffer-substring-no-properties (point) (+ 1 (point)))))
-                (not (equal "[" (buffer-substring-no-properties (point) (+ 1 (point))))))
-      (backward-char))
-    (cond
-     ((equal "(" (buffer-substring-no-properties (point) (+ 1 (point))))
-      (insert "{" (substring (live-delete-and-extract-sexp) 1 -1) "}"))
-     ((equal "{" (buffer-substring-no-properties (point) (+ 1 (point))))
-      (insert "[" (substring (live-delete-and-extract-sexp) 1 -1) "]"))
-     ((equal "[" (buffer-substring-no-properties (point) (+ 1 (point))))
-      (insert "(" (substring (live-delete-and-extract-sexp) 1 -1) ")"))
-     ((equal 1 (point))
-      (message "beginning of file reached, this was probably a mistake.")))
-    (goto-char original-point)))
-
 (autoload 'zap-up-to-char "misc"
   "Kill up to, but not including ARGth occurrence of CHAR.")
+
+(defun sudo-edit (&optional arg)
+  "Edit buffer with given ARG as super user."
+  (interactive "p")
+  (if (or arg (not buffer-file-name))
+      (find-file (concat "/sudo:root@localhost:" (ido-read-file-name "File: ")))
+    (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+
+(defun insert-file-name (filename &optional args)
+  "Insert full qualified FILENAME in place."
+  (interactive "*fInsert file name: \nP")
+  (cond ((eq '- args)
+         (insert (file-relative-name filename)))
+        ((not (null args))
+         (insert (expand-file-name filename)))
+        (t
+         (insert filename))))
+
+(defun copy-line (n)
+  "Copy N lines.  If N is not passed - copy current line."
+  (interactive "p")
+  (kill-ring-save (line-beginning-position) (line-beginning-position (1+ n))))
 
 ;;________________________________________________________________________________
 ;;                                                                   Key-bindings
@@ -133,8 +124,6 @@ Including indent-buffer, which should not be called automatically on save."
 (global-set-key (kbd "C-c x f") 'toggle-fullscreen)
 (global-set-key (kbd "C-c p f") 'cleanup-buffer)
 (global-set-key (kbd "M-Z") 'zap-up-to-char)
-
-(define-key prog-mode-map (kbd "C-c p `") 'live-cycle-clj-coll)
 
 (provide 'load-defuns)
 

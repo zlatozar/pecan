@@ -4,11 +4,13 @@ _(work in progress)_
 
 ####Programming###
 
-If you use one of the following langurages:
+If you use one of the following languages:
 
-* Common Lisp
-* Python
-* Emacs Lisp
+* _Python_
+* _Common Lisp_
+* _MIT Scheme_
+* _SWI Prolog_
+* _Emacs Lisp_
 
 this confiuguration is suitable for you.
 
@@ -24,7 +26,7 @@ $ git clone http://github.com/zlatozar/pecan .emacs.d
 - Download bootstrap packages
 
 ```
-$ cd ~/.emacs.d/site-lisp
-$ make
+$ cd ~/.emacs.d/
+$ make bootstrap
 ```
-- Run Emacs and all additional packages will be downloaded from MELPA
+- Run Emacs and all additional packages will be downloaded from **MELPA**

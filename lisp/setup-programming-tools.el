@@ -31,7 +31,7 @@
 ;; Parentheses view
 (use-package highlight-parentheses
   :ensure highlight-parentheses
-  :init (add-hook 'prog-mode-hook
+  :config (add-hook 'prog-mode-hook
                   (lambda () (highlight-parentheses-mode t))))
 
 ;; Toggle tests for various programming languages

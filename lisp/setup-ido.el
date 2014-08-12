@@ -55,9 +55,10 @@
 ;; Always rescan buffer for imenu
 (set-default 'imenu-auto-rescan t)
 
-;; Ignore following directories
+;; Ignore following directories/files
 (add-to-list 'ido-ignore-directories "target")
 (add-to-list 'ido-ignore-directories "modules")
+(add-to-list 'ido-ignore-files "\\.DS_Store")
 
 (provide 'setup-ido)
 

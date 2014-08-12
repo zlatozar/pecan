@@ -13,6 +13,7 @@
             (setq jedi:setup-keys t
                   jedi:complete-on-dot t
                   jedi:tooltip-method '(pos-tip))
+            (add-hook 'python-mode-hook (lambda () (yas-global-mode 1)))
             (add-hook 'python-mode-hook (lambda () (paredit-mode -1)))
             (add-hook 'python-mode-hook (lambda () (jedi-mode 1)))
             (add-hook 'python-mode-hook 'auto-complete-mode)
@@ -31,6 +32,41 @@
             (setq indent-tabs-mode nil)
             (setq tab-width 4)
             (setq python-indent 4)))
+
+;;_______________________________________________________________________________
+;;                                                                    Additional
+
+(use-package virtualenvwrapper
+  :ensure virtualenvwrapper
+  :commands venv-workon
+  :config (progn
+	    (setq venv-location "~/.virtualenvs/")
+	    (venv-initialize-interactive-shells)
+	    (venv-initialize-eshell)
+	    (setq-default mode-line-format
+			  (cons '(:exec venv-current-name)
+				mode-line-format))
+	    (add-hook 'python-mode-hook
+		      (lambda ()
+			(hack-local-variables)
+			(setq python-shell-virtualenv-path
+			      (f-join venv-location project-venv-name))
+			(venv-workon project-venv-name)))))
+
+(use-package jedi-direx
+  :ensure jedi-direx
+  :config (progn
+	    (add-hook 'jedi-mode-hook 'jedi-direx:setup)
+	    (add-hook 'jedi-mode-hook
+		      (lambda ()
+			(local-set-key (kbd "C-c p j")
+				       'jedi-direx:pop-to-buffer)))))
+
+(use-package helm-pydoc
+  :ensure helm-pydoc
+  :config (add-hook 'python-mode-hook
+		    (lambda ()
+		      (local-set-key (kbd "C-c p d") 'helm-pydoc))))
 
 ;;_______________________________________________________________________________
 ;;                                                                     Debugging

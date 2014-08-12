@@ -7,17 +7,19 @@
 
 ;;; Code:
 
-(defun visit-term-buffer ()
-  "Create or visit a terminal buffer."
-  (interactive)
-  (if (not (get-buffer "*ansi-term*"))
-      (progn
-        (split-window-sensibly (selected-window))
-        (other-window 1)
-        (ansi-term (getenv "SHELL")))
-    (switch-to-buffer-other-window "*ansi-term*")))
+(use-package multi-term
+  :ensure multi-term
+  :config (progn
+            (setq multi-term-program "/bin/bash")
 
-(key-chord-define-global "qe" 'visit-term-buffer)
+            (defun scame-launch-term ()
+              "Launch a new terminal."
+              (interactive)
+              (unless (multi-term-dedicated-exist-p)
+                (multi-term-dedicated-open))
+              (multi-term-dedicated-select))
+
+            (key-chord-define-global "qe" 'scame-launch-term)))
 
 (provide 'setup-shell)
 

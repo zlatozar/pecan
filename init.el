@@ -43,6 +43,10 @@
 (require-load 'use-package)
 (require-load 'bind-key)
 
+;; Benchmark of calls to Emacs require and load functions
+(use-package benchmark-init
+  :ensure benchmark-init)
+
 ;; Provides some package manager agnostic utilities
 (use-package packed
   :ensure packed)
@@ -66,6 +70,9 @@
 
 ;;_______________________________________________________________________________
 ;;                  General, Global Settings, Minor modes, Display Configuration
+
+(setenv "EDITOR" "emacsclient")
+(setenv "PAGER" "cat")
 
 (setq inhibit-startup-message t
       enable-local-variables nil
@@ -420,6 +427,7 @@
 ;;; Tools
 
 (require 'setup-programming-tools)
+(require 'setup-yasnipped)
 
 ;;; Emacs Lisp
 
@@ -429,7 +437,7 @@
 
 (require 'setup-python)
 
-;;; Lisp
+;;; Common Lisp
 
 ;; 'C-h S' to describe symbol
 (require 'info-look)
@@ -442,11 +450,16 @@
 (require 'setup-slime)
 (require 'setup-common-lisp)
 
+;; MIT Scheme
+
+;;(require 'setup-mit-scheme)
+
 ;;; Clojure:
 
 
 ;;; Prolog
 
+(require 'setup-prolog)
 
 ;;; Markdown
 

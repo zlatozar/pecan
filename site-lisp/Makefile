@@ -42,8 +42,7 @@ endef
 default: all
 
 # Do not forget to update .PHONY
-all: dash flycheck flycheck-pos-tip slime helm helm-ag \
-	 cider ac-cider prolog.elc
+all: dash flycheck flycheck-pos-tip slime helm helm-ag prolog.elc
 
 .el.elc:
 	@ echo "\n** Bite compiling ===> " $@
