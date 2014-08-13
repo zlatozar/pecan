@@ -450,10 +450,6 @@
 (require 'setup-slime)
 (require 'setup-common-lisp)
 
-;; MIT Scheme
-
-;;(require 'setup-mit-scheme)
-
 ;;; Clojure:
 
 

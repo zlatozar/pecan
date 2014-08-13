@@ -8,7 +8,6 @@ If you use one of the following languages:
 
 * _Python_
 * _Common Lisp_
-* _MIT Scheme_
 * _SWI Prolog_
 * _Emacs Lisp_
 
@@ -27,6 +26,6 @@ $ git clone http://github.com/zlatozar/pecan .emacs.d
 
 ```
 $ cd ~/.emacs.d/
-$ make bootstrap
+$ make
 ```
 - Run Emacs and all additional packages will be downloaded from **MELPA**

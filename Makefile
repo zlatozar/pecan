@@ -16,9 +16,9 @@ WARN_STRING  = $(WARN_COLOR)[WARNINGS]$(NO_COLOR)
 #_______________________________________________________________________________
 #                                                                         RULES
 
+default: bootstrap
+
 bootstrap:
 	@ echo "$(OK_COLOR)===> Download packages needed to bootstrap...$(NO_COLOR)"
 	@ $(MAKE) -C site-lisp/
-	@ echo "$(OK_COLOR)===> Configure MIT Scheme initialization...$(NO_COLOR)"
-	@ cp ~/.emacs.d/data/.scheme.init ~/
 	@ echo "$(OK_COLOR)DONE$(NO_COLOR)"

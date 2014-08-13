@@ -12,7 +12,7 @@ site-lisp/*
 
 # Third party
 data/*
-!data/.scheme.init
+!data/Readme.md
 places
 session.*
 tramp
