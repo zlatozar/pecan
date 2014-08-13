@@ -7,7 +7,7 @@
 ;; GNU Emacs Configuration by Zlatozar Zhelyazkov
 ;;
 ;;     http://zlatozar.blogspot.com
-;;     https://github.com/zlatozar/DotEmacs
+;;     http://github.com/zlatozar/pecan
 ;;
 ;; Conventions for key-bindings:
 ;;
@@ -18,7 +18,13 @@
 ;;     - C-c m:    Major modes.
 ;;     - C-c n:    Minor modes.
 ;;     - C-c p:    Programming commands.
+;;     - C-c o:    Org mode commands.
 ;;     - C-c x:    General commands.
+;;
+;; To see all bindings in this configurations type:
+;;    'M-x describe-personal-keybindings'
+;;
+;; Tip: If you type 'C-c p' and you are note sure how to continue type 'C-h'.
 
 ;;; Code:
 
@@ -97,6 +103,7 @@
       history-length 250
       tab-always-indent 'complete
       save-abbrevs t
+      abbrev-file-name "~/.emacs.d/data/abbrev_defs"
       select-active-region t
       shift-select-mode nil
       x-select-enable-clipboard t
@@ -157,7 +164,7 @@
                            try-complete-lisp-symbol))
 
 ;;________________________________________________________________________________
-;;                                                                    Key Bindngs
+;;                                                                   Key Bindings
 
 ;;; Setup basic, global key-bindings
 
@@ -352,7 +359,7 @@
   :ensure centered-window-mode
   :bind ("C-c m c" . centered-window-mode))
 
-;; Immitate 'narrow-to-region' with more eye-candy.
+;; Imitate `narrow-to-region' with more eye-candy.
 (use-package fancy-narrow
   :ensure fancy-narrow
   :commands fancy-narrow-mode
@@ -363,7 +370,7 @@
   :ensure anzu
   :config (global-anzu-mode 1))
 
-;; Smart M-x
+;; Smart 'M-x'
 (use-package smex
   :ensure smex
   :init (smex-initialize)
@@ -373,7 +380,8 @@
 ;; Save point position between sessions
 (use-package saveplace
   :ensure saveplace
-  :config (setq-default save-place t))
+  :config (setq-default save-place t
+                        save-place-file "~/.emacs.d/data/places"))
 
 (use-package duplicate-thing
   :ensure duplicate-thing
@@ -403,11 +411,14 @@
 ;; Shell
 (require 'setup-shell)
 
-;;________________________________________________________________________________
-;;                                                                    Programming
-
 ;; Auto complete
 (require 'setup-auto-complete)
+
+;; Org mode
+(require 'setup-org-mode)
+
+;;________________________________________________________________________________
+;;                                                                    Programming
 
 ;; Flycheck
 (use-package flycheck
@@ -523,7 +534,7 @@
 ;;________________________________________________________________________________
 ;;                                                                       Epilogue
 
-;; Personal Preferences
+;; Load personal preferences
 (setq personal-file "~/.emacs.d/personal.el")
 (load personal-file 'noerror)
 

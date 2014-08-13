@@ -23,8 +23,8 @@
 (setq tab-always-indent 'complete)
 (add-to-list 'completion-styles 'initials t)
 
-;; Hook AC into `completion-at-point'
 (defun set-auto-complete-as-completion-at-point-function ()
+  "Hook AC into `completion-at-point'."
   (setq completion-at-point-functions '(auto-complete)))
 
 (add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
@@ -39,10 +39,11 @@
                ac-source-words-in-same-mode-buffers
                ac-source-words-in-all-buffer))
 
-(setq ac-auto-show-menu t)
-(setq ac-use-menu-map t)
-(setq ac-quick-help-delay 1)
-(setq ac-quick-help-height 60)
+(setq ac-auto-show-menu t
+      ac-use-menu-map t
+      ac-quick-help-delay 1
+      ac-quick-help-height 60
+      ac-comphist-file  "~/.emacs.d/data/ac-comphist.dat")
 
 ;; AC everywhere - hack
 (define-globalized-minor-mode real-global-auto-complete-mode
@@ -51,8 +52,8 @@
                            (auto-complete-mode 1))))
 (real-global-auto-complete-mode t)
 
-;; Exclude very large buffers from `dabbrev'
 (defun my/dabbrev-friend-buffer (other-buffer)
+  "Exclude very large OTHER-BUFFER from `dabbrev'."
   (< (buffer-size other-buffer) (* 1 1024 1024)))
 
 (setq dabbrev-friend-buffer-function 'my/dabbrev-friend-buffer)

@@ -101,7 +101,8 @@ Including indent-buffer, which should not be called automatically on save."
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
 (defun insert-file-name (filename &optional args)
-  "Insert full qualified FILENAME in place."
+  "Insert full qualified FILENAME in place.
+If you pass '-' as ARGS it will be relative."
   (interactive "*fInsert file name: \nP")
   (cond ((eq '- args)
          (insert (file-relative-name filename)))
@@ -118,12 +119,12 @@ Including indent-buffer, which should not be called automatically on save."
 ;;________________________________________________________________________________
 ;;                                                                   Key-bindings
 
-(define-key ctl-x-map "\C-i" 'endless/ispell-word-then-abbrev)
+(bind-key "C-c x i" 'endless/ispell-word-then-abbrev)
+(bind-key "C-c x b" 'toggle-maximize-buffer)
+(bind-key "C-c x f" 'toggle-fullscreen)
+(bind-key "C-c x z" 'zap-up-to-char)
 
-(global-set-key (kbd "C-c x b") 'toggle-maximize-buffer)
-(global-set-key (kbd "C-c x f") 'toggle-fullscreen)
-(global-set-key (kbd "C-c p f") 'cleanup-buffer)
-(global-set-key (kbd "M-Z") 'zap-up-to-char)
+(bind-key "C-c p f" 'cleanup-buffer)
 
 (provide 'load-defuns)
 

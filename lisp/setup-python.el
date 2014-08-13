@@ -27,6 +27,8 @@
 ;;_______________________________________________________________________________
 ;;                                                                   Indentation
 
+(require 'python)
+
 (add-hook 'python-mode-hook
           (lambda ()
             (setq indent-tabs-mode nil)
@@ -70,21 +72,14 @@
   :ensure jedi-direx
   :config (progn
 	    (add-hook 'jedi-mode-hook 'jedi-direx:setup)
-	    (add-hook 'jedi-mode-hook
-		      (lambda ()
-			(local-set-key (kbd "C-c p j")
-				       'jedi-direx:pop-to-buffer)))))
+            (bind-key "C-c p j" 'jedi-direx:pop-to-buffer jedi-mode-map)))
 
 (use-package helm-pydoc
   :ensure helm-pydoc
-  :config (add-hook 'python-mode-hook
-		    (lambda ()
-		      (local-set-key (kbd "C-c C-d") 'helm-pydoc))))
+  :config (bind-key "C-c C-d" 'helm-pydoc python-mode-map))
 
 ;;_______________________________________________________________________________
 ;;                                                                     Debugging
-
-(require 'python)
 
 (defun python--add-debug-highlight ()
   "Add a highlighter for use by `python--pdb-breakpoint-string'."

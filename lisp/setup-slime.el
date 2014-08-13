@@ -28,7 +28,7 @@
 
   :bind ("C-z" . slime-selector))
 
-;; SBCL (default) and MIT Scheme (see setup-mit-scheme.el)
+;; SBCL (default)
 (setq slime-lisp-implementations
       '((sbcl ("sbcl") :init slime-init-command)))
 
