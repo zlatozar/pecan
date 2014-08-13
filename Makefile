@@ -14,7 +14,7 @@ ERROR_STRING = $(ERROR_COLOR)[ERRORS]$(NO_COLOR)
 WARN_STRING  = $(WARN_COLOR)[WARNINGS]$(NO_COLOR)
 
 #_______________________________________________________________________________
-#                                                                         RULES
+#                                                                      REQUIRED
 
 default: bootstrap
 
@@ -22,3 +22,11 @@ bootstrap:
 	@ echo "$(OK_COLOR)===> Download packages needed to bootstrap...$(NO_COLOR)"
 	@ $(MAKE) -C site-lisp/
 	@ echo "$(OK_COLOR)DONE$(NO_COLOR)"
+
+#_______________________________________________________________________________
+#                                                                      OPTIONAL
+
+cl-info:
+	@ echo "$(OK_COLOR)===> Install Common Lisp info pages...$(NO_COLOR)"
+	@ cp -r reference/common-lisp/ /usr/share/info/
+	@ echo "$(OK_COLOR)Now you can use 'C-h S' to refer Common Lisp specification$(NO_COLOR)"

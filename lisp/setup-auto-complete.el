@@ -29,6 +29,9 @@
 
 (add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
 
+; Case sensitivity is important when finding matches
+(setq ac-ignore-case nil)
+
 (set-default 'ac-sources
              '(ac-source-imenu
                ac-source-dictionary

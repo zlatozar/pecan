@@ -95,6 +95,10 @@ Optionally BUF and STR could be passed."
 
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
+;; Clean up
+(add-hook 'prog-mode-hook (lambda ()
+                            (add-hook 'before-save-hook 'delete-trailing-whitespace)))
+
 (provide 'setup-programming-tools)
 
 ;;; setup-programming-tools.el ends here

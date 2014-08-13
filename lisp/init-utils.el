@@ -17,6 +17,10 @@
   (dolist (pattern patterns)
     (add-to-list 'auto-mode-alist (cons pattern mode))))
 
+(defun system-is-mac ()
+  "Check if used system is MAC."
+  (string-equal system-type "darwin"))
+
 (defun my/string-all-matches (regex str &optional group)
   "Match all for `REGEX' within `STR', returning the full match string or group `GROUP'."
   (let ((result nil)

@@ -28,4 +28,14 @@ $ git clone http://github.com/zlatozar/pecan .emacs.d
 $ cd ~/.emacs.d/
 $ make
 ```
+
 - Run Emacs and all additional packages will be downloaded from **MELPA**
+
+- Optional you can install _ANSI Common Lisp_ specification as info page
+
+```
+$ cd ~/.emacs.d/
+$ make cl-info
+```
+
+Have fun!
