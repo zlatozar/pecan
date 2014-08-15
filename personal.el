@@ -11,6 +11,7 @@
 
 ;; Setup registers for files I commonly edit
 (set-register ?b '(file . "~/Documents/brainstorming.org"))
+(set-register ?s '(file . "~/.bashrc"))
 (set-register ?e '(file . "~/.emacs.d/init.el"))
 (set-register ?j '(file . "~/notes.txt"))
 (set-register ?m '(file . "~/mail.md"))

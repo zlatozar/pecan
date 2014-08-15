@@ -31,11 +31,19 @@ $ make
 
 - Run Emacs and all additional packages will be downloaded from **MELPA**
 
-- Optional you can install _ANSI Common Lisp_ specification as info page
+- Optional you can install **ANSI Common Lisp** specification as _Info_ page
 
 ```
 $ cd ~/.emacs.d/
 $ make cl-info
+```
+
+###Key Bindings###
+
+To see all key bindings defined in this configuration:
+
+```
+M-x describe-personal-keybindings
 ```
 
 Have fun!

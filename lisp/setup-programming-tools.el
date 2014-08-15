@@ -52,8 +52,8 @@
 ;; Go to last change
 (use-package goto-chg
   :ensure goto-chg
-  :bind (("C-." . goto-last-change)
-         ("C-," . goto-last-change-reverse)))
+  :bind (("C-c x ." . goto-last-change)
+         ("C-c x ," . goto-last-change-reverse)))
 
 ;; Interactive edit on multiple strings
 (use-package iedit

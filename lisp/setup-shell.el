@@ -2,6 +2,12 @@
 
 ;;; Commentary:
 
+;; It is very convenient to have following alias in .bashrc:
+;;
+;; alias ec="emacsclient -c"
+;;
+;; In this way you can open file from multi-term very easily.
+
 ;; Usage:
 ;;     Emacs runs .bashrc in *shell*
 
