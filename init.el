@@ -104,6 +104,7 @@
       tab-always-indent 'complete
       save-abbrevs t
       abbrev-file-name "~/.emacs.d/data/abbrev_defs"
+      tramp-auto-save-directory "~/.emacs.d/data/tramp"
       select-active-region t
       shift-select-mode nil
       x-select-enable-clipboard t
@@ -123,6 +124,7 @@
 (setq-default truncate-lines t)
 (setq-default abbrev-mode 1)
 (setq-default indent-tabs-mode nil)
+(setq-default fill-column 90)
 
 (transient-mark-mode t)
 (delete-selection-mode t)
@@ -137,7 +139,6 @@
 (blink-cursor-mode 0)
 (tooltip-mode 1)
 (electric-pair-mode 0)
-(set-fill-column 90)
 
 ;; shift-{arrows} to move between buffers
 (windmove-default-keybindings)
