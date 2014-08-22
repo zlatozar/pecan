@@ -376,7 +376,8 @@
   :ensure smex
   :init (smex-initialize)
   :config (setq smex-save-file "~/.emacs.d/data/smex-items")
-  :bind ("M-x" . smex))
+  :bind (("M-x" . smex)
+         ("M-X" . smex-major-mode-commands)))
 
 ;; Save point position between sessions
 (use-package saveplace

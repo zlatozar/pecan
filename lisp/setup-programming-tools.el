@@ -75,7 +75,7 @@
           (narrow-to-defun)
           (iedit-start (current-word) (point-min) (point-max)))))))
 
-(global-set-key (kbd "C-c ;") 'iedit-dwim)
+(bind-key "C-c ;" 'iedit-dwim global-map)
 
 ;; Close when compilation is successful
 (defun bury-compile-buffer-if-successful (buf str)
