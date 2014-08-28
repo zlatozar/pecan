@@ -12,6 +12,7 @@
   :config (progn
             (setq jedi:setup-keys t
                   jedi:complete-on-dot t
+                  jedi:use-shortcuts t
                   jedi:tooltip-method '(pos-tip))
             (add-hook 'python-mode-hook (lambda () (yas-global-mode 1)))
             (add-hook 'python-mode-hook (lambda () (paredit-mode -1)))
@@ -38,7 +39,7 @@
 ;;_______________________________________________________________________________
 ;;                                                                    Additional
 
-;; 'ipython' should be installed
+;; "C-c C-p" to start it
 (setq
  python-shell-interpreter "ipython"
  python-shell-interpreter-args ""
@@ -55,23 +56,15 @@
   :ensure virtualenvwrapper
   :commands venv-workon
   :config (progn
-	    (setq venv-location "~/.virtualenvs/")
-	    (venv-initialize-interactive-shells)
-	    (venv-initialize-eshell)
-	    (setq-default mode-line-format
-			  (cons '(:exec venv-current-name)
-				mode-line-format))
-	    (add-hook 'python-mode-hook
-		      (lambda ()
-			(hack-local-variables)
-			(setq python-shell-virtualenv-path
-			      (f-join venv-location project-venv-name))
-			(venv-workon project-venv-name)))))
+            (setq venv-location "~/.virtualenvs/")
+            (venv-initialize-interactive-shells)
+            (setq-default mode-line-format
+                          (cons '(:exec venv-current-name) mode-line-format))))
 
 (use-package jedi-direx
   :ensure jedi-direx
   :config (progn
-	    (add-hook 'jedi-mode-hook 'jedi-direx:setup)
+            (add-hook 'jedi-mode-hook 'jedi-direx:setup)
             (bind-key "C-c p j" 'jedi-direx:pop-to-buffer jedi-mode-map)))
 
 (use-package helm-pydoc

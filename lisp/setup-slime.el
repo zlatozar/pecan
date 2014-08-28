@@ -16,6 +16,7 @@
 
   :config
   (progn
+    (unbind-key "C-c x" slime-mode-map)
     (setq slime-protocol-version 'ignore
           slime-net-coding-system 'utf-8-unix
           slime-complete-symbol*-fancy t
@@ -38,7 +39,7 @@
 (defun my/slime-setup ()
   "Mode setup function for SLIME LISP buffers."
   (set-up-slime-hippie-expand)
-  (set-up-slime-ac t)
+  (set-up-slime-ac)
   (paredit-mode 1))
 
 (provide 'setup-slime)

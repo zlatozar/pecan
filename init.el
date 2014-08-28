@@ -75,7 +75,7 @@
     (setq auto-compile-mode-line-counter t)))
 
 ;;_______________________________________________________________________________
-;;                  General, Global Settings, Minor modes, Display Configuration
+;;               General, Global Settings, Minor Modes and Display Configuration
 
 (setenv "EDITOR" "emacsclient")
 (setenv "PAGER" "cat")
@@ -103,6 +103,7 @@
       history-length 250
       tab-always-indent 'complete
       save-abbrevs t
+      require-final-newline t
       abbrev-file-name "~/.emacs.d/data/abbrev_defs"
       tramp-auto-save-directory "~/.emacs.d/data/tramp"
       select-active-region t
@@ -153,21 +154,24 @@
 ;; Hippie expand configuration
 (defconst dabbrev-always-check-other-buffers t)
 (defconst dabbrev-abbrev-char-regexp "\\sw\\|\\s_")
+
 (setq hippie-expand-dabbrev-as-symbol nil)
-(setq hippie-expand-try-functions-list
-      '(try-expand-dabbrev try-expand-dabbrev-all-buffers
-                           try-expand-dabbrev-from-kill
-                           try-complete-file-name-partially
-                           try-complete-file-name
-                           try-expand-all-abbrevs
-                           try-expand-list try-expand-line
-                           try-complete-lisp-symbol-partially
-                           try-complete-lisp-symbol))
+
+(setq hippie-expand-try-functions-list '(try-expand-dabbrev
+                                         try-complete-file-name-partially
+                                         try-complete-file-name
+                                         try-expand-all-abbrevs
+                                         try-expand-list
+                                         try-expand-line
+                                         try-expand-dabbrev-all-buffers
+                                         try-expand-dabbrev-from-kill
+                                         try-complete-lisp-symbol-partially
+                                         try-complete-lisp-symbol))
 
 ;;________________________________________________________________________________
 ;;                                                                   Key Bindings
 
-;;; Setup basic, global key-bindings
+;;; Setup basic, global key bindings
 
 (bind-key "<RET>" 'newline-and-indent)
 (bind-key "<C-return>" 'newline)
@@ -187,7 +191,7 @@
 (bind-key "C-c x v" 'visit-tags-table)
 (bind-key "C-c x w" 'whitespace-cleanup)
 
-;;; Desktop managament
+;;; Desktop management
 
 (bind-key "C-c d c" 'desktop-clear)
 (bind-key "C-c d d" 'desktop-change-dir)
@@ -201,19 +205,19 @@
 ;; Ido everywhere:
 (require 'setup-ido)
 
-;; A utility to help manage minor modes:
+;; A utility to help manage minor modes
 (use-package manage-minor-mode
   :ensure manage-minor-mode
   :commands manage-minor-mode
   :bind ("C-c x n" . manage-minor-mode))
 
-;; Show key-bindings for the current major mode:
+;; Show key-bindings for the current major mode
 (use-package discover-my-major
   :ensure discover-my-major
   :commands discover-my-major
   :bind ("C-h C-m" . discover-my-major))
 
-;; Use Undo Tree instead of the Emacs default:
+;; Use Undo Tree instead of the Emacs default
 (use-package undo-tree
   :ensure undo-tree
   :init (global-undo-tree-mode))
@@ -301,7 +305,8 @@
 
 (use-package ace-jump-mode
   :ensure ace-jump-mode
-  :bind ("C-c SPC" . ace-jump-mode))
+  :bind (("C-c SPC" . ace-jump-mode)
+         ("C-x SPC" . ace-jump-mode-pop-mark)))
 
 (use-package ace-link
   :ensure ace-link
@@ -365,6 +370,11 @@
   :ensure fancy-narrow
   :commands fancy-narrow-mode
   :config (fancy-narrow-mode 1))
+
+;; Sticky window
+(use-package dedicated
+  :ensure dedicated
+  :bind ("C-c x d" . dedicated-mode))
 
 ;; Displays current match and total matches in modeline
 (use-package anzu

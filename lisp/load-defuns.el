@@ -116,6 +116,12 @@ If you pass '-' as ARGS it will be relative."
   (interactive "p")
   (kill-ring-save (line-beginning-position) (line-beginning-position (1+ n))))
 
+(defun pretty-json-region (&optional start end)
+    "Shells out to Python to pretty print JSON.
+With START END region is selected."
+    (interactive "r")
+    (shell-command-on-region start end "python -m json.tool" (current-buffer) t))
+
 ;;________________________________________________________________________________
 ;;                                                                   Key-bindings
 

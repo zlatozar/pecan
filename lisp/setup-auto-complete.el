@@ -33,10 +33,15 @@
 (setq ac-ignore-case nil)
 
 (set-default 'ac-sources
-             '(ac-source-imenu
-               ac-source-dictionary
+             '(ac-source-filename
+               ac-source-functions
+               ac-source-variables
+               ac-source-symbols
+               ac-source-features
                ac-source-words-in-buffer
                ac-source-words-in-same-mode-buffers
+               ac-source-dictionary
+               ac-source-imenu
                ac-source-words-in-all-buffer))
 
 (setq ac-auto-show-menu t
@@ -51,12 +56,6 @@
                        (if (not (minibufferp (current-buffer)))
                            (auto-complete-mode 1))))
 (real-global-auto-complete-mode t)
-
-(defun my/dabbrev-friend-buffer (other-buffer)
-  "Exclude very large OTHER-BUFFER from `dabbrev'."
-  (< (buffer-size other-buffer) (* 1 1024 1024)))
-
-(setq dabbrev-friend-buffer-function 'my/dabbrev-friend-buffer)
 
 (provide 'setup-auto-complete)
 
