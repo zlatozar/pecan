@@ -25,16 +25,22 @@
 (use-package paredit
   :ensure paredit
   :init (add-hook 'prog-mode-hook (lambda () (paredit-mode 1)))
-  :bind (("C-)" . paredit-forward-slurp-sexp)
-         ("C-}" . paredit-forward-barf-sexp)
-         ("M-(" . paredit-wrap-round)
-         ("M-\"" . paredit-meta-doublequote)
-         ("M-S" . paredit-split-sexp)
-         ("M-J" . paredit-join-sexp)
-         ("M-s" . paredit-splice-sexp)
-         ("M-r" . paredit-raise-sexp)
-         ("M-d" . paredit-forward-kill-word)
-         ("M-DEL" . paredit-backward-kill-word)))
+  :bind (("C-M-l" . paredit-recentre-on-sexp)
+
+         ("C-)"   . paredit-forward-slurp-sexp)
+         ("C-}"   . paredit-forward-barf-sexp)
+         ("M-("   . paredit-wrap-round)
+         ("M-\""  . paredit-meta-doublequote)
+         ("M-S"   . paredit-split-sexp)
+         ("M-J"   . paredit-join-sexp)
+         ("M-s"   . paredit-splice-sexp)
+         ("M-r"   . paredit-raise-sexp)
+         ("M-d"   . paredit-forward-kill-word)
+         ("M-DEL" . paredit-backward-kill-word)
+
+         ("C-c p C" . paredit-convolute-sexp)
+         ("C-c p a" . paredit-add-to-next-list)
+         ("C-c p A" . paredit-add-to-previous-list)))
 
 ;; Making paredit work with delete-selection-mode
 (put 'paredit-forward-delete 'delete-selection 'supersede)

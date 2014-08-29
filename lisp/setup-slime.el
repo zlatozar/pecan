@@ -16,7 +16,6 @@
 
   :config
   (progn
-    (unbind-key "C-c x" slime-mode-map)
     (setq slime-protocol-version 'ignore
           slime-net-coding-system 'utf-8-unix
           slime-complete-symbol*-fancy t
@@ -32,6 +31,9 @@
 ;; SBCL (default)
 (setq slime-lisp-implementations
       '((sbcl ("sbcl") :init slime-init-command)))
+
+;; Avoid clash with Pecan global key bindings
+(unbind-key "C-c x" slime-mode-map)
 
 ;;________________________________________________________________________________
 ;;                                                               Helper Functions

@@ -9,7 +9,7 @@
 ;;     http://zlatozar.blogspot.com
 ;;     http://github.com/zlatozar/pecan
 ;;
-;; Conventions for key-bindings:
+;; Conventions for key bindings:
 ;;
 ;;     - C-c t:    Text commands.
 ;;     - C-c s:    Swoop commands.
@@ -171,7 +171,7 @@
 ;;________________________________________________________________________________
 ;;                                                                   Key Bindings
 
-;;; Setup basic, global key bindings
+;;; Setup basic, global key bindings.
 
 (bind-key "<RET>" 'newline-and-indent)
 (bind-key "<C-return>" 'newline)
@@ -179,19 +179,21 @@
 (bind-key "M-/" 'hippie-expand)
 (global-unset-key (kbd "C-z"))
 
-;;; These are commands mostly use for text editing
+;;; These are commands mostly use for text editing.
 
 (bind-key "C-c m t" 'text-mode)
 (bind-key "C-c t a" 'align-regexp)
 (bind-key "C-c t c" 'flyspell-auto-correct-word)
 (bind-key "C-c t f" 'toggle-text-mode-auto-fill)
 (bind-key "C-c t s" 'sort-lines)
-
+(bind-key "C-c x s" (lambda ()
+                      (interactive)
+                      (switch-to-buffer "*scratch*")))
 (bind-key "C-c x i" 'imenu)
 (bind-key "C-c x v" 'visit-tags-table)
 (bind-key "C-c x w" 'whitespace-cleanup)
 
-;;; Desktop management
+;;; Desktop management.
 
 (bind-key "C-c d c" 'desktop-clear)
 (bind-key "C-c d d" 'desktop-change-dir)
@@ -202,7 +204,7 @@
 
 (require 'load-needed)
 
-;; Ido everywhere:
+;; Use Ido everywhere
 (require 'setup-ido)
 
 ;; A utility to help manage minor modes
@@ -260,7 +262,7 @@
 (bind-key "<C-up>" 'my/move-line-up)
 (bind-key "<C-down>" 'my/move-line-down)
 
-;; Easily visit recently opened files.
+;; Easily visit recently opened files
 (use-package recentf-mode
   :init
   (progn
@@ -287,7 +289,7 @@
     (key-chord-define-global "qh" 'mark-whole-buffer)
     (key-chord-define-global "qf" 'ido-find-file)))
 
-;;; Packages to navigate and edit text in semantic terms
+;;; Packages to navigate and edit text in semantic terms.
 
 ;; Increases the selected region by semantic units
 (use-package expand-region
@@ -365,7 +367,7 @@
   :ensure centered-window-mode
   :bind ("C-c m c" . centered-window-mode))
 
-;; Imitate `narrow-to-region' with more eye-candy.
+;; Imitate `narrow-to-region' with more eye-candy
 (use-package fancy-narrow
   :ensure fancy-narrow
   :commands fancy-narrow-mode
@@ -404,12 +406,16 @@
   :ensure dired-efap
   :config (bind-key "<f2>" 'dired-efap dired-mode-map))
 
-;; Browsing
+;; Browsing (use EWW with Emacs 24.4?)
 (use-package w3m
   :ensure w3m
   :config
   (setq browse-url-browser-function 'w3m-browse-url
+        browse-url-generic-program "firefox"
+        browse-url-generic-args '("-P" "default" "-new-tab")
+        w3m-key-binding 'info
         w3m-use-cookies t
+        w3m-cookie-file "~/.emacs.d/data/w3m/cookie"
         w3m-symbol 'w3m-default-symbol
         w3m-default-display-inline-images t
         w3m-mailto-url-function 'compose-mail))
@@ -420,7 +426,7 @@
     (add-hook 'tex-mode-hook (lambda () (typo-mode -1)))
     (add-hook 'tex-mode-hook (lambda () (flycheck-mode -1)))))
 
-;; Shell
+;; Shell using multi-term
 (require 'setup-shell)
 
 ;; Auto complete
@@ -503,7 +509,7 @@
            (wand:create-rule :match "https?://"
                              :capture :whole
                              :action browse-url-generic)
-           (wand:create-rule :match "file://"
+           (wand:create-rule :match "file:"
                              :capture :after
                              :action find-file-other-window)))))
 
@@ -524,7 +530,7 @@
       "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
       "C-c e w")))
 
-;;; Helm:
+;;; Helm
 
 (use-package helm-config
   :load-path "site-lisp/helm"
