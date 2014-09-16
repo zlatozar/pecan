@@ -129,6 +129,7 @@ With START END region is selected."
 (bind-key "C-c x b" 'toggle-maximize-buffer)
 (bind-key "C-c x f" 'toggle-fullscreen)
 (bind-key "C-c x z" 'zap-up-to-char)
+(bind-key "C-c t t" 'copy-line)
 
 (bind-key "C-c p f" 'cleanup-buffer)
 

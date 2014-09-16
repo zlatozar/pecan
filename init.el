@@ -506,6 +506,9 @@
   (progn
     (setq wand:*rules*
           (list
+           (wand:create-rule :match ">>> "
+                             :capture :after
+                             :action python-shell-send-string)
            (wand:create-rule :match "https?://"
                              :capture :whole
                              :action browse-url-generic)
