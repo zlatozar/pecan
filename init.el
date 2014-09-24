@@ -420,6 +420,11 @@
         w3m-default-display-inline-images t
         w3m-mailto-url-function 'compose-mail))
 
+;; File browser
+(use-package neotree
+  :load-path "site-lisp/emacs-neotree/"
+  :config (bind-key "<f5>" 'neotree-toggle))
+
 (use-package tex-mode
   :init
   (progn

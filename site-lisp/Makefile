@@ -42,7 +42,7 @@ endef
 default: all
 
 # Do not forget to update .PHONY
-all: dash flycheck flycheck-pos-tip slime helm helm-ag prolog.elc
+all: dash flycheck flycheck-pos-tip slime helm helm-ag emacs-neotree prolog.elc
 
 .el.elc:
 	@ echo "\n** Bite compiling ===> " $@
@@ -103,6 +103,14 @@ helm-ag:
 	  else cd emacs-helm-ag; git pull --rebase; cd ..; fi;
 
 #_______________________________________________________________________________
+#                                                                       Neotree
+
+emacs-neotree:
+	@ echo "$(OK_COLOR)===> Checkout or update emacs-neotree...$(NO_COLOR)"
+	@ if [ ! -d emacs-neotree ]; then git clone https://github.com/jaypei/emacs-neotree.git; \
+	  else cd emacs-neotree; git pull --rebase; cd ..; fi;
+
+#_______________________________________________________________________________
 #                                                                       Clojure
 
 cider:
@@ -142,7 +150,7 @@ jslint-v8: _v8
 #                                                                  SYSTEM RULES
 
 .PHONY: clean dash flycheck flycheck-pos-tip slime ac-slime \
-		hippie-expand-slime helm helm-ag cider ac-cider
+		hippie-expand-slime helm helm-ag emacs-neotree cider ac-cider
 
 clean:
 	rm -f $(ELC)
