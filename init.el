@@ -148,6 +148,13 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
+;; Start maximized
+(custom-set-variables
+ '(initial-frame-alist (quote ((fullscreen . maximized)))))
+
+;; Better rectangle manipulations
+(cua-selection-mode 1)
+
 ;;________________________________________________________________________________
 ;;                                                                  How to expand
 

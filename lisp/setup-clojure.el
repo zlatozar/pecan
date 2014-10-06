@@ -62,6 +62,28 @@
                  (add-hook 'cider-mode-hook
                            'set-auto-complete-as-completion-at-point-function)))))
 
+(defun cider-repl-command (cmd)
+  "Execute commands on the cider repl"
+  (cider-switch-to-repl-buffer)
+  (goto-char (point-max))
+  (insert cmd)
+  (cider-repl-return)
+  (cider-switch-to-last-clojure-buffer))
+
+(defun cider-repl-reset ()
+  "Assumes reloaded + tools.namespace is used to reload everything"
+  (interactive)
+  (save-some-buffers)
+  (cider-repl-command "(user/reset)"))
+
+(defun cider-reset-test-run-tests ()
+  (interactive)
+  (cider-repl-reset)
+  (cider-test-run-tests))
+
+(define-key cider-mode-map (kbd "C-c r") 'cider-repl-reset)
+(define-key cider-mode-map (kbd "C-c .") 'cider-reset-test-run-tests)
+
 (provide 'setup-clojure)
 
 ;;; setup-clojure.el ends here

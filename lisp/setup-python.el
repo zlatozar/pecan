@@ -14,11 +14,21 @@
                   jedi:complete-on-dot t
                   jedi:use-shortcuts t
                   jedi:tooltip-method '(pos-tip))
-            (add-hook 'python-mode-hook (lambda () (yas-global-mode 1)))
-            (add-hook 'python-mode-hook (lambda () (paredit-mode -1)))
-            (add-hook 'python-mode-hook (lambda () (jedi-mode 1)))
-            (add-hook 'python-mode-hook 'auto-complete-mode)
-            (add-hook 'python-mode-hook 'jedi:ac-setup)))
+            (add-hook 'python-mode-hook
+                      (lambda ()
+                        (yas-global-mode 1)
+                        (paredit-mode -1)
+                        (jedi-mode 1)
+                        (auto-complete-mode)
+                        (add-to-list 'ac-sources 'ac-source-jedi-direct)
+                        (jedi:ac-setup)))
+            (defvar jedi-config:vcs-root-sentinel ".git")
+            (defvar jedi-config:python-module-sentinel "__init__.py"))
+
+  :bind (("M-." . jedi:goto-definition)
+         ("M-," . jedi:goto-definition-pop-marker)
+         ("M-?" . jedi:show-doc)
+         ("M-/" . jedi:get-in-function-call)))
 
 ;; 'pyflakes' should be in PATH
 (use-package flymake-python-pyflakes
