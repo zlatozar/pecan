@@ -1,4 +1,10 @@
-;;; This file contains configuration for 'command line' Emacs
+;;; basic-init --- Command line Emacs
+
+;;; Commentary: This file contains configuration for 'command line' Emacs
+
+;; Usage:
+
+;;; Code:
 
 ;;________________________________________________________________________________
 ;;                                                                        Minimal
@@ -39,3 +45,7 @@
 (setq frame-title-format
       (list (format "%s %%S: %%j " (system-name))
             '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+
+(provide 'basic-init)
+
+;;; basic-init.el ends here

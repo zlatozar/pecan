@@ -94,7 +94,7 @@
   "Python breakpoint string used by `python-insert-breakpoint'.")
 
 (defun python-insert-breakpoint ()
-  "Insert a python breakpoint using `pytest'."
+  "Insert a python breakpoint using 'pytest' module."
   (interactive)
   (back-to-indentation)
   (split-line)

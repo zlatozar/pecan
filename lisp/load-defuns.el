@@ -49,7 +49,7 @@
 
 (defun endless/ispell-word-then-abbrev (p)
   "Call `ispell-word'.  Then create an `abbrev' for the correction made.
-With prefix `P', create local abbrev.  Otherwise it will be global."
+With prefix P, create local abbrev.  Otherwise it will be global."
   (interactive "P")
   (let ((bef (downcase (or (thing-at-point 'word) ""))) aft)
     (call-interactively 'ispell-word)

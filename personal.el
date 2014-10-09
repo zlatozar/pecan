@@ -11,11 +11,11 @@
 
 ;; Setup registers for files I commonly edit
 (set-register ?b '(file . "~/Documents/brainstorming.org"))
-(set-register ?s '(file . "~/.bashrc"))
 (set-register ?e '(file . "~/.emacs.d/init.el"))
-(set-register ?j '(file . "~/notes.txt"))
 (set-register ?m '(file . "~/mail.md"))
+(set-register ?n '(file . "~/notes.txt"))
 (set-register ?t '(file . "~/todo.org"))
+(set-register ?s '(file . "~/.bashrc"))
 
 ;; First day of the week is Monday instead of Sunday
 (setq european-calendar-style 't)

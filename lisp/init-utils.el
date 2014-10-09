@@ -13,7 +13,7 @@
      '(progn ,@body)))
 
 (defun add-auto-mode (mode &rest patterns)
-  "Add entries to `auto-mode-alist' to use `MODE' for all given file `PATTERNS'."
+  "Add entries to `auto-mode-alist' to use MODE for all given file PATTERNS."
   (dolist (pattern patterns)
     (add-to-list 'auto-mode-alist (cons pattern mode))))
 
@@ -22,7 +22,7 @@
   (string-equal system-type "darwin"))
 
 (defun my/string-all-matches (regex str &optional group)
-  "Match all for `REGEX' within `STR', returning the full match string or group `GROUP'."
+  "Match all for REGEX within STR, returning the full match string or group GROUP."
   (let ((result nil)
         (pos 0)
         (group (or group 0)))
@@ -32,12 +32,12 @@
     result))
 
 (defun my/string-rtrim (str)
-  "Remove trailing whitespace from `STR'."
+  "Remove trailing whitespace from STR."
   (replace-regexp-in-string "[ \t\n]*$" "" str))
 
 (autoload 'find-library-name "find-func")
 (defun my/directory-of-library (library-name)
-  "Return the directory in which the `LIBRARY-NAME' load file is found."
+  "Return the directory in which the LIBRARY-NAME load file is found."
   (file-name-as-directory (file-name-directory (find-library-name library-name))))
 
 (provide 'init-utils)

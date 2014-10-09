@@ -24,7 +24,7 @@
   :ensure litable
   :config (bind-key "C-c t" 'litable-mode emacs-lisp-mode-map))
 
-;; interactive macro expansion
+;; Interactive macro expansion
 (use-package macrostep
   :ensure macrostep
   :config (bind-key "C-c C-e" 'macrostep-expand emacs-lisp-mode-map))
@@ -54,7 +54,7 @@
 
 ;; Hit C-h f (for function) or C-h v (for variable)
 (defun my/emacs-lisp-setup ()
-  "Enable features useful when working with elisp."
+  "Enable features useful when working with Emacs Lisp."
   (paredit-mode 1)
   (my/set-up-hippie-expand-for-elisp)
   (my/ielm-auto-complete)
@@ -65,6 +65,7 @@
 (add-hook 'ielm-mode-hook       'my/emacs-lisp-setup)
 
 (defun my/visit-ielm ()
+  "Open Emacs Lisp REPL."
   (interactive)
   (if (not (get-buffer "*ielm*"))
       (progn

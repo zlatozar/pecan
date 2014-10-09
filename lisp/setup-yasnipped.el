@@ -1,4 +1,4 @@
-;;; setup-yasnipped --- Defines 
+;;; setup-yasnipped --- Defines
 
 ;;; Commentary:
 
@@ -19,7 +19,7 @@
   :bind ("C-c p y" . yas-ido-expand))
 
 (defun yas-ido-expand ()
-  "Let you select (and expand) a yasnippet key."
+  "Let you select (and expand) a `yasnippet' key."
   (interactive)
   (let ((original-point (point)))
     (while (and

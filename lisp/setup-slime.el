@@ -39,7 +39,7 @@
 ;;                                                               Helper Functions
 
 (defun my/slime-setup ()
-  "Mode setup function for SLIME LISP buffers."
+  "Mode setup function for SLIME buffers."
   (set-up-slime-hippie-expand)
   (set-up-slime-ac)
   (paredit-mode 1))

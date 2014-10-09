@@ -24,6 +24,7 @@
   :bind ("~" . my/ido-go-straight-home))
 
 (defun my/ido-go-straight-home ()
+  "Type ~ and it go to ~/.  Type it twice and go to ~/projects."
   (interactive)
   (cond
    ((looking-back "~/") (insert "projects/"))

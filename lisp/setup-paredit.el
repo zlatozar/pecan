@@ -42,7 +42,7 @@
          ("C-c p a" . paredit-add-to-next-list)
          ("C-c p A" . paredit-add-to-previous-list)))
 
-;; Making paredit work with delete-selection-mode
+;; Making paredit work with `delete-selection-mode'
 (put 'paredit-forward-delete 'delete-selection 'supersede)
 (put 'paredit-backward-delete 'delete-selection 'supersede)
 (put 'paredit-newline 'delete-selection t)
