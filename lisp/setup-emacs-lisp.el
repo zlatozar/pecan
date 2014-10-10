@@ -22,7 +22,7 @@
 
 (use-package litable
   :ensure litable
-  :config (bind-key "C-c t" 'litable-mode emacs-lisp-mode-map))
+  :config (bind-key "C-c p t" 'litable-mode emacs-lisp-mode-map))
 
 ;; Interactive macro expansion
 (use-package macrostep
