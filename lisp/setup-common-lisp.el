@@ -1,15 +1,13 @@
 ;;; setup-common-lisp --- Configuration for Common Lisp
 
 ;;; Commentary:
+;;; SLIME should be loaded first
 
 ;; Usage:
 
 ;;; Code:
 
-;; Common Lisp HyperSpec location (this may vary)
-(require 'hyperspec)
-
-;; This may vary
+;; TODO: This may vary - move it to personal.el
 (setq common-lisp-hyperspec-root
       (concat "file://" (expand-file-name "/opt/local/share/doc/lisp/HyperSpec-7-0/HyperSpec/")) ; <-- insert your path
       common-lisp-hyperspec-symbol-table

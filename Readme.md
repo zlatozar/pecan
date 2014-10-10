@@ -1,19 +1,14 @@
-###Emacs Configuration###
+### Pecan Emacs
 
-_(work in progress)_
-
-####Programming###
-
-If you use one of the following languages:
+This Emacs configuration is suitable for programmers using one of the following
+programming languages:
 
 * _Python_
 * _Common Lisp_
 * _SWI Prolog_
 * _Emacs Lisp_
 
-this confiuguration is suitable for you.
-
-###How to start using it###
+### How to start using it?
 
 - Take the source
 
@@ -38,7 +33,7 @@ $ cd ~/.emacs.d/
 $ make cl-info
 ```
 
-###Key Bindings###
+### Key Bindings
 
 To see all key bindings defined in this configuration:
 

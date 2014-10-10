@@ -1,8 +1,7 @@
-;;; setup-yasnipped --- Defines
+;;; setup-yasnipped --- Configuration for programming templates
 
 ;;; Commentary:
-
-;; Use only own snippets, do not use bundled ones.
+;;; Use only own snippets, do not use bundled ones.
 
 ;; Usage:
 

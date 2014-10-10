@@ -1,6 +1,7 @@
 ;;; basic-init --- Command line Emacs
 
-;;; Commentary: This file contains configuration for 'command line' Emacs
+;;; Commentary:
+;;; This file contains configuration for 'command line' Emacs
 
 ;; Usage:
 

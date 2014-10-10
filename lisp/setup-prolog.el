@@ -1,6 +1,7 @@
 ;;; setup-prolog --- Configure SWI Prolog
 
 ;;; Commentary:
+;;; Hint: http://www.swi-prolog.org/gtrace.html
 
 ;; Usage:
 
@@ -8,7 +9,6 @@
 
 (require 'prolog)
 
-;; Hint: http://www.swi-prolog.org/gtrace.html
 (autoload 'run-prolog "prolog" "Start a Prolog sub-process." t)
 (autoload 'prolog-mode "prolog" "Major mode for editing Prolog programs." t)
 (setq prolog-system 'swipl)
