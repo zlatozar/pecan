@@ -432,6 +432,10 @@
   :load-path "site-lisp/emacs-neotree/"
   :config (bind-key "<f5>" 'neotree-toggle))
 
+;; Relative line numbers
+(use-package relative-line-numbers
+  :ensure relative-line-numbers)
+
 (use-package tex-mode
   :init
   (progn
