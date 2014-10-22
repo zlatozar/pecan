@@ -24,9 +24,9 @@
                    slime-asdf
                    slime-banner))
     (add-hook 'slime-mode-hook 'my/slime-setup)
-    (add-hook 'slime-repl-mode-hook 'my/slime-setup))
+    (add-hook 'slime-repl-mode-hook 'my/slime-setup)
 
-  :bind ("C-z" . slime-selector))
+    (bind-key "C-z" 'slime-selector slime-mode-map)))
 
 ;; SBCL (default)
 (setq slime-lisp-implementations

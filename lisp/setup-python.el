@@ -23,12 +23,12 @@
                         (add-to-list 'ac-sources 'ac-source-jedi-direct)
                         (jedi:ac-setup)))
             (defvar jedi-config:vcs-root-sentinel ".git")
-            (defvar jedi-config:python-module-sentinel "__init__.py"))
+            (defvar jedi-config:python-module-sentinel "__init__.py")
 
-  :bind (("M-." . jedi:goto-definition)
-         ("M-," . jedi:goto-definition-pop-marker)
-         ("M-?" . jedi:show-doc)
-         ("M-/" . jedi:get-in-function-call)))
+            (bind-key "M-." 'jedi:goto-definition jedi-mode-map)
+            (bind-key "M-," 'jedi:goto-definition-pop-marker jedi-mode-map)
+            (bind-key "M-?" 'jedi:show-doc jedi-mode-map)
+            (bind-key "M-~" 'jedi:get-in-function-call jedi-mode-map)))
 
 ;; 'pyflakes' should be in PATH
 (use-package flymake-python-pyflakes
