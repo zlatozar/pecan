@@ -7,27 +7,25 @@
 
 ;;; Code:
 
-;; TODO: This may vary - move it to personal.el
-(setq common-lisp-hyperspec-root
-      (concat "file://" (expand-file-name "/opt/local/share/doc/lisp/HyperSpec-7-0/HyperSpec/")) ; <-- insert your path
-      common-lisp-hyperspec-symbol-table
-      (expand-file-name "/opt/local/share/doc/lisp/HyperSpec-7-0/HyperSpec/Data/Map_Sym.txt"))   ; <-- insert your path
-
-(defadvice common-lisp-hyperspec
-  (around hyperspec-lookup-w3m () activate)
-  (let* ((window-configuration (current-window-configuration))
-         (browse-url-browser-function
-          `(lambda (url new-window)
-             (w3m-browse-url url nil)
-             (let ((hs-map (copy-keymap w3m-mode-map)))
-               (define-key hs-map (kbd "q")
-                 (lambda ()
-                   (interactive)
-                   (kill-buffer nil)
-                   (set-window-configuration
-                    ,window-configuration)))
-               (use-local-map hs-map)))))
+(defadvice slime-hyperspec-lookup (around browse-with-eww activate)
+  "Show hyperspec in EWW browser."
+  (flet ((browse-url (url) (eww-browse-url url)))
     ad-do-it))
+
+
+(defadvice slime-repl-insert-prompt
+    (after beginning-of-line-at-end-of-prompt () activate)
+  "Define REPL behavior."
+  (let ((inhibit-read-only t))
+    (goto-char slime-repl-input-start-mark)
+    (add-text-properties (line-beginning-position) (line-end-position)
+                         '(read-only fence
+                                     inhibit-line-move-field-capture t
+                                     field output
+                                     rear-nonsticky t
+                                     front-sticky (field
+                                                   inhibit-line-move-field-capture)
+                                     fontified t))))
 
 (provide 'setup-common-lisp)
 

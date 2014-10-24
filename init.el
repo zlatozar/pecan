@@ -112,6 +112,7 @@
       auto-hscroll-mode t
       linum-format " %03d "
       delete-active-region 'kill
+      browse-url-browser-function 'eww-browse-url
       bookmark-default-file "~/.emacs.d/data/bookmarks")
 
 (setq scroll-preserve-screen-position 'always
@@ -413,20 +414,6 @@
   :ensure dired-efap
   :config (bind-key "<f2>" 'dired-efap dired-mode-map))
 
-;; Browsing (use EWW with Emacs 24.4?)
-(use-package w3m
-  :ensure w3m
-  :config
-  (setq browse-url-browser-function 'w3m-browse-url
-        browse-url-generic-program "firefox"
-        browse-url-generic-args '("-P" "default" "-new-tab")
-        w3m-key-binding 'info
-        w3m-use-cookies t
-        w3m-cookie-file "~/.emacs.d/data/w3m/cookie"
-        w3m-symbol 'w3m-default-symbol
-        w3m-default-display-inline-images t
-        w3m-mailto-url-function 'compose-mail))
-
 ;; File browser
 (use-package neotree
   :load-path "site-lisp/emacs-neotree/"
@@ -527,7 +514,7 @@
                              :action python-shell-send-string)
            (wand:create-rule :match "https?://"
                              :capture :whole
-                             :action browse-url-generic)
+                             :action eww-browse-url)
            (wand:create-rule :match "file:"
                              :capture :after
                              :action find-file-other-window)))))

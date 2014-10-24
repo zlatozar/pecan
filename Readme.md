@@ -1,7 +1,7 @@
 ### Pecan Emacs
 
-This Emacs configuration is suitable for programmers using one of the following
-programming languages:
+This Emacs (ver. 24.4.1) configuration is suitable for programmers using one of the
+following programming languages:
 
 * _Python_
 * _Common Lisp_
