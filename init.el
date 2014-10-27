@@ -453,6 +453,12 @@
             (setq flycheck-display-errors-function nil)
             (global-flycheck-mode 1)))
 
+(use-package aggressive-indent
+  :ensure aggressive-indent
+  :config (progn
+            (global-aggressive-indent-mode 1)
+            (add-to-list 'aggressive-indent-excluded-modes 'html-mode)))
+
 ;; Paredit during programming
 (require 'setup-paredit)
 
