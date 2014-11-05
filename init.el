@@ -570,7 +570,6 @@ With prefix P, create local abbrev. Otherwise it will be global."
   :load-path "site-lisp/helm"
   :config
   (progn
-    (helm-mode 1)
     (key-chord-define-global "qb" 'helm-mini)
     (key-chord-define-global "qo" 'helm-occur)
     (key-chord-define-global "qf" 'helm-find-files)
