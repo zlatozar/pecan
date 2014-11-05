@@ -47,20 +47,6 @@
       (set-register '_ (list (current-window-configuration)))
       (delete-other-windows))))
 
-(defun endless/ispell-word-then-abbrev (p)
-  "Call `ispell-word'.  Then create an `abbrev' for the correction made.
-With prefix P, create local abbrev.  Otherwise it will be global."
-  (interactive "P")
-  (let ((bef (downcase (or (thing-at-point 'word) ""))) aft)
-    (call-interactively 'ispell-word)
-    (setq aft (downcase (or (thing-at-point 'word) "")))
-    (unless (string= aft bef)
-      (message "\"%s\" now expands to \"%s\" %sally"
-               bef aft (if p "loc" "glob"))
-      (define-abbrev
-        (if p global-abbrev-table local-abbrev-table)
-        bef aft))))
-
 (defun untabify-buffer ()
   "Remove tabs from current buffer."
   (interactive)
@@ -117,15 +103,20 @@ If you pass '-' as ARGS it will be relative."
   (kill-ring-save (line-beginning-position) (line-beginning-position (1+ n))))
 
 (defun pretty-json-region (&optional start end)
-    "Shells out to Python to pretty print JSON.
+  "Shells out to Python to pretty print JSON.
 With START END region is selected."
-    (interactive "r")
-    (shell-command-on-region start end "python -m json.tool" (current-buffer) t))
+  (interactive "r")
+  (shell-command-on-region start end "python -m json.tool" (current-buffer) t))
+
+(defadvice kill-buffer (around kill-buffer-around-advice activate)
+  (let ((buffer-to-kill (ad-get-arg 0)))
+    (if (equal buffer-to-kill "*scratch*")
+        (bury-buffer)
+      ad-do-it)))
 
 ;;________________________________________________________________________________
 ;;                                                                   Key-bindings
 
-(bind-key "C-c x i" 'endless/ispell-word-then-abbrev)
 (bind-key "C-c x b" 'toggle-maximize-buffer)
 (bind-key "C-c x f" 'toggle-fullscreen)
 (bind-key "C-c x z" 'zap-up-to-char)

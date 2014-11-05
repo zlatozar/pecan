@@ -27,8 +27,8 @@
 
             (bind-key "M-." 'jedi:goto-definition jedi-mode-map)
             (bind-key "M-," 'jedi:goto-definition-pop-marker jedi-mode-map)
-            (bind-key "M-?" 'jedi:show-doc jedi-mode-map)
-            (bind-key "M-~" 'jedi:get-in-function-call jedi-mode-map)))
+            (bind-key "C-c C-d" 'jedi:show-doc jedi-mode-map)
+            (bind-key "C-c C-l" 'jedi:get-in-function-call jedi-mode-map)))
 
 ;; 'pyflakes' should be in PATH
 (use-package flymake-python-pyflakes

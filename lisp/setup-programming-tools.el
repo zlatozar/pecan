@@ -22,9 +22,11 @@
 
 (use-package git-gutter+
   :ensure git-gutter+
+  :diminish ""
   :config (global-git-gutter+-mode 1))
 
 ;; Browse file versions. Exit with 'q'.
+;; As alternative use 'C-x v g'
 (use-package git-timemachine
   :ensure git-timemachine)
 
@@ -41,8 +43,26 @@
 ;; FIXME/TODO/BUG/KLUDGE in special face only in comments and strings
 (use-package fic-mode
   :ensure fic-mode
+  :diminish ""
   :config
-  (progn (add-hook 'prog-mode-hook 'fic-mode)))
+  (progn
+    (use-package diminish
+      :init (diminish 'fic-mode ""))
+    (add-hook 'prog-mode-hook 'fic-mode)))
+
+(use-package eldoc
+  :config
+  (progn
+    (use-package diminish
+      :init (diminish 'eldoc-mode "eld"))
+    (setq eldoc-idle-delay 0.2)
+    (set-face-attribute 'eldoc-highlight-function-argument nil
+                        :underline t :foreground "blue"
+                        :weight 'bold)))
+
+(use-package highlight-numbers
+  :ensure highlight-numbers
+  :init (add-hook 'prog-mode-hook 'highlight-numbers-mode))
 
 ;; Make it easy to run `M-x compile` when saving source files:
 (use-package recompile-on-save
@@ -98,6 +118,34 @@ Optionally BUF and STR could be passed."
 ;; Clean up
 (add-hook 'prog-mode-hook (lambda ()
                             (add-hook 'before-save-hook 'delete-trailing-whitespace)))
+
+;;________________________________________________________________________________
+;;                                                              Aggressive indent
+
+(use-package aggressive-indent
+  :ensure aggressive-indent
+  :config (progn
+            (add-hook 'lisp-mode-hook 'activate-aggressive-indent)))
+
+(defun indent-defun ()
+  "Indent current defun.
+
+Do nothing if mark is active (to avoid deactivaing it), or if
+buffer is not modified (to avoid creating accidental
+modifications)."
+  (interactive)
+  (unless (or (region-active-p)
+              buffer-read-only
+              (null (buffer-modified-p)))
+    (let ((l (save-excursion (beginning-of-defun 1) (point)))
+          (r (save-excursion (end-of-defun 1) (point))))
+      (cl-letf (((symbol-function 'message) #'ignore))
+        (indent-region l r)))))
+
+(defun activate-aggressive-indent ()
+  "Locally add `indent-defun' to `post-command-hook'."
+  (add-hook 'post-command-hook
+            'indent-defun nil 'local))
 
 (provide 'setup-programming-tools)
 

@@ -61,9 +61,18 @@
 ;;                                                                         Eager
 
 ;; Alias 'emacs' to 'emacsclient' in my shell, so start server
-(require 'server)
-(unless (server-running-p)
-  (server-start))
+(use-package server
+  :config
+  (progn
+    (if (window-system)
+        (if (server-running-p server-name)
+            nil
+          (progn
+            (setq server-name "server-gui")
+            (server-start)))
+      (if (server-running-p server-name)
+          nil
+        (server-start)))))
 
 (use-package auto-compile
   :ensure auto-compile
@@ -105,7 +114,6 @@
       save-abbrevs t
       require-final-newline t
       abbrev-file-name "~/.emacs.d/data/abbrev_defs"
-      tramp-auto-save-directory "~/.emacs.d/data/tramp"
       select-active-region t
       shift-select-mode nil
       x-select-enable-clipboard t
@@ -230,7 +238,8 @@
 ;; Use Undo Tree instead of the Emacs default
 (use-package undo-tree
   :ensure undo-tree
-  :init (global-undo-tree-mode))
+  :idle (global-undo-tree-mode t)
+  :diminish "")
 
 ;;; More buffer-related configuration.
 
@@ -359,6 +368,25 @@
   :config (flyspell-mode 1)
   :init (add-hook 'prog-mode-hook 'flyspell-prog-mode))
 
+(use-package abbrev
+  :diminish ""
+  :config
+  (progn
+    (defun my/ispell-word-then-abbrev (p)
+      "Call `ispell-word'. Then create an abbrev for the correction made.
+With prefix P, create local abbrev. Otherwise it will be global."
+      (interactive "P")
+      (let ((bef (downcase (or (thing-at-point 'word) ""))) aft)
+        (call-interactively 'ispell-word)
+        (setq aft (downcase (or (thing-at-point 'word) "")))
+        (unless (string= aft bef)
+          (message "\"%s\" now expands to \"%s\" %sally"
+                   bef aft (if p "loc" "glob"))
+          (define-abbrev
+            (if p local-abbrev-table global-abbrev-table)
+            bef aft)))))
+  :bind ("C-c x i" . my/ispell-word-then-abbrev))
+
 ;; Distraction-free writing mode
 (use-package writeroom-mode
   :ensure writeroom-mode)
@@ -389,6 +417,7 @@
 ;; Displays current match and total matches in modeline
 (use-package anzu
   :ensure anzu
+  :diminish ""
   :config (global-anzu-mode 1))
 
 ;; Smart 'M-x'
@@ -443,21 +472,14 @@
 
 ;; Flycheck
 (use-package flycheck
-  :commands global-flycheck-mode
   :load-path "site-lisp/flycheck/"
-  :bind ("C-c n f" . flycheck-mode)
-  :init
-  (use-package flycheck-pos-tip
-    :load-path "site-lisp/flycheck-pos-tip/")
-  :config (progn
-            (setq flycheck-display-errors-function nil)
-            (global-flycheck-mode 1)))
-
-(use-package aggressive-indent
-  :ensure aggressive-indent
-  :config (progn
-            (global-aggressive-indent-mode 1)
-            (add-to-list 'aggressive-indent-excluded-modes 'html-mode)))
+  :idle (global-flycheck-mode)
+  :diminish "fc"
+  :init (use-package flycheck-pos-tip
+          :load-path "site-lisp/flycheck-pos-tip/")
+  :config (setq-default flycheck-disabled-checkers
+                  '(emacs-lisp-checkdoc))
+  :bind ("C-c n f" . flycheck-mode))
 
 ;; Paredit during programming
 (require 'setup-paredit)

@@ -9,6 +9,7 @@
 
 (use-package yasnippet
   :ensure yasnippet
+  :diminish ""
   :init (setq yas-snippet-dirs '("~/.emacs.d/snippets/"))
   :config (progn
             (setq yas-verbosity 1

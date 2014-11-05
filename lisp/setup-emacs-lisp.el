@@ -9,6 +9,7 @@
 ;; `go-to-definition' with M-. and back again with M-,
 (use-package elisp-slime-nav
   :ensure elisp-slime-nav
+  :diminish ""
   :config
   (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
     (add-hook hook 'turn-on-elisp-slime-nav-mode)))

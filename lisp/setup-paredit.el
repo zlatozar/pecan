@@ -24,6 +24,7 @@
 
 (use-package paredit
   :ensure paredit
+  :diminish "(p)"
   :init (add-hook 'prog-mode-hook (lambda () (paredit-mode 1)))
   :bind (("C-M-l" . paredit-recentre-on-sexp)
 
