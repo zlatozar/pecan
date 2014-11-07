@@ -34,6 +34,16 @@
 (use-package backtrace-mode
   :ensure backtrace-mode)
 
+(use-package eldoc
+  :config
+  (progn
+    (use-package diminish
+      :init (diminish 'eldoc-mode "eld"))
+    (setq eldoc-idle-delay 0.2)
+    (set-face-attribute 'eldoc-highlight-function-argument nil
+                        :underline t :foreground "blue"
+                        :weight 'bold)))
+
 ;;_______________________________________________________________________________
 ;;                                                              Additional tools
 

@@ -164,6 +164,13 @@
 ;; Better rectangle manipulations
 (cua-selection-mode 1)
 
+;; Never kill scratch buffer
+(defadvice kill-buffer (around kill-buffer-around-advice activate)
+  (let ((buffer-to-kill (ad-get-arg 0)))
+    (if (equal buffer-to-kill "*scratch*")
+        (bury-buffer)
+      ad-do-it)))
+
 ;;________________________________________________________________________________
 ;;                                                                  How to expand
 

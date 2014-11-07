@@ -108,12 +108,6 @@ With START END region is selected."
   (interactive "r")
   (shell-command-on-region start end "python -m json.tool" (current-buffer) t))
 
-(defadvice kill-buffer (around kill-buffer-around-advice activate)
-  (let ((buffer-to-kill (ad-get-arg 0)))
-    (if (equal buffer-to-kill "*scratch*")
-        (bury-buffer)
-      ad-do-it)))
-
 ;;________________________________________________________________________________
 ;;                                                                   Key-bindings
 

@@ -50,16 +50,6 @@
       :init (diminish 'fic-mode ""))
     (add-hook 'prog-mode-hook 'fic-mode)))
 
-(use-package eldoc
-  :config
-  (progn
-    (use-package diminish
-      :init (diminish 'eldoc-mode "eld"))
-    (setq eldoc-idle-delay 0.2)
-    (set-face-attribute 'eldoc-highlight-function-argument nil
-                        :underline t :foreground "blue"
-                        :weight 'bold)))
-
 (use-package highlight-numbers
   :ensure highlight-numbers
   :init (add-hook 'prog-mode-hook 'highlight-numbers-mode))
