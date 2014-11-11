@@ -41,6 +41,7 @@
   "Mode setup function for SLIME buffers."
   (set-up-slime-hippie-expand)
   (set-up-slime-ac)
+  (activate-aggressive-indent)
   (paredit-mode 1))
 
 (provide 'setup-slime)

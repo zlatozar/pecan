@@ -109,13 +109,23 @@ Optionally BUF and STR could be passed."
 (add-hook 'prog-mode-hook (lambda ()
                             (add-hook 'before-save-hook 'delete-trailing-whitespace)))
 
+;; Add #' in lambda expressions
+(defun my/sharp ()
+  "Insert #' unless in a string or comment."
+  (interactive)
+  (call-interactively #'self-insert-command)
+  (let ((ppss (syntax-ppss)))
+    (unless (or (elt ppss 3)
+                (elt ppss 4))
+      (insert "'"))))
+
+(define-key lisp-mode-shared-map "#" #'my/sharp)
+
 ;;________________________________________________________________________________
 ;;                                                              Aggressive indent
 
 (use-package aggressive-indent
-  :ensure aggressive-indent
-  :config (progn
-            (add-hook 'lisp-mode-hook 'activate-aggressive-indent)))
+  :ensure aggressive-indent)
 
 (defun indent-defun ()
   "Indent current defun.

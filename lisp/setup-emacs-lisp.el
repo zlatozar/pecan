@@ -70,6 +70,7 @@
   (my/set-up-hippie-expand-for-elisp)
   (my/ielm-auto-complete)
   (ac-emacs-lisp-mode-setup)
+  (activate-aggressive-indent)
   (turn-on-eldoc-mode))
 
 (add-hook 'emacs-lisp-mode-hook 'my/emacs-lisp-setup)
