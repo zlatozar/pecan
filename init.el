@@ -51,11 +51,11 @@
 
 ;; Benchmark of calls to Emacs require and load functions
 (use-package benchmark-init
-  :ensure benchmark-init)
+  :ensure t)
 
 ;; Provides some package manager agnostic utilities
 (use-package packed
-  :ensure packed)
+  :ensure t)
 
 ;;_______________________________________________________________________________
 ;;                                                                         Eager
@@ -75,7 +75,7 @@
         (server-start)))))
 
 (use-package auto-compile
-  :ensure auto-compile
+  :ensure t
   :config
   (progn
     (auto-compile-on-load-mode 1)
@@ -232,19 +232,19 @@
 
 ;; A utility to help manage minor modes
 (use-package manage-minor-mode
-  :ensure manage-minor-mode
+  :ensure t
   :commands manage-minor-mode
   :bind ("C-c x n" . manage-minor-mode))
 
 ;; Show key-bindings for the current major mode
 (use-package discover-my-major
-  :ensure discover-my-major
+  :ensure t
   :commands discover-my-major
   :bind ("C-h C-m" . discover-my-major))
 
 ;; Use Undo Tree instead of the Emacs default
 (use-package undo-tree
-  :ensure undo-tree
+  :ensure t
   :idle (global-undo-tree-mode t)
   :diminish "")
 
@@ -252,7 +252,7 @@
 
 ;; Search words through a whole buffer or across buffers
 (use-package swoop
-  :ensure swoop
+  :ensure t
   :bind (("C-c s s" . swoop)
          ("C-c s m" . swoop-multi)
          ("C-c s r" . swoop-pcre-regexp)
@@ -260,7 +260,7 @@
 
 ;; Swap buffer positions
 (use-package buffer-move
-  :ensure buffer-move
+  :ensure t
   :bind (("<M-down>" . buf-move-down)
          ("<M-up>" . buf-move-up)
          ("<M-left>" . buf-move-left)
@@ -283,6 +283,7 @@
   (forward-line -1)
   (indent-according-to-mode))
 
+;; Not applicable for Mac
 (bind-key "<C-up>" 'my/move-line-up)
 (bind-key "<C-down>" 'my/move-line-down)
 
@@ -296,13 +297,12 @@
   :bind ("<f8>" . recentf-open-files))
 
 (use-package key-chord
-  :ensure key-chord
+  :ensure t
   :bind ("C-c n k" . key-chord-mode)
   :init (key-chord-mode 1)
   :config
   (progn
     (key-chord-define-global "EE" 'server-edit)
-    (key-chord-define-global "VV" 'other-window)
     (key-chord-define-global "$$" 'ispell-buffer)
     ;; Pretty much everything in Enlish word beginning with 'q' is
     ;; follewed the vowel 'u'. These chords take advantage of that.
@@ -317,12 +317,12 @@
 
 ;; Increases the selected region by semantic units
 (use-package expand-region
-  :ensure expand-region
+  :ensure t
   :bind ("C-=" . er/expand-region)
   :config
   (progn
     (use-package change-inner
-      :ensure change-inner
+      :ensure t
       :bind (("M-i" . change-inner)
              ("M-o" . change-outer)))))
 
@@ -330,17 +330,17 @@
 ;;; focused on jumping to specific characters or fixed positions.
 
 (use-package ace-jump-mode
-  :ensure ace-jump-mode
+  :ensure t
   :bind (("C-c SPC" . ace-jump-mode)
          ("C-x SPC" . ace-jump-mode-pop-mark)))
 
 (use-package ace-link
-  :ensure ace-link
+  :ensure t
   :commands ace-link-setup-default
   :config (ace-link-setup-default))
 
 (use-package jump-char
-  :ensure jump-char
+  :ensure t
   :commands jump-char-forward
   :init
   (progn
@@ -350,23 +350,23 @@
 
 ;; 'M-w' is a prefix
 (use-package easy-kill
-  :ensure easy-kill
+  :ensure t
   :bind ("M-w" . easy-kill))
 
 (use-package typo
-  :ensure typo
+  :ensure t
   :commands typo-mode
   :bind ("C-c n t" . typo-mode))
 
 ;; Easy way to double the number for example
 (use-package operate-on-number
-  :ensure operate-on-number
+  :ensure t
   :commands operate-on-number-at-point
   :init (key-chord-define-global "NN" 'operate-on-number-at-point))
 
 ;; Minor mode to aid in finding common writing problems
 (use-package writegood-mode
-  :ensure writegood-mode
+  :ensure t
   :commands writegood-mode
   :bind ("C-c n g" . writegood-mode))
 
@@ -396,40 +396,41 @@ With prefix P, create local abbrev. Otherwise it will be global."
 
 ;; Distraction-free writing mode
 (use-package writeroom-mode
-  :ensure writeroom-mode)
+  :ensure t
+  :bind ("C-c n w" . writeroom-mode))
 
 ;; Highlights the previously visible buffer part after each scroll
 (use-package on-screen
-  :ensure on-screen
+  :ensure t
   :commands on-screen-global-mode
   :bind ("C-c n o" . on-screen-global-mode)
   :config (on-screen-global-mode 1))
 
 ;; Centers the text of the window when there's only one window in the frame
 (use-package centered-window-mode
-  :ensure centered-window-mode
+  :ensure t
   :bind ("C-c m c" . centered-window-mode))
 
 ;; Imitate `narrow-to-region' with more eye-candy
 (use-package fancy-narrow
-  :ensure fancy-narrow
+  :ensure t
   :commands fancy-narrow-mode
   :config (fancy-narrow-mode 1))
 
 ;; Sticky window
 (use-package dedicated
-  :ensure dedicated
+  :ensure t
   :bind ("C-c x d" . dedicated-mode))
 
 ;; Displays current match and total matches in modeline
 (use-package anzu
-  :ensure anzu
+  :ensure t
   :diminish ""
   :config (global-anzu-mode 1))
 
 ;; Smart 'M-x'
 (use-package smex
-  :ensure smex
+  :ensure t
   :init (smex-initialize)
   :config (setq smex-save-file "~/.emacs.d/data/smex-items")
   :bind (("M-x" . smex)
@@ -437,17 +438,17 @@ With prefix P, create local abbrev. Otherwise it will be global."
 
 ;; Save point position between sessions
 (use-package saveplace
-  :ensure saveplace
+  :ensure t
   :config (setq-default save-place t
                         save-place-file "~/.emacs.d/data/places"))
 
 (use-package duplicate-thing
-  :ensure duplicate-thing
+  :ensure t
   :config (key-chord-define-global "qd" 'duplicate-thing))
 
 ;; Edit filenames at-point in dired
 (use-package dired-efap
-  :ensure dired-efap
+  :ensure t
   :config (bind-key "<f2>" 'dired-efap dired-mode-map))
 
 ;; File browser
@@ -457,7 +458,7 @@ With prefix P, create local abbrev. Otherwise it will be global."
 
 ;; Relative line numbers
 (use-package relative-line-numbers
-  :ensure relative-line-numbers)
+  :ensure t)
 
 (use-package tex-mode
   :init
@@ -527,7 +528,7 @@ With prefix P, create local abbrev. Otherwise it will be global."
 ;;; Markdown
 
 (use-package markdown-mode
-  :ensure markdown-mode
+  :ensure t
   :bind ("C-c m k" . markdown-mode)
   :mode (("\\.md" . markdown-mode)
          ("\\.markdown" . markdown-mode))
@@ -538,7 +539,7 @@ With prefix P, create local abbrev. Otherwise it will be global."
 ;; Allows users to select a piece of text and perform actions
 ;; based on predefined patterns
 (use-package wand
-  :ensure wand
+  :ensure t
   :bind ("C-c RET" . wand:execute)
   :config
   (progn
@@ -556,20 +557,21 @@ With prefix P, create local abbrev. Otherwise it will be global."
 
 ;; Dasily define search engines, bind them to keybindings
 (use-package engine-mode
-  :ensure engine-mode
+  :ensure t
   :commands (engine-mode defengine)
   :init (engine-mode t)
   :config
   (progn
+    (setq engine/keymap-prefix (kbd "C-c e"))
     (defengine duckduckgo
       "https://duckduckgo.com/?q=%s"
-      "C-c e d")
+      "d")
     (defengine github
       "https://github.com/search?ref=simplesearch&q=%s"
-      "C-c e g")
+      "g")
     (defengine wikipedia
       "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
-      "C-c e w")))
+      "w")))
 
 ;;; Helm
 

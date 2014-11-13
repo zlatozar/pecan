@@ -1,6 +1,8 @@
 # Emacs
 *~
 *.elc
+\#*
+personal.el
 backups
 auto-save-list
 abbrev_defs
