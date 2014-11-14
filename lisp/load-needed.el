@@ -7,40 +7,40 @@
 ;;; Code:
 
 (use-package epl
-  :ensure epl)
+  :ensure t)
 
 (use-package pkg-info
-  :ensure pkg-info)
+  :ensure t)
 
 (use-package s
-  :ensure s)
+  :ensure t)
 
 (use-package f
-  :ensure f)
+  :ensure t)
 
 (use-package popup
-  :ensure popup)
+  :ensure t)
 
 (use-package async
-  :ensure async)
+  :ensure t)
 
 (use-package ht
-  :ensure ht)
+  :ensure t)
 
 (use-package noflet
-  :ensure noflet)
+  :ensure t)
 
 (use-package makey
-  :ensure makey)
+  :ensure t)
 
 (use-package request
-  :ensure request)
+  :ensure t)
 
 (use-package syntactic-sugar
-  :ensure syntactic-sugar)
+  :ensure t)
 
 (use-package ample-regexps
-  :ensure ample-regexps)
+  :ensure t)
 
 (provide 'load-needed)
 

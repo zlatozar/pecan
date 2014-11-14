@@ -13,7 +13,7 @@
 ;;; Code:
 
 (use-package multi-term
-  :ensure multi-term
+  :ensure t
   :config (progn
             (setq multi-term-program "/bin/bash")
 

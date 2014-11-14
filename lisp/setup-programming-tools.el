@@ -14,35 +14,35 @@
   :mode ("COMMIT_EDITMSG" . diff-mode))
 
 (use-package git-messenger
-  :ensure git-messenger
+  :ensure t
   :bind ("C-c x g" . git-messenger:popup-message))
 
 (use-package git-commit-mode
-  :ensure git-commit-mode)
+  :ensure t)
 
 (use-package git-gutter+
-  :ensure git-gutter+
+  :ensure t
   :diminish ""
   :config (global-git-gutter+-mode 1))
 
 ;; Browse file versions. Exit with 'q'.
 ;; As alternative use 'C-x v g'
 (use-package git-timemachine
-  :ensure git-timemachine)
+  :ensure t)
 
 ;; Parentheses view
 (use-package highlight-parentheses
-  :ensure highlight-parentheses
+  :ensure t
   :config (add-hook 'prog-mode-hook
-                  (lambda () (highlight-parentheses-mode t))))
+                    (lambda () (highlight-parentheses-mode t))))
 
 ;; Toggle tests for various programming languages
 (use-package toggle-test
-  :ensure toggle-test)
+  :ensure t)
 
 ;; FIXME/TODO/BUG/KLUDGE in special face only in comments and strings
 (use-package fic-mode
-  :ensure fic-mode
+  :ensure t
   :diminish ""
   :config
   (progn
@@ -51,23 +51,23 @@
     (add-hook 'prog-mode-hook 'fic-mode)))
 
 (use-package highlight-numbers
-  :ensure highlight-numbers
+  :ensure t
   :init (add-hook 'prog-mode-hook 'highlight-numbers-mode))
 
 ;; Make it easy to run `M-x compile` when saving source files:
 (use-package recompile-on-save
-  :ensure recompile-on-save
+  :ensure t
   :commands recompile-on-save)
 
 ;; Go to last change
 (use-package goto-chg
-  :ensure goto-chg
+  :ensure t
   :bind (("C-c x ." . goto-last-change)
          ("C-c x ," . goto-last-change-reverse)))
 
 ;; Interactive edit on multiple strings
 (use-package iedit
-  :ensure iedit
+  :ensure t
   :init (bind-key "C-c x ;" 'iedit-mode global-map))
 
 (defun iedit-dwim (arg)
@@ -125,7 +125,7 @@ Optionally BUF and STR could be passed."
 ;;                                                              Aggressive indent
 
 (use-package aggressive-indent
-  :ensure aggressive-indent)
+  :ensure t)
 
 (defun indent-defun ()
   "Indent current defun.

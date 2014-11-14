@@ -8,7 +8,7 @@
 ;;; Code:
 
 (use-package yasnippet
-  :ensure yasnippet
+  :ensure t
   :diminish ""
   :init (setq yas-snippet-dirs '("~/.emacs.d/snippets/"))
   :config (progn

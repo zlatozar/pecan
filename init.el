@@ -250,14 +250,6 @@
 
 ;;; More buffer-related configuration.
 
-;; Search words through a whole buffer or across buffers
-(use-package swoop
-  :ensure t
-  :bind (("C-c s s" . swoop)
-         ("C-c s m" . swoop-multi)
-         ("C-c s r" . swoop-pcre-regexp)
-         ("C-c s b" . swoop-back-to-last-position)))
-
 ;; Swap buffer positions
 (use-package buffer-move
   :ensure t
@@ -399,13 +391,6 @@ With prefix P, create local abbrev. Otherwise it will be global."
   :ensure t
   :bind ("C-c n w" . writeroom-mode))
 
-;; Highlights the previously visible buffer part after each scroll
-(use-package on-screen
-  :ensure t
-  :commands on-screen-global-mode
-  :bind ("C-c n o" . on-screen-global-mode)
-  :config (on-screen-global-mode 1))
-
 ;; Centers the text of the window when there's only one window in the frame
 (use-package centered-window-mode
   :ensure t
@@ -421,6 +406,15 @@ With prefix P, create local abbrev. Otherwise it will be global."
 (use-package dedicated
   :ensure t
   :bind ("C-c x d" . dedicated-mode))
+
+;; Highlights the previously visible buffer part after each scroll
+(use-package on-screen
+  :ensure t
+  :commands on-screen-mode
+  :bind ("C-c n o" . on-screen-mode)
+  :init (progn
+          (add-hook 'eww-mode-hook 'on-screen-mode)
+          (add-hook 'Info-mode-hook 'on-screen-mode)))
 
 ;; Displays current match and total matches in modeline
 (use-package anzu
@@ -456,9 +450,14 @@ With prefix P, create local abbrev. Otherwise it will be global."
   :load-path "site-lisp/emacs-neotree/"
   :config (bind-key "<f5>" 'neotree-toggle))
 
+;; Line numbers
+(use-package linum
+  :bind ("C-c n l" . linum-mode))
+
 ;; Relative line numbers
 (use-package relative-line-numbers
-  :ensure t)
+  :ensure t
+  :bind ("C-c n r" . relative-line-numbers-mode))
 
 (use-package tex-mode
   :init
@@ -585,6 +584,15 @@ With prefix P, create local abbrev. Otherwise it will be global."
     (use-package helm-ag
       :load-path "site-lisp/emacs-helm-ag"
       :config (key-chord-define-global "qa" 'helm-ag))))
+
+;; Search words through a whole buffer or across buffers
+(use-package helm-swoop
+  :ensure t
+  :bind (("C-c s s" . helm-swoop)
+         ("C-c s b" . helm-swoop-back-to-last-point)
+         ("C-c s m" . helm-multi-swoop)
+         ("C-c s a" . helm-multi-swoop-all)
+         ("C-c s i" . helm-swoop-from-isearch)))
 
 ;;________________________________________________________________________________
 ;;                                                          Interactive Functions

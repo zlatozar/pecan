@@ -8,16 +8,16 @@
 ;;; Code:
 
 (use-package cider
-  :ensure cider
+  :ensure t
   :config (progn
             (use-package clojure-mode
-              :ensure clojure-mode)
+              :ensure t)
             (use-package clojure-cheatsheet
-              :ensure clojure-cheatsheet)
+              :ensure t)
             (use-package clojure-test-mode
-              :ensure clojure-test-mode)
+              :ensure t)
             (use-package ac-cider
-              :ensure ac-cider)))
+              :ensure t)))
 
 ;;_______________________________________________________________________________
 ;;                                                                    Additional

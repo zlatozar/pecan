@@ -8,7 +8,7 @@
 
 ;; `go-to-definition' with M-. and back again with M-,
 (use-package elisp-slime-nav
-  :ensure elisp-slime-nav
+  :ensure t
   :diminish ""
   :config
   (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
@@ -22,17 +22,13 @@
 (bind-key "C-c l" 'my/byte-compile-current-elisp-file emacs-lisp-mode-map)
 
 (use-package litable
-  :ensure litable
+  :ensure t
   :config (bind-key "C-c p t" 'litable-mode emacs-lisp-mode-map))
 
 ;; Interactive macro expansion
 (use-package macrostep
-  :ensure macrostep
+  :ensure t
   :config (bind-key "C-c C-e" 'macrostep-expand emacs-lisp-mode-map))
-
-;; Syntax highlighting throughout 'messages' files
-(use-package backtrace-mode
-  :ensure backtrace-mode)
 
 (use-package eldoc
   :config

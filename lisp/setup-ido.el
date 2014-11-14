@@ -7,7 +7,7 @@
 ;;; Code:
 
 (use-package ido
-  :ensure ido
+  :ensure t
   :config
   (progn
     (ido-mode t)
@@ -35,13 +35,13 @@
 ;;                                                                         Ido++
 
 (use-package flx-ido
-  :ensure flx-ido
+  :ensure t
   :config
   (progn
     (flx-ido-mode 1)))
 
 (use-package ido-vertical-mode
-  :ensure ido-vertical-mode
+  :ensure t
   :init (ido-vertical-mode))
 
 ;;_______________________________________________________________________________

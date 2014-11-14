@@ -8,7 +8,7 @@
 
 ;; Jedi - python code completion library
 (use-package jedi
-  :ensure jedi
+  :ensure t
   :config (progn
             (setq jedi:setup-keys t
                   jedi:complete-on-dot t
@@ -32,7 +32,7 @@
 
 ;; 'pyflakes' should be in PATH
 (use-package flymake-python-pyflakes
-  :ensure flymake-python-pyflakes
+  :ensure t
   :config (add-hook 'python-mode-hook 'flymake-python-pyflakes-load))
 
 ;;_______________________________________________________________________________
@@ -63,7 +63,7 @@
  "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
 (use-package virtualenvwrapper
-  :ensure virtualenvwrapper
+  :ensure t
   :commands venv-workon
   :config (progn
             (setq venv-location "~/.virtualenvs/")
@@ -72,13 +72,13 @@
                           (cons '(:exec venv-current-name) mode-line-format))))
 
 (use-package jedi-direx
-  :ensure jedi-direx
+  :ensure t
   :config (progn
             (add-hook 'jedi-mode-hook 'jedi-direx:setup)
             (bind-key "C-c p j" 'jedi-direx:pop-to-buffer jedi-mode-map)))
 
 (use-package helm-pydoc
-  :ensure helm-pydoc
+  :ensure t
   :config (bind-key "C-c C-d" 'helm-pydoc python-mode-map))
 
 ;;_______________________________________________________________________________
