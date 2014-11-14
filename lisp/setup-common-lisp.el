@@ -12,7 +12,6 @@
   (flet ((browse-url (url) (eww-browse-url url)))
     ad-do-it))
 
-
 (defadvice slime-repl-insert-prompt
     (after beginning-of-line-at-end-of-prompt () activate)
   "Define REPL behavior."

@@ -71,19 +71,28 @@
   :init (bind-key "C-c x ;" 'iedit-mode global-map))
 
 (defun iedit-dwim (arg)
-  "Start iedit for ARG but use `narrow-to-defun' to limit its scope."
+  "Starts iedit but uses \\[narrow-to-defun] to limit its scope."
   (interactive "P")
-  (if arg
-      (iedit-mode)
-    (save-excursion
-      (save-restriction
-        (widen)
-        ;; this function determines the scope of `iedit-start'.
-        (if iedit-mode
-            (iedit-done)
-          ;; `current-word' can of course be replaced by other functions.
-          (narrow-to-defun)
-          (iedit-start (current-word) (point-min) (point-max)))))))
+  (iedit-mode arg)
+  (when nil
+    (when (require 'iedit nil t)
+      (if arg
+          (iedit-mode arg)
+        (save-excursion
+          (save-restriction
+            (widen)
+            ;; this function determines the scope of `iedit-start'.
+            (narrow-to-defun)
+            (if iedit-mode
+                (iedit-done)
+              ;; `current-word' can of course be replaced by other
+              ;; functions.
+              (let* ((bounds (bounds-of-defun-atpt))
+                     (beg (car bounds))
+                     (end (cadr bounds)))
+                (if (and beg end)
+                    (iedit-start (current-word) beg end)
+                  (iedit-mode arg))))))))))
 
 (bind-key "C-c ;" 'iedit-dwim global-map)
 
@@ -105,7 +114,7 @@ Optionally BUF and STR could be passed."
 
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
-;; Clean up
+;; Clean up trailing spaces
 (add-hook 'prog-mode-hook (lambda ()
                             (add-hook 'before-save-hook 'delete-trailing-whitespace)))
 

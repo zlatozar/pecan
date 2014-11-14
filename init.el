@@ -212,7 +212,6 @@
 (bind-key "C-c x s" (lambda ()
                       (interactive)
                       (switch-to-buffer "*scratch*")))
-(bind-key "C-c x i" 'imenu)
 (bind-key "C-c x v" 'visit-tags-table)
 (bind-key "C-c x w" 'whitespace-cleanup)
 
