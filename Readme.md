@@ -41,4 +41,36 @@ To see all key bindings defined in this configuration:
 M-x describe-personal-keybindings
 ```
 
+### Key Bindings Highlights
+
+Directive  |  Interpretation
+---------  |  --------------
+C-h C-m    |  discover-my-major
+C-c x n    |  manage-minor-mode
+C-=        |  er/expand-region
+C-c SPC    |  ace-jump-mode
+qj         |  jump-char-forward
+C-c x i    |  my/ispell-word-then-abbrev
+qd         |  duplicate-thing
+F2         |  dired-efap dired-mode-map
+C-c n l    |  show line numbers
+C-c n r    |  show relative line numbers
+C-c n d    |  dedicated mode
+C-c RET    |  wand:execute
+qo         |  helm-occur
+qa         |  helm-ag up to .git
+F5         |  neotree-toggle
+C-c n w    |  writeroom-mode
+C-c x z    |  zap-up-to-char
+C-c p f    |  cleanup-buffer
+C-c C-z    |  REPLs
+C-c ;      |  iedit-dwim
+C-c x .    |  goto-last-change
+C-c C-i    |  ido-imenu
+M-.        |  go to definition
+M-,        |  back from definition
+C-c C-d    |  show documentation
+C-c p y    |  (python) yas-ido-expand
+
+
 Have fun!
