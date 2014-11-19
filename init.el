@@ -577,12 +577,12 @@ With prefix P, create local abbrev. Otherwise it will be global."
   :load-path "site-lisp/helm"
   :config
   (progn
-    (key-chord-define-global "qb" 'helm-mini)
+    (key-chord-define-global "qm" 'helm-mini)
     (key-chord-define-global "qo" 'helm-occur)
     (key-chord-define-global "qf" 'helm-find-files)
     (use-package helm-ag
       :load-path "site-lisp/emacs-helm-ag"
-      :config (key-chord-define-global "qa" 'helm-ag))))
+      :config (key-chord-define-global "qp" 'helm-ag))))
 
 ;; Search words through a whole buffer or across buffers
 (use-package helm-swoop

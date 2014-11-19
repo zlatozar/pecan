@@ -24,6 +24,8 @@
                    slime-asdf
                    slime-banner))
     (add-hook 'slime-mode-hook 'my/slime-setup)
+    (add-hook 'slime-mode-hook (lambda () (activate-aggressive-indent)))
+
     (add-hook 'slime-repl-mode-hook 'my/slime-setup))
   :bind ("C-z" . slime-selector))
 
@@ -41,7 +43,6 @@
   "Mode setup function for SLIME buffers."
   (set-up-slime-hippie-expand)
   (set-up-slime-ac)
-  (activate-aggressive-indent)
   (paredit-mode 1))
 
 (provide 'setup-slime)

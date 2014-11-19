@@ -58,19 +58,20 @@ C-c n r    |  show relative line numbers
 C-c n d    |  dedicated mode
 C-c RET    |  wand:execute
 qo         |  helm-occur
-qa         |  helm-ag up to .git
+qp         |  helm-ag up to .git
 F5         |  neotree-toggle
 C-c n w    |  writeroom-mode
 C-c x z    |  zap-up-to-char
 C-c p f    |  cleanup-buffer
 C-c C-z    |  REPLs
-C-c ;      |  iedit-dwim
+C-c ;      |  iedit ('M-H' narrow to function)
 C-c x .    |  goto-last-change
 C-c C-i    |  ido-imenu
 M-.        |  go to definition
 M-,        |  back from definition
 C-c C-d    |  show documentation
 C-c p y    |  (python) yas-ido-expand
-
+C-M-left   |  ( a b (|c d) ) -> ( a (b |c d) )
+C-M-right  |  ( a b (|c d) ) -> ( a b c (|d) )
 
 Have fun!

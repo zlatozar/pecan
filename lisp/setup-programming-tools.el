@@ -65,52 +65,26 @@
   :bind (("C-c x ." . goto-last-change)
          ("C-c x ," . goto-last-change-reverse)))
 
-;; Interactive edit on multiple strings
+;; Interactive edit on multiple strings ('M-H' - narrow to function)
 (use-package iedit
   :ensure t
-  :init (bind-key "C-c x ;" 'iedit-mode global-map))
-
-(defun iedit-dwim (arg)
-  "Starts iedit but uses \\[narrow-to-defun] to limit its scope."
-  (interactive "P")
-  (iedit-mode arg)
-  (when nil
-    (when (require 'iedit nil t)
-      (if arg
-          (iedit-mode arg)
-        (save-excursion
-          (save-restriction
-            (widen)
-            ;; this function determines the scope of `iedit-start'.
-            (narrow-to-defun)
-            (if iedit-mode
-                (iedit-done)
-              ;; `current-word' can of course be replaced by other
-              ;; functions.
-              (let* ((bounds (bounds-of-defun-atpt))
-                     (beg (car bounds))
-                     (end (cadr bounds)))
-                (if (and beg end)
-                    (iedit-start (current-word) beg end)
-                  (iedit-mode arg))))))))))
-
-(bind-key "C-c ;" 'iedit-dwim global-map)
+  :init (bind-key "C-c ;" 'iedit-mode global-map))
 
 ;; Close when compilation is successful
 (defun bury-compile-buffer-if-successful (buf str)
   "Bury a compilation buffer if succeeded without warnings.
 Optionally BUF and STR could be passed."
   (if (and
-        (string-match "compilation" (buffer-name buf))
-        (string-match "finished" str)
-        (not (with-current-buffer buf
-               (save-excursion
-                 (goto-char (point-min))
-                 (search-forward "warning" nil t)))))
-    (run-with-timer 5 nil
-      (lambda (b)
-        (with-selected-window (get-buffer-window b)
-          (kill-buffer-and-window))) buf)))
+       (string-match "compilation" (buffer-name buf))
+       (string-match "finished" str)
+       (not (with-current-buffer buf
+              (save-excursion
+                (goto-char (point-min))
+                (search-forward "warning" nil t)))))
+      (run-with-timer 5 nil
+                      (lambda (b)
+                        (with-selected-window (get-buffer-window b)
+                          (kill-buffer-and-window))) buf)))
 
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
@@ -140,8 +114,7 @@ Optionally BUF and STR could be passed."
   "Indent current defun.
 
 Do nothing if mark is active (to avoid deactivaing it), or if
-buffer is not modified (to avoid creating accidental
-modifications)."
+buffer is not modified (to avoid creating accidental modifications)."
   (interactive)
   (unless (or (region-active-p)
               buffer-read-only
