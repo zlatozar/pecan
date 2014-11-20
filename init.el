@@ -578,7 +578,7 @@ With prefix P, create local abbrev. Otherwise it will be global."
   :config
   (progn
     (key-chord-define-global "qm" 'helm-mini)
-    (key-chord-define-global "qo" 'helm-occur)
+    (key-chord-define-global "qa" 'helm-occur)
     (key-chord-define-global "qf" 'helm-find-files)
     (use-package helm-ag
       :load-path "site-lisp/emacs-helm-ag"
@@ -592,6 +592,13 @@ With prefix P, create local abbrev. Otherwise it will be global."
          ("C-c s m" . helm-multi-swoop)
          ("C-c s a" . helm-multi-swoop-all)
          ("C-c s i" . helm-swoop-from-isearch)))
+
+;; Git projects
+(use-package helm-ls-git
+  :load-path "site-lisp/helm-ls-git"
+  :config
+  (progn
+    (key-chord-define-global "qp" 'helm-browse-project)))
 
 ;;________________________________________________________________________________
 ;;                                                          Interactive Functions

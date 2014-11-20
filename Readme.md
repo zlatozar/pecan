@@ -58,7 +58,7 @@ Directive   |  Interpretation
 `C-c n d`   |  dedicated mode
 `C-c RET`   |  wand:execute
 `qo`        |  helm-occur
-`qp`        |  helm-ag up to **.git**
+`qp`        |  helm-browse-project
 `F5`        |  neotree-toggle
 `C-c n w`   |  writeroom-mode
 `C-c x z`   |  zap-up-to-char
