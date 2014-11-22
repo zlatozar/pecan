@@ -194,6 +194,15 @@
 ;;________________________________________________________________________________
 ;;                                                                   Key Bindings
 
+;; Remember keyboard shortcuts
+(use-package guide-key
+  :ensure t
+  :init
+  (setq guide-key/guide-key-sequence '("C-c t" "C-c s"
+                                       "C-c e" "C-c p "
+                                       "C-c x"))
+  (guide-key-mode 1))
+
 ;;; Setup basic, global key bindings.
 
 (bind-key "<RET>" 'newline-and-indent)
@@ -245,7 +254,8 @@
 (use-package undo-tree
   :ensure t
   :idle (global-undo-tree-mode t)
-  :diminish "")
+  :diminish ""
+  :init (setq undo-tree-visualizer-diff t))
 
 ;;; More buffer-related configuration.
 
@@ -484,7 +494,7 @@ With prefix P, create local abbrev. Otherwise it will be global."
   :init (use-package flycheck-pos-tip
           :load-path "site-lisp/flycheck-pos-tip/")
   :config (setq-default flycheck-disabled-checkers
-                  '(emacs-lisp-checkdoc))
+                        '(emacs-lisp-checkdoc))
   :bind ("C-c n f" . flycheck-mode))
 
 ;; Paredit during programming

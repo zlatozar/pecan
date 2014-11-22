@@ -150,6 +150,11 @@ Symbols matching the text at point are put first in the completion list."
            (position (cdr (assoc selected-symbol name-and-pos))))
       (goto-char position))))
 
+(defun occur-non-ascii-chars ()
+  "Finds characters that aren't in the displayable range for ASCII."
+  (interactive)
+  (occur "[^\000-\177]"))
+
 ;;________________________________________________________________________________
 ;;                                                                   Key-bindings
 

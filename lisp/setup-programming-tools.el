@@ -13,17 +13,36 @@
 (use-package diff-mode
   :mode ("COMMIT_EDITMSG" . diff-mode))
 
+;; Pop up commit messages for a current line
 (use-package git-messenger
   :ensure t
   :bind ("C-c x g" . git-messenger:popup-message))
 
+;; Edit commit messages
 (use-package git-commit-mode
-  :ensure t)
+  :ensure t
+  :config (add-hook 'git-commit-mode-hook 'git-commit-signoff))
 
+;; Show changed lines
 (use-package git-gutter+
   :ensure t
   :diminish ""
   :config (global-git-gutter+-mode 1))
+
+(use-package magit
+  :ensure t
+  :config
+  (setq magit-completing-read-function 'magit-ido-completing-read
+        magit-default-tracking-name-function 'magit-default-tracking-name-branch-only
+        magit-status-buffer-switch-function 'switch-to-buffer
+        magit-diff-refine-hunk t
+        magit-rewrite-inclusive 'ask
+        magit-save-some-buffers t
+        magit-process-popup-time 10
+        magit-set-upstream-on-push t
+        magit-auto-revert-mode-lighter "")
+  :bind (("C-c p s" . magit-status)
+         ("C-c p g" . magit-grep)))
 
 ;; Browse file versions. Exit with 'q'.
 ;; As alternative use 'C-x v g'
