@@ -18,11 +18,6 @@
   :ensure t
   :bind ("C-c x g" . git-messenger:popup-message))
 
-;; Edit commit messages
-(use-package git-commit-mode
-  :ensure t
-  :config (add-hook 'git-commit-mode-hook 'git-commit-signoff))
-
 ;; Show changed lines
 (use-package git-gutter+
   :ensure t
@@ -43,6 +38,14 @@
         magit-auto-revert-mode-lighter "")
   :bind (("C-c p s" . magit-status)
          ("C-c p g" . magit-grep)))
+
+;; Edit commit messages
+(use-package git-commit-mode
+  :ensure t
+  :config (progn
+            (add-hook 'git-commit-mode-hook 'git-commit-signoff)
+            (add-hook 'git-commit-mode-hook 'turn-on-flyspell)
+            (add-to-list 'auto-mode-alist '("\\COMMIT_EDITMSG\\'" . git-commit-mode))))
 
 ;; Browse file versions. Exit with 'q'.
 ;; As alternative use 'C-x v g'
