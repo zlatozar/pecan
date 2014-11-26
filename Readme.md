@@ -43,7 +43,7 @@ M-x describe-personal-keybindings
 
 ### Key Bindings Highlights
 
-Directive   | Interpretation               |  Interpretation
+Key&nbsp;Binding   | Interpretation               |  Description
 ---------   | --------------               |  --------------
 `C-h C-m`   | `discover-my-major`          |  Shows available key bindings for current major mode
 `C-c x n`   | `manage-minor-mode`          |  Manage minor mode
@@ -70,6 +70,8 @@ Directive   | Interpretation               |  Interpretation
 `M-.`       |                              |  Go to definition
 `M-,`       |                              |  Back from definition
 `C-c C-d`   |                              |  Show documentation
+`C-c p s`   |  `magit-status`              |  Git status
+`C-c p g`   |  `magit-grep`                |  Grep git project
 `C-c p y`   | `yas-ido-expand`             |  (_python_) Code templates
 `C-return`  | `cua-selection-mode`         |  Edit rectangles
 `C-M-left`  |                              |  `( a b (|c d) ) -> ( a (b |c d) )` move left parent to the **left**
