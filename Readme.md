@@ -43,36 +43,36 @@ M-x describe-personal-keybindings
 
 ### Key Bindings Highlights
 
-Directive   |  Interpretation
----------   |  --------------
-`C-h C-m`   |  discover-my-major
-`C-c x n`   |  manage-minor-mode
-`C-=`       |  er/expand-region
-`C-c SPC`   |  ace-jump-mode
-`qj`        |  jump-char-forward
-`C-c x i`   |  my/ispell-word-then-abbrev
-`qd`        |  duplicate-thing
-`F2`        |  dired-efap dired-mode-map
-`C-c n l`   |  show line numbers
-`C-c n r`   |  show relative line numbers
-`C-c n d`   |  dedicated mode
-`C-c RET`   |  wand:execute
-`qo`        |  helm-occur
-`qp`        |  helm-browse-project
-`F5`        |  neotree-toggle
-`C-c n w`   |  writeroom-mode
-`C-c x z`   |  zap-up-to-char
-`C-c p f`   |  cleanup-buffer
-`C-c C-z`   |  REPLs
-`C-c ;`     |  iedit (`'M-H'` narrow to function)
-`C-c x .`   |  goto-last-change
-`C-c C-i`   |  ido-imenu
-`M-.`       |  go to definition
-`M-,`       |  back from definition
-`C-c C-d`   |  show documentation
-`C-c p y`   |  (_python_) yas-ido-expand
-`C-return`  |  cua-selection-mode
-`C-M-left`  |  `( a b (|c d) ) -> ( a (b |c d) )`
-`C-M-right` |  `( a b (|c d) ) -> ( a b c (|d) )`
+Directive   | Interpretation               |  Interpretation
+---------   | --------------               |  --------------
+`C-h C-m`   | `discover-my-major`          |  Shows available key bindings for current major mode
+`C-c x n`   | `manage-minor-mode`          |  Manage minor mode
+`C-=`       | `er/expand-region`           |  Increases the selected region by semantic units
+`C-c SPC`   | `ace-jump-mode`              |  Enabling fast/direct cursor movement in current view
+`qj`        | `jump-char-forward`          |  Navigate by char
+`C-c x i`   | `my/ispell-word-then-abbrev` |  Calls `ispell-word` then create `abbrev`
+`qd`        | `duplicate-thing`            |  Duplicate line
+`F2`        |                              |  Rename file in a `dired-mode`
+`C-c n l`   |                              |  Show line numbers
+`C-c n r`   |                              |  Show **relative** line numbers
+`C-c n d`   | `dedicated mode`             |  Pin buffer - `dedicated-mode`
+`C-c RET`   | `wand:execute`               |  Execute command on selected text
+`qo`        | `helm-occur`                 |  `helm-occur`
+`qp`        | `helm-browse-project`        |  Find file in a .git project
+`F5`        | `neotree-toggle`             |  File browser
+`C-c n w`   | `writeroom-mode`             |  Write peacefully
+`M-Z`       | `zap-up-to-char`             |  Deletes everything to given character **excluding**
+`C-c p f`   | `cleanup-buffer`             |  Align file, clean up white spaces and remove trailing spaces
+`C-c C-z`   |                              |  Switch to REPL
+`C-c ;`     | `iedit`                      |  `iedit` (then `'M-H'` to narrow to function)
+`C-c x .`   | `goto-last-change`           |  Go to the last change
+`C-c C-i`   | `ido-imenu`                  |  `ido-imenu`
+`M-.`       |                              |  Go to definition
+`M-,`       |                              |  Back from definition
+`C-c C-d`   |                              |  Show documentation
+`C-c p y`   | `yas-ido-expand`             |  (_python_) Code templates
+`C-return`  | `cua-selection-mode`         |  Edit rectangles
+`C-M-left`  |                              |  `( a b (|c d) ) -> ( a (b |c d) )` move left parent to the **left**
+`C-M-right` |                              |  `( a b (|c d) ) -> ( a b c (|d) )` move left parent to the **right**
 
 Have fun!

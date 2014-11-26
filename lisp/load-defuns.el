@@ -160,7 +160,7 @@ Symbols matching the text at point are put first in the completion list."
 
 (bind-key "C-c x b" 'toggle-maximize-buffer)
 (bind-key "C-c x f" 'toggle-fullscreen)
-(bind-key "C-c x z" 'zap-up-to-char)
+(bind-key "M-Z" 'zap-up-to-char)
 (bind-key "C-c t t" 'copy-line)
 
 (bind-key "C-c C-i" 'ido-imenu)
