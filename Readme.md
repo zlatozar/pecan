@@ -57,16 +57,16 @@ Directive   | Interpretation               |  Interpretation
 `C-c n r`   |                              |  Show **relative** line numbers
 `C-c n d`   | `dedicated mode`             |  Pin buffer - `dedicated-mode`
 `C-c RET`   | `wand:execute`               |  Execute command on selected text
-`qo`        | `helm-occur`                 |  `helm-occur`
+`qa`        | `helm-occur`                 |  Find in a buffer
 `qp`        | `helm-browse-project`        |  Find file in a .git project
 `F5`        | `neotree-toggle`             |  File browser
 `C-c n w`   | `writeroom-mode`             |  Write peacefully
 `M-Z`       | `zap-up-to-char`             |  Deletes everything to given character **excluding**
 `C-c p f`   | `cleanup-buffer`             |  Align file, clean up white spaces and remove trailing spaces
 `C-c C-z`   |                              |  Switch to REPL
-`C-c ;`     | `iedit`                      |  `iedit` (then `'M-H'` to narrow to function)
+`C-c ;`     | `iedit`                      |  Edit one occurrence of word in a buffer (then `'M-H'` to narrow to function)
 `C-c x .`   | `goto-last-change`           |  Go to the last change
-`C-c C-i`   | `ido-imenu`                  |  `ido-imenu`
+`C-c C-i`   | `ido-imenu`                  |  Find method definition in the current buffer
 `M-.`       |                              |  Go to definition
 `M-,`       |                              |  Back from definition
 `C-c C-d`   |                              |  Show documentation
