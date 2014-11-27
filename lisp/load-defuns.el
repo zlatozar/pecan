@@ -38,15 +38,6 @@
         (error "Cannot open tramp file")
       (browse-url (concat "file://" file-name)))))
 
-(defun toggle-maximize-buffer ()
-  "Maximize current buffer."
-  (interactive)
-  (if (= 1 (length (window-list)))
-      (jump-to-register '_)
-    (progn
-      (set-register '_ (list (current-window-configuration)))
-      (delete-other-windows))))
-
 (defun untabify-buffer ()
   "Remove tabs from current buffer."
   (interactive)
@@ -158,7 +149,6 @@ Symbols matching the text at point are put first in the completion list."
 ;;________________________________________________________________________________
 ;;                                                                   Key-bindings
 
-(bind-key "C-c x b" 'toggle-maximize-buffer)
 (bind-key "C-c x f" 'toggle-fullscreen)
 (bind-key "M-Z" 'zap-up-to-char)
 (bind-key "C-c t t" 'copy-line)

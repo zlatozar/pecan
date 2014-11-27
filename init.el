@@ -171,6 +171,11 @@
         (bury-buffer)
       ad-do-it)))
 
+(use-package fill-column-indicator
+  :ensure t
+  :config (setq fci-rule-column 80)
+  :bind ("C-c x b" . fci-mode))
+
 ;;________________________________________________________________________________
 ;;                                                                  How to expand
 
@@ -197,11 +202,10 @@
 ;; Remember keyboard shortcuts
 (use-package guide-key
   :ensure t
-  :init
-  (setq guide-key/guide-key-sequence '("C-c t" "C-c s"
-                                       "C-c e" "C-c p "
-                                       "C-c x"))
-  (guide-key-mode 1))
+  :init (guide-key-mode 1)
+  :config (setq guide-key/guide-key-sequence '("C-c t" "C-c s"
+                                               "C-c e" "C-c p "
+                                               "C-c x")))
 
 ;;; Setup basic, global key bindings.
 
@@ -588,7 +592,7 @@ With prefix P, create local abbrev. Otherwise it will be global."
   :config
   (progn
     (key-chord-define-global "qm" 'helm-mini)
-    (key-chord-define-global "qa" 'helm-occur)
+    (key-chord-define-global "qo" 'helm-occur)
     (key-chord-define-global "qf" 'helm-find-files)
     (use-package helm-ag
       :load-path "site-lisp/emacs-helm-ag"
@@ -602,6 +606,7 @@ With prefix P, create local abbrev. Otherwise it will be global."
 ;; Search words through a whole buffer or across buffers
 (use-package helm-swoop
   :ensure t
+  :config (setq swoop-font-size-change: nil)
   :bind (("C-c s s" . helm-swoop)
          ("C-c s b" . helm-swoop-back-to-last-point)
          ("C-c s m" . helm-multi-swoop)

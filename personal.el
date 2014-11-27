@@ -9,9 +9,6 @@
 ;; Increase font size (it is 160 on my Mac machine)
 (set-face-attribute 'default nil :height 160)
 
-(setq swoop-font-size-change: t)
-(setq swoop-font-size: 1.0)
-
 ;; Setup registers for files I commonly edit
 (set-register ?b '(file . "~/Documents/brainstorming.org"))
 (set-register ?e '(file . "~/.emacs.d/init.el"))

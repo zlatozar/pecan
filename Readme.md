@@ -57,7 +57,7 @@ Key&nbsp;Binding   | Interpretation               |  Description
 `C-c n r`   |                              |  Show **relative** line numbers
 `C-c n d`   | `dedicated mode`             |  Pin buffer - `dedicated-mode`
 `C-c RET`   | `wand:execute`               |  Execute command on selected text
-`qa`        | `helm-occur`                 |  Find in a buffer
+`qo`        | `helm-occur`                 |  Find in a buffer
 `qp`        | `helm-browse-project`        |  Find file in a .git project
 `F5`        | `neotree-toggle`             |  File browser
 `C-c n w`   | `writeroom-mode`             |  Write peacefully
