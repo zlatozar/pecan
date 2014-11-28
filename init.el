@@ -311,9 +311,9 @@
 ;; Swap buffer positions
 (use-package buffer-move
   :ensure t
-  :bind (("<M-down>" . buf-move-down)
-         ("<M-up>" . buf-move-up)
-         ("<M-left>" . buf-move-left)
+  :bind (("<M-down>"  . buf-move-down)
+         ("<M-up>"    . buf-move-up)
+         ("<M-left>"  . buf-move-left)
          ("<M-right>" . buf-move-right)))
 
 ;;; These are some editing commands are used everywhere.
