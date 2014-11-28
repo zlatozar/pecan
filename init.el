@@ -123,6 +123,7 @@
       browse-url-browser-function 'eww-browse-url
       bookmark-default-file "~/.emacs.d/data/bookmarks")
 
+;; Scrolling
 (setq scroll-preserve-screen-position 'always
       scroll-conservatively           most-positive-fixnum
       scroll-step                     0)
@@ -255,6 +256,23 @@
 (bind-key "C-c x v" 'visit-tags-table)
 (bind-key "C-c x w" 'whitespace-cleanup)
 
+(use-package key-chord
+  :ensure t
+  :bind ("C-c n k" . key-chord-mode)
+  :init (key-chord-mode 1)
+  :config
+  (progn
+    (key-chord-define-global "EE" 'server-edit)
+    (key-chord-define-global "$$" 'ispell-buffer)
+    ;; Pretty much everything in Enlish word beginning with 'q' is
+    ;; follewed the vowel 'u'. These chords take advantage of that.
+    (key-chord-define-global "qq" 'read-only-mode)
+    (key-chord-define-global "qs" 'save-buffer)
+    (key-chord-define-global "q0" 'delete-window)
+    (key-chord-define-global "qv" 'vc-next-action)
+    (key-chord-define-global "qh" 'mark-whole-buffer)
+    (key-chord-define-global "qf" 'ido-find-file)))
+
 ;;; Desktop management.
 
 (bind-key "C-c d c" 'desktop-clear)
@@ -327,23 +345,6 @@
     ;; show files from previous session
     (add-hook 'emacs-startup-hook 'recentf-open-files))
   :bind ("<f8>" . recentf-open-files))
-
-(use-package key-chord
-  :ensure t
-  :bind ("C-c n k" . key-chord-mode)
-  :init (key-chord-mode 1)
-  :config
-  (progn
-    (key-chord-define-global "EE" 'server-edit)
-    (key-chord-define-global "$$" 'ispell-buffer)
-    ;; Pretty much everything in Enlish word beginning with 'q' is
-    ;; follewed the vowel 'u'. These chords take advantage of that.
-    (key-chord-define-global "qq" 'read-only-mode)
-    (key-chord-define-global "qs" 'save-buffer)
-    (key-chord-define-global "q0" 'delete-window)
-    (key-chord-define-global "qv" 'vc-next-action)
-    (key-chord-define-global "qh" 'mark-whole-buffer)
-    (key-chord-define-global "qf" 'ido-find-file)))
 
 ;;; Packages to navigate and edit text in semantic terms.
 
@@ -563,6 +564,9 @@ With prefix P, create local abbrev. Otherwise it will be global."
 ;;; Prolog
 
 (require 'setup-prolog)
+
+;;________________________________________________________________________________
+;;                                                            Programming Helpers
 
 ;;; Markdown
 

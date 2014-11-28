@@ -74,6 +74,7 @@ Key&nbsp;Binding   | Interpretation               |  Description
 `C-c p g`   |  `magit-grep`                |  Grep git project
 `C-c p y`   | `yas-ido-expand`             |  (_python_) Code templates
 `C-return`  | `cua-selection-mode`         |  Edit rectangles
+`M-w`       | `easy-kill`                  |  Various way to select and kill (`?` for help)
 `C-M-left`  |                              |  `( a b (|c d) ) -> ( a (b |c d) )` move left parent to the **left**
 `C-M-right` |                              |  `( a b (|c d) ) -> ( a b c (|d) )` move left parent to the **right**
 
