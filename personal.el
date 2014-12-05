@@ -7,7 +7,7 @@
 ;;; Code:
 
 ;; Increase font size (it is 160 on my Mac machine)
-(set-face-attribute 'default nil :height 160)
+(set-face-attribute 'default nil :height 130)
 
 ;; Setup registers for files I commonly edit
 (set-register ?b '(file . "~/Documents/brainstorming.org"))

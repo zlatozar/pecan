@@ -341,6 +341,7 @@
 (use-package recentf-mode
   :init
   (progn
+    (setq recentf-save-file "~/.emacs.d/data/recentf")
     (recentf-mode 1)
     ;; show files from previous session
     (add-hook 'emacs-startup-hook 'recentf-open-files))

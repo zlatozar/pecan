@@ -30,7 +30,7 @@ $ make
 
 ```
 $ cd ~/.emacs.d/
-$ make cl-info
+$ sudo make cl-info
 ```
 
 ### Key Bindings
