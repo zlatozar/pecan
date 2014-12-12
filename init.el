@@ -90,6 +90,8 @@
 (setenv "PAGER" "cat")
 
 (setq inhibit-startup-message t
+      message-log-max 1000
+      frame-resize-pixelwise t
       enable-local-variables nil
       make-backup-files nil
       auto-save-default t
