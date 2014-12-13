@@ -33,6 +33,17 @@
 (ido-mode 1)
 (ido-everywhere 1)
 
+(setq ido-ignore-buffers
+      '("\\` " ".*Completion" "^ ?\\*")
+      ido-enable-prefix nil
+      ido-enable-flex-matching t
+      ido-case-fold nil
+      ido-auto-merge-work-directories-length -1
+      ido-create-new-buffer 'always
+      ido-use-filename-at-point nil
+      ido-use-faces nil
+      ido-max-prospects 10)
+
 ;; modeline
 (set-face-foreground 'mode-line "black")
 (set-face-background 'mode-line "cyan")
