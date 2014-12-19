@@ -310,6 +310,10 @@
 
 ;;; More buffer-related configuration.
 
+;; Intelligently group together open buffers
+(use-package kpm-list
+  :ensure t)
+
 ;; Swap buffer positions
 (use-package buffer-move
   :ensure t
