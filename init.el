@@ -265,7 +265,7 @@
   :config
   (progn
     (key-chord-define-global "EE" 'server-edit)
-    (key-chord-define-global "$$" 'ispell-buffer)
+    (key-chord-define-global "%%" 'ispell-buffer)
     ;; Pretty much everything in Enlish word beginning with 'q' is
     ;; follewed the vowel 'u'. These chords take advantage of that.
     (key-chord-define-global "qq" 'read-only-mode)
