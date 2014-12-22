@@ -53,7 +53,7 @@ all: dash flycheck flycheck-pos-tip slime helm helm-ag helm-ls-git emacs-neotree
 #                                                                     Bootstrap
 
 dash:
-	@ echo "$(OK_COLOR)===> Checkout or update dash.el...$(NO_COLOR)"
+	@ echo -e "$(OK_COLOR)===> Checkout or update dash.el...$(NO_COLOR)"
 	@ if [ ! -d dash.el ]; then git clone https://github.com/magnars/dash.el.git; \
 	  else cd dash.el; git pull --rebase; cd ..; fi;
 
@@ -61,12 +61,12 @@ dash:
 #                                                                      Flycheck
 
 flycheck:
-	@ echo "$(OK_COLOR)===> Checkout or update flycheck...$(NO_COLOR)"
+	@ echo -e "$(OK_COLOR)===> Checkout or update flycheck...$(NO_COLOR)"
 	@ if [ ! -d flycheck ]; then git clone https://github.com/flycheck/flycheck.git; \
 	  else cd flycheck; git pull --rebase; cd ..; fi;
 
 flycheck-pos-tip:
-	@ echo "$(OK_COLOR)===> Checkout or update flycheck-pos-tip...$(NO_COLOR)"
+	@ echo -e "$(OK_COLOR)===> Checkout or update flycheck-pos-tip...$(NO_COLOR)"
 	@ if [ ! -d flycheck-pos-tip ]; then git clone https://github.com/flycheck/flycheck-pos-tip.git; \
 	  else cd flycheck-pos-tip; git pull --rebase; cd ..; fi;
 
@@ -74,18 +74,18 @@ flycheck-pos-tip:
 #                                                                         Slime
 
 slime: _ac-slime _hippie-expand-slime
-	@ echo "$(OK_COLOR)===> Checkout or update slime...$(NO_COLOR)"
+	@ echo -e "$(OK_COLOR)===> Checkout or update slime...$(NO_COLOR)"
 	@ if [ ! -d slime ]; then git clone http://github.com/slime/slime.git; \
 	  else cd slime; git pull --rebase; cd ..; fi;
 	@ cd slime; make; cd ..;
 
 _ac-slime:
-	@ echo "$(OK_COLOR)===> Checkout or update ac-slime...$(NO_COLOR)"
+	@ echo -e "$(OK_COLOR)===> Checkout or update ac-slime...$(NO_COLOR)"
 	@ if [ ! -d ac-slime ]; then git clone https://github.com/purcell/ac-slime.git; \
 	  else cd ac-slime; git pull --rebase; cd ..; fi;
 
 _hippie-expand-slime:
-	@ echo "$(OK_COLOR)===> Checkout or update hippie-expand-slime...$(NO_COLOR)"
+	@ echo -e "$(OK_COLOR)===> Checkout or update hippie-expand-slime...$(NO_COLOR)"
 	@ if [ ! -d hippie-expand-slime ]; then git clone https://github.com/purcell/hippie-expand-slime.git; \
 	  else cd hippie-expand-slime; git pull --rebase; cd ..; fi;
 
@@ -93,17 +93,17 @@ _hippie-expand-slime:
 #                                                                         Helm
 
 helm:
-	@ echo "$(OK_COLOR)===> Checkout or update helm...$(NO_COLOR)"
+	@ echo -e "$(OK_COLOR)===> Checkout or update helm...$(NO_COLOR)"
 	@ if [ ! -d helm ]; then git clone https://github.com/emacs-helm/helm.git; \
 	  else cd helm; git pull --rebase; cd ..; fi;
 
 helm-ag:
-	@ echo "$(OK_COLOR)===> Checkout or update helm-ag...$(NO_COLOR)"
+	@ echo -e "$(OK_COLOR)===> Checkout or update helm-ag...$(NO_COLOR)"
 	@ if [ ! -d emacs-helm-ag ]; then git clone https://github.com/syohex/emacs-helm-ag.git; \
 	  else cd emacs-helm-ag; git pull --rebase; cd ..; fi;
 
 helm-ls-git:
-	@ echo "$(OK_COLOR)===> Checkout or update helm-ls-git...$(NO_COLOR)"
+	@ echo -e "$(OK_COLOR)===> Checkout or update helm-ls-git...$(NO_COLOR)"
 	@ if [ ! -d helm-ls-git ]; then git clone https://github.com/emacs-helm/helm-ls-git.git; \
 	  else cd helm-ls-git; git pull --rebase; cd ..; fi;
 
@@ -111,7 +111,7 @@ helm-ls-git:
 #                                                                       Neotree
 
 emacs-neotree:
-	@ echo "$(OK_COLOR)===> Checkout or update emacs-neotree...$(NO_COLOR)"
+	@ echo -e "$(OK_COLOR)===> Checkout or update emacs-neotree...$(NO_COLOR)"
 	@ if [ ! -d emacs-neotree ]; then git clone https://github.com/jaypei/emacs-neotree.git; \
 	  else cd emacs-neotree; git pull --rebase; cd ..; fi;
 
@@ -119,14 +119,14 @@ emacs-neotree:
 #                                                                       Clojure
 
 cider:
-	@ echo "$(OK_COLOR)===> Checkout or update to latest tag cider...$(NO_COLOR)"
+	@ echo -e "$(OK_COLOR)===> Checkout or update to latest tag cider...$(NO_COLOR)"
 	@ if [ ! -d cider ]; then git clone https://github.com/clojure-emacs/cider.git; \
 	  else cd cider; git fetch --tags; cd ..; fi;
 	@ cd cider; sha=`git rev-list --tags --max-count=1`; latestTag=`git describe --tags $$sha`; echo "Latest Tag: " $$latestTag; \
 	  git checkout $$latestTag; cd ..;
 
 ac-cider:
-	@ echo "$(OK_COLOR)===> Checkout or update ac-cider...$(NO_COLOR)"
+	@ echo -e "$(OK_COLOR)===> Checkout or update ac-cider...$(NO_COLOR)"
 	@ if [ ! -d ac-cider ]; then git clone https://github.com/clojure-emacs/ac-cider.git; \
 	  else cd ac-cider; git pull --rebase; cd ..; fi;
 
@@ -141,15 +141,15 @@ prolog.el:
 
 _v8:
 	$(call chdir, $(EMACS_DEFAULT))
-	@ echo "$(OK_COLOR)===> Checkout or update Google V8 engine...(it is slow and SCons is required)$(NO_COLOR)"
+	@ echo -e "$(OK_COLOR)===> Checkout or update Google V8 engine...(it is slow and SCons is required)$(NO_COLOR)"
 	@ if [ ! -d v8 ]; then svn checkout http://v8.googlecode.com/svn/trunk/ v8; else cd v8; svn up; cd ..; fi;
 	@ cd v8; scons sample=shell; cd ..;
-	@ echo "$(ERROR_COLOR)Please migrate build to use GYP and set 'GCC_TREAT_WARNINGS_AS_ERRORS': 'NO' in build/standalone.gypi\n$(NO_COLOR)"
+	@ echo -e "$(ERROR_COLOR)Please migrate build to use GYP and set 'GCC_TREAT_WARNINGS_AS_ERRORS': 'NO' in build/standalone.gypi\n$(NO_COLOR)"
 
 jslint-v8: _v8
-	@ echo "$(OK_COLOR)===> Checkout or update jslint-v8...$(NO_COLOR)"
+	@ echo -e "$(OK_COLOR)===> Checkout or update jslint-v8...$(NO_COLOR)"
 	@ if [ ! -d jslint-v8 ]; then git clone http://github.com/valeryz/jslint-v8.git; else cd jslint-v8; git pull --rebase; cd ..; fi;
-	@ echo "$(ERROR_COLOR)Set path in 'flymake-jslint.el'\n$(NO_COLOR)"
+	@ echo -e "$(ERROR_COLOR)Set path in 'flymake-jslint.el'\n$(NO_COLOR)"
 
 #_______________________________________________________________________________
 #                                                                  SYSTEM RULES
