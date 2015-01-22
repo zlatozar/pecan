@@ -147,7 +147,7 @@
 (which-function-mode t)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(menu-bar-mode -1)
+(menu-bar-mode 1)
 (global-auto-revert-mode 1)
 (blink-cursor-mode 0)
 (tooltip-mode 1)
