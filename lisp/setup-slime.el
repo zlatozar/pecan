@@ -16,10 +16,18 @@
 
   :config
   (progn
-    (setq slime-protocol-version 'ignore
-          slime-net-coding-system 'utf-8-unix
-          slime-complete-symbol*-fancy t
-          slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
+    (setq slime-protocol-version                  'ignore
+          slime-net-coding-system                 'utf-8-unix
+          slime-complete-symbol*-fancy            t
+          slime-complete-symbol-function          'slime-fuzzy-complete-symbol
+          slime-kill-without-query-p              t
+          slime-description-autofocus             t
+          slime-asdf-collect-notes                t
+          slime-when-complete-filename-expand     t
+          slime-repl-history-remove-duplicates    t
+          slime-repl-history-trim-whitespaces     t
+          slime-export-symbol-representation-auto t)
+
     (slime-setup '(slime-fancy
                    slime-asdf
                    slime-banner))
