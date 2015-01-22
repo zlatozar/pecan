@@ -22,9 +22,6 @@
 (setq default-tab-width 4)
 (setq-default indent-tabs-mode nil)
 
-;; no white spaces
-(add-hook 'after-save-hook 'whitespace-cleanup)
-
 ;; Do not ask for safe variables
 (setq enable-local-variables nil)
 
@@ -56,7 +53,7 @@
 ;; set the name of the host and current path/file in title bar
 (setq frame-title-format
       (list (format "%s %%S: %%j " (system-name))
-            '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+	    '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
 (provide 'basic-init)
 
