@@ -7,6 +7,7 @@ following programming languages:
 * _Common Lisp_
 * _SWI Prolog_
 * _Emacs Lisp_
+* _Guile Scheme_
 
 ### How to start using it?
 

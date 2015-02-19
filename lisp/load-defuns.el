@@ -146,11 +146,23 @@ Symbols matching the text at point are put first in the completion list."
   (interactive)
   (occur "[^\000-\177]"))
 
+(defun comment-line (n)
+  "Comment or uncomment current line and leave point after it.
+With positive prefix, apply to N lines including current one.
+With negative prefix, apply to -N lines above."
+  (interactive "p")
+  (comment-or-uncomment-region
+   (line-beginning-position)
+   (goto-char (line-end-position n)))
+  (forward-line 1)
+  (back-to-indentation))
+
 ;;________________________________________________________________________________
 ;;                                                                   Key-bindings
 
 (bind-key "C-c x f" 'toggle-fullscreen)
 (bind-key "M-Z" 'zap-up-to-char)
+(bind-key "C-c C-;" 'comment-line)
 (bind-key "C-c t t" 'copy-line)
 
 (bind-key "C-c C-i" 'ido-imenu)

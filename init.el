@@ -565,6 +565,10 @@ With prefix P, create local abbrev. Otherwise it will be global."
 (require 'setup-slime)
 (require 'setup-common-lisp)
 
+;;; Scheme
+
+(require 'setup-scheme)
+
 ;;; Clojure:
 
 
