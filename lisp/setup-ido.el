@@ -13,6 +13,7 @@
     (ido-mode t)
     (setq ido-ignore-buffers
           '("\\` " ".*Completion" "^ ?\\*")
+          ido-save-directory-list-file "~/.emacs.d/data/ido.last"
           ido-enable-prefix nil
           ido-enable-flex-matching t
           ido-case-fold nil

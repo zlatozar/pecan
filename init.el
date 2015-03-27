@@ -304,9 +304,9 @@
 ;; Use Undo Tree instead of the Emacs default
 (use-package undo-tree
   :ensure t
-  :idle (global-undo-tree-mode t)
   :diminish ""
-  :init (setq undo-tree-visualizer-diff t))
+  :init (setq undo-tree-visualizer-diff t)
+  :config (global-undo-tree-mode t))
 
 ;;; More buffer-related configuration.
 
@@ -527,13 +527,14 @@ With prefix P, create local abbrev. Otherwise it will be global."
 
 ;; Flycheck
 (use-package flycheck
-  :load-path "site-lisp/flycheck/"
-  :idle (global-flycheck-mode)
+  :ensure t
   :diminish "fc"
   :init (use-package flycheck-pos-tip
           :load-path "site-lisp/flycheck-pos-tip/")
-  :config (setq-default flycheck-disabled-checkers
-                        '(emacs-lisp-checkdoc))
+  :config (progn
+            (setq-default flycheck-disabled-checkers
+                          '(emacs-lisp-checkdoc))
+            (global-flycheck-mode))
   :bind ("C-c n f" . flycheck-mode))
 
 ;; Paredit during programming

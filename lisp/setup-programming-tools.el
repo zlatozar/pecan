@@ -65,12 +65,7 @@
 ;; FIXME/TODO/BUG/KLUDGE in special face only in comments and strings
 (use-package fic-mode
   :ensure t
-  :diminish ""
-  :config
-  (progn
-    (use-package diminish
-      :init (diminish 'fic-mode ""))
-    (add-hook 'prog-mode-hook 'fic-mode)))
+  :config (add-hook 'prog-mode-hook 'turn-on-fic-mode))
 
 (use-package highlight-numbers
   :ensure t

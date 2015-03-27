@@ -94,8 +94,8 @@ _hippie-expand-slime:
 
 helm:
 	@ echo -e "$(OK_COLOR)===> Checkout or update helm...$(NO_COLOR)"
-	@ if [ ! -d helm ]; then git clone https://github.com/emacs-helm/helm.git; \
-	  else cd helm; git pull --rebase; cd ..; fi;
+	@ if [ ! -d helm ]; then git clone https://github.com/emacs-helm/helm.git; else cd helm; git pull --rebase; cd ..; fi;
+	@ cd helm; make; cd -;
 
 helm-ag:
 	@ echo -e "$(OK_COLOR)===> Checkout or update helm-ag...$(NO_COLOR)"
