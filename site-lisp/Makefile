@@ -42,7 +42,7 @@ endef
 default: all
 
 # Do not forget to update .PHONY
-all: dash flycheck flycheck-pos-tip slime helm helm-ag helm-ls-git emacs-neotree prolog.elc
+all: dash slime helm helm-ag helm-ls-git emacs-neotree prolog.elc
 
 .el.elc:
 	@ echo "\n** Bite compiling ===> " $@
@@ -56,19 +56,6 @@ dash:
 	@ echo -e "$(OK_COLOR)===> Checkout or update dash.el...$(NO_COLOR)"
 	@ if [ ! -d dash.el ]; then git clone https://github.com/magnars/dash.el.git; \
 	  else cd dash.el; git pull --rebase; cd ..; fi;
-
-#_______________________________________________________________________________
-#                                                                      Flycheck
-
-flycheck:
-	@ echo -e "$(OK_COLOR)===> Checkout or update flycheck...$(NO_COLOR)"
-	@ if [ ! -d flycheck ]; then git clone https://github.com/flycheck/flycheck.git; \
-	  else cd flycheck; git pull --rebase; cd ..; fi;
-
-flycheck-pos-tip:
-	@ echo -e "$(OK_COLOR)===> Checkout or update flycheck-pos-tip...$(NO_COLOR)"
-	@ if [ ! -d flycheck-pos-tip ]; then git clone https://github.com/flycheck/flycheck-pos-tip.git; \
-	  else cd flycheck-pos-tip; git pull --rebase; cd ..; fi;
 
 #_______________________________________________________________________________
 #                                                                         Slime
@@ -154,8 +141,8 @@ jslint-v8: _v8
 #_______________________________________________________________________________
 #                                                                  SYSTEM RULES
 
-.PHONY: clean dash flycheck flycheck-pos-tip slime ac-slime \
-	hippie-expand-slime helm helm-ag helm-ls-git emacs-neotree cider ac-cider
+.PHONY: clean dash slime ac-slime hippie-expand-slime helm helm-ag helm-ls-git emacs-neotree \
+        cider ac-cider
 
 clean:
 	rm -f $(ELC)

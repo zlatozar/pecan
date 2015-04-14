@@ -530,7 +530,7 @@ With prefix P, create local abbrev. Otherwise it will be global."
   :ensure t
   :diminish "fc"
   :init (use-package flycheck-pos-tip
-          :load-path "site-lisp/flycheck-pos-tip/")
+          :ensure t)
   :config (progn
             (setq-default flycheck-disabled-checkers
                           '(emacs-lisp-checkdoc))
