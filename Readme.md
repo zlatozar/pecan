@@ -70,6 +70,7 @@ Key&nbsp;Binding   | Interpretation               |  Description
 `C-c C-i`   | `ido-imenu`                  |  Find method definition in the current buffer
 `M-.`       |                              |  Go to definition
 `M-,`       |                              |  Back from definition
+`C-c ! l`   |                              |  List all Flycheck errors
 `C-c C-d`   |                              |  Show documentation
 `C-c p s`   |  `magit-status`              |  Git status
 `C-c p g`   |  `magit-grep`                |  Grep git project

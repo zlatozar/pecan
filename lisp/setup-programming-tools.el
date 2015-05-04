@@ -105,6 +105,15 @@ Optionally BUF and STR could be passed."
 
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
+;; Press 'C-c ! l' to list of all Flycheck errors
+(add-to-list 'display-buffer-alist
+             `(,(rx bos "*Flycheck errors*" eos)
+               (display-buffer-reuse-window
+                display-buffer-in-side-window)
+               (reusable-frames . visible)
+               (side            . bottom)
+               (window-height   . 0.4)))
+
 ;; Clean up trailing spaces
 (add-hook 'prog-mode-hook (lambda ()
                             (add-hook 'before-save-hook 'delete-trailing-whitespace)))
