@@ -6,6 +6,7 @@ personal.el
 backups
 auto-save-list
 abbrev_defs
+ido.last
 
 # Installed with Makefile and MELPA
 elpa

@@ -18,6 +18,7 @@
   (progn
     (setq slime-protocol-version                  'ignore
           slime-net-coding-system                 'utf-8-unix
+          slime-load-failed-fasl                  'never
           slime-complete-symbol*-fancy            t
           slime-complete-symbol-function          'slime-fuzzy-complete-symbol
           slime-kill-without-query-p              t
