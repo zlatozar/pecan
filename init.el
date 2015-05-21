@@ -610,24 +610,6 @@ With prefix P, create local abbrev. Otherwise it will be global."
                              :capture :after
                              :action find-file-other-window)))))
 
-;; Dasily define search engines, bind them to keybindings
-(use-package engine-mode
-  :ensure t
-  :commands (engine-mode defengine)
-  :init (engine-mode t)
-  :config
-  (progn
-    (setq engine/keymap-prefix (kbd "C-c e"))
-    (defengine duckduckgo
-      "https://duckduckgo.com/?q=%s"
-      "d")
-    (defengine github
-      "https://github.com/search?ref=simplesearch&q=%s"
-      "g")
-    (defengine wikipedia
-      "http://www.wikipedia.org/search-redirect.php?language=en&go=Go&search=%s"
-      "w")))
-
 ;;; Helm
 
 (use-package helm-config
