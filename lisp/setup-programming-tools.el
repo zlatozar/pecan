@@ -138,11 +138,6 @@ buffer is not modified (to avoid creating accidental modifications)."
       (cl-letf (((symbol-function 'message) #'ignore))
         (indent-region l r)))))
 
-(defun activate-aggressive-indent ()
-  "Locally add `indent-defun' to `post-command-hook'."
-  (add-hook 'post-command-hook
-            'indent-defun nil 'local))
-
 (provide 'setup-programming-tools)
 
 ;;; setup-programming-tools.el ends here

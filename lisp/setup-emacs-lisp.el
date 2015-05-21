@@ -49,24 +49,11 @@
   (add-to-list 'hippie-expand-try-functions-list 'try-complete-lisp-symbol t)
   (add-to-list 'hippie-expand-try-functions-list 'try-complete-lisp-symbol-partially t))
 
-(defun my/ielm-auto-complete ()
-  "Enables `auto-complete' support in \\[ielm]."
-  (setq ac-sources '(ac-source-functions
-                     ac-source-variables
-                     ac-source-features
-                     ac-source-symbols
-                     ac-source-words-in-same-mode-buffers))
-  (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
-  (auto-complete-mode 1))
-
 ;; Hit C-h f (for function) or C-h v (for variable)
 (defun my/emacs-lisp-setup ()
   "Enable features useful when working with Emacs Lisp."
   (paredit-mode 1)
   (my/set-up-hippie-expand-for-elisp)
-  (my/ielm-auto-complete)
-  (ac-emacs-lisp-mode-setup)
-  (activate-aggressive-indent)
   (turn-on-eldoc-mode))
 
 (add-hook 'emacs-lisp-mode-hook 'my/emacs-lisp-setup)
