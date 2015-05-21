@@ -42,7 +42,7 @@ endef
 default: all
 
 # Do not forget to update .PHONY
-all: dash slime helm helm-ag helm-ls-git emacs-neotree prolog.elc
+all: dash helm helm-ag helm-ls-git emacs-neotree prolog.elc
 
 .el.elc:
 	@ echo "\n** Bite compiling ===> " $@
@@ -56,25 +56,6 @@ dash:
 	@ echo "$(OK_COLOR)===> Checkout or update dash.el...$(NO_COLOR)"
 	@ if [ ! -d dash.el ]; then git clone https://github.com/magnars/dash.el.git; \
 	  else cd dash.el; git pull --rebase; cd ..; fi;
-
-#_______________________________________________________________________________
-#                                                                         Slime
-
-slime: _ac-slime _hippie-expand-slime
-	@ echo "$(OK_COLOR)===> Checkout or update slime...$(NO_COLOR)"
-	@ if [ ! -d slime ]; then git clone http://github.com/slime/slime.git; \
-	  else cd slime; git pull --rebase; cd ..; fi;
-	@ cd slime; make; cd ..;
-
-_ac-slime:
-	@ echo "$(OK_COLOR)===> Checkout or update ac-slime...$(NO_COLOR)"
-	@ if [ ! -d ac-slime ]; then git clone https://github.com/purcell/ac-slime.git; \
-	  else cd ac-slime; git pull --rebase; cd ..; fi;
-
-_hippie-expand-slime:
-	@ echo "$(OK_COLOR)===> Checkout or update hippie-expand-slime...$(NO_COLOR)"
-	@ if [ ! -d hippie-expand-slime ]; then git clone https://github.com/purcell/hippie-expand-slime.git; \
-	  else cd hippie-expand-slime; git pull --rebase; cd ..; fi;
 
 #_______________________________________________________________________________
 #                                                                         Helm
@@ -141,8 +122,7 @@ jslint-v8: _v8
 #_______________________________________________________________________________
 #                                                                  SYSTEM RULES
 
-.PHONY: clean dash slime ac-slime hippie-expand-slime helm helm-ag helm-ls-git emacs-neotree \
-        cider ac-cider
+.PHONY: clean dash helm helm-ag helm-ls-git emacs-neotree cider ac-cider
 
 clean:
 	rm -f $(ELC)

@@ -1,4 +1,4 @@
-;;; setup-slime --- Slime configuration for Common Lisp and MIT Scheme
+;;; setup-slime --- Slime configuration for Common Lisp
 
 ;;; Commentary:
 
@@ -7,13 +7,7 @@
 ;;; Code:
 
 (use-package slime
-  :load-path "site-lisp/slime/"
-  :init
-  (use-package ac-slime
-    :load-path "site-lisp/ac-slime/")
-  (use-package hippie-expand-slime
-    :load-path "site-lisp/hippie-expand-slime")
-
+  :ensure t
   :config
   (progn
     (setq slime-protocol-version                  'ignore
@@ -31,12 +25,17 @@
 
     (slime-setup '(slime-fancy
                    slime-asdf
-                   slime-banner))
-    (add-hook 'slime-mode-hook 'my/slime-setup)
-    (add-hook 'slime-mode-hook (lambda () (activate-aggressive-indent)))
-
-    (add-hook 'slime-repl-mode-hook 'my/slime-setup))
+                   slime-banner)))
   :bind ("C-z" . slime-selector))
+
+(use-package ac-slime
+  :ensure t
+  :init
+  (progn
+    (add-hook 'slime-mode-hook 'my/slime-setup)
+    (add-hook 'slime-repl-mode-hook 'my/slime-setup)
+
+    (add-to-list 'ac-modes 'slime-repl-mode)))
 
 ;; SBCL (default)
 (setq slime-lisp-implementations
@@ -45,14 +44,12 @@
 ;; Avoid clash with Pecan global key bindings
 (unbind-key "C-c x" slime-mode-map)
 
-;;________________________________________________________________________________
-;;                                                               Helper Functions
+;;_______________________________________________________________________________
+;;                                                               Helper function
 
 (defun my/slime-setup ()
   "Mode setup function for SLIME buffers."
-  (set-up-slime-hippie-expand)
-  (set-up-slime-ac)
-  (paredit-mode 1))
+  (set-up-slime-ac t))
 
 (provide 'setup-slime)
 
