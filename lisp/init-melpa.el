@@ -18,7 +18,7 @@
 
 (package-initialize)
 
-(unless (file-exists-p "~/.emacs.d/elpa/archives/melpa")
+(when (not package-archive-contents)
   (package-refresh-contents))
 
 (defun packages-install (packages)
