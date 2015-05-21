@@ -1,34 +1,55 @@
 ;;; setup-python --- Python configuration
 
 ;;; Commentary:
+;;;
+;;; Install with 'pip':
+;;; virtualevn, virtualenvwrapper, jedi, ipython, pyflakes
+;;; Also 'virtualenvwrapper' home directory should be ~/.virtualevns
 
 ;; Usage:
 
 ;;; Code:
 
 ;; Jedi - python code completion library
-(use-package jedi
-  :ensure t
-  :config (progn
-            (setq jedi:setup-keys t
-                  jedi:complete-on-dot t
-                  jedi:use-shortcuts t
-                  jedi:tooltip-method '(pos-tip))
-            (add-hook 'python-mode-hook
-                      (lambda ()
-                        (yas-global-mode 1)
-                        (paredit-mode -1)
-                        (jedi-mode 1)
-                        (auto-complete-mode)
-                        (add-to-list 'ac-sources 'ac-source-jedi-direct)
-                        (jedi:ac-setup)))
-            (defvar jedi-config:vcs-root-sentinel ".git")
-            (defvar jedi-config:python-module-sentinel "__init__.py")
 
-            (bind-key "M-." 'jedi:goto-definition jedi-mode-map)
-            (bind-key "M-," 'jedi:goto-definition-pop-marker jedi-mode-map)
-            (bind-key "C-c C-d" 'jedi:show-doc jedi-mode-map)
-            (bind-key "C-c C-l" 'jedi:get-in-function-call jedi-mode-map)))
+(use-package python
+  :ensure t
+  :config
+  (progn
+    (define-key python-mode-map (kbd "C-c C-z") 'run-python)
+    (define-key python-mode-map (kbd "<backtab>") 'python-back-indent)
+
+    (defun my/company-jedi-setup ()
+      (interactive)
+      (use-package company-jedi
+        :ensure t
+        :config
+        (add-to-list 'company-backends 'company-jedi)))
+
+    (defun my/setup-jedi ()
+      (interactive)
+      (use-package jedi
+        :ensure t
+        :config
+        (progn
+          (jedi:setup)
+
+          (setq jedi:setup-keys t
+                jedi:complete-on-dot t
+                jedi:tooltip-method nil)
+
+          (set-face-attribute 'jedi:highlight-function-argument nil
+                              :foreground "green")
+          (defvar jedi-config:vcs-root-sentinel ".git")
+          (defvar jedi-config:python-module-sentinel "__init__.py")
+
+          (bind-key "M-." 'jedi:goto-definition jedi-mode-map)
+          (bind-key "M-," 'jedi:goto-definition-pop-marker jedi-mode-map)
+          (bind-key "C-c C-d" 'jedi:show-doc jedi-mode-map)
+          (bind-key "C-c C-l" 'jedi:get-in-function-call jedi-mode-map))))
+
+    (add-hook 'python-mode-hook #'my/setup-jedi)
+    (add-hook 'python-mode-hook #'my/company-jedi-setup)))
 
 ;; 'pyflakes' should be in PATH
 (use-package flymake-python-pyflakes
@@ -49,18 +70,16 @@
 ;;_______________________________________________________________________________
 ;;                                                                    Additional
 
-;; "C-c C-p" to start it
-(setq
- python-shell-interpreter "ipython"
- python-shell-interpreter-args ""
- python-shell-prompt-regexp "In \\[[0-9]+\\]: "
- python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
- python-shell-completion-setup-code
- "from IPython.core.completerlib import module_completion"
- python-shell-completion-module-string-code
- "';'.join(module_completion('''%s'''))\n"
- python-shell-completion-string-code
- "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args ""
+      python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+      python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+      python-shell-completion-setup-code
+      "from IPython.core.completerlib import module_completion"
+      python-shell-completion-module-string-code
+      "';'.join(module_completion('''%s'''))\n"
+      python-shell-completion-string-code
+      "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
 (use-package virtualenvwrapper
   :ensure t
@@ -76,10 +95,6 @@
   :config (progn
             (add-hook 'jedi-mode-hook 'jedi-direx:setup)
             (bind-key "C-c p j" 'jedi-direx:pop-to-buffer jedi-mode-map)))
-
-(use-package helm-pydoc
-  :ensure t
-  :config (bind-key "C-c C-d" 'helm-pydoc python-mode-map))
 
 ;;_______________________________________________________________________________
 ;;                                                                     Debugging

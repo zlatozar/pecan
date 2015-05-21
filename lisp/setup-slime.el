@@ -28,14 +28,12 @@
                    slime-banner)))
   :bind ("C-z" . slime-selector))
 
-(use-package ac-slime
+(use-package slime-company
   :ensure t
   :init
   (progn
     (add-hook 'slime-mode-hook 'my/slime-setup)
-    (add-hook 'slime-repl-mode-hook 'my/slime-setup)
-
-    (add-to-list 'ac-modes 'slime-repl-mode)))
+    (add-hook 'slime-repl-mode-hook 'my/slime-setup)))
 
 ;; SBCL (default)
 (setq slime-lisp-implementations
@@ -49,7 +47,7 @@
 
 (defun my/slime-setup ()
   "Mode setup function for SLIME buffers."
-  (set-up-slime-ac t))
+  (slime-setup '(slime-company)))
 
 (provide 'setup-slime)
 
