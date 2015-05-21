@@ -9,11 +9,13 @@
 
 (use-package yasnippet
   :ensure t
-  :diminish ""
-  :init (setq yas-snippet-dirs '("~/.emacs.d/snippets/"))
+  :if (not noninteractive)
+  :diminish yas-minor-mode
+  :commands (yas-global-mode yas-minor-mode)
   :config (progn
             (setq yas-verbosity 1
-                  yas-wrap-around-region t)
+                  yas-wrap-around-region t
+                  yas-snippet-dirs '("~/.emacs.d/snippets/"))
             (define-key yas-minor-mode-map [(tab)] nil)
             (define-key yas-minor-mode-map (kbd "TAB") nil))
   :bind ("C-c p y" . yas-ido-expand))
