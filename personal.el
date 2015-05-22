@@ -7,7 +7,7 @@
 ;;; Code:
 
 ;; Increase font size (it is 160 on my Mac machine)
-(set-face-attribute 'default nil :height 130)
+(set-face-attribute 'default nil :height 140)
 
 ;; Setup registers for files I commonly edit
 (set-register ?b '(file . "~/Documents/brainstorming.org"))
@@ -21,9 +21,10 @@
 (setq european-calendar-style 't)
 (setq calendar--week--start--day 1)
 
-;; Currently I use MAC with Microsoft keyboard
-(setq mac-command-modifier 'super)
-(setq mac-option-modifier 'meta)
+;; For Mac users
+
+;; (setq mac-command-modifier 'super)
+;; (setq mac-option-modifier 'meta)
 
 (provide 'emacs-personal)
 
