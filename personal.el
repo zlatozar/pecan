@@ -6,6 +6,14 @@
 
 ;;; Code:
 
+;; Start maximized
+;; (custom-set-variables
+;;  '(initial-frame-alist (quote ((fullscreen . maximized)))))
+
+(setq default-frame-alist
+      '((top . 10) (left . 2)
+        (width . 160) (height . 50)))
+
 ;; Increase font size (it is 160 on my Mac machine)
 (set-face-attribute 'default nil :height 140)
 
@@ -21,8 +29,7 @@
 (setq european-calendar-style 't)
 (setq calendar--week--start--day 1)
 
-;; For Mac users
-
+;; Mac users
 ;; (setq mac-command-modifier 'super)
 ;; (setq mac-option-modifier 'meta)
 

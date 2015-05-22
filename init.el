@@ -160,10 +160,6 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
-;; Start maximized
-(custom-set-variables
- '(initial-frame-alist (quote ((fullscreen . maximized)))))
-
 ;; Better rectangle manipulations
 (cua-selection-mode 1)
 
@@ -474,7 +470,6 @@ With prefix P, create local abbrev. Otherwise it will be global."
 (use-package smex
   :ensure t
   :init (smex-initialize)
-  :config (setq smex-save-file "~/.emacs.d/data/smex-items")
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands)))
 
