@@ -33,6 +33,7 @@
         :config
         (progn
           (jedi:setup)
+          (yas-global-mode t)
 
           (setq jedi:setup-keys t
                 jedi:complete-on-dot t
