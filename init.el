@@ -517,7 +517,7 @@ With prefix P, create local abbrev. Otherwise it will be global."
 (require 'setup-shell)
 
 ;; Auto complete
-(require 'setup-auto-complete)
+(require 'setup-company)
 
 ;; Org mode
 (require 'setup-org-mode)

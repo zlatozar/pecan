@@ -1,4 +1,4 @@
-;;; setup-auto-complete --- Complicated setup for auto-complete
+;;; setup-company --- Completion with company-mode
 
 ;;; Commentary:
 
@@ -27,6 +27,6 @@
                ("C-d" . company-show-doc-buffer)
                ("<tab>" . company-complete))))
 
-(provide 'setup-auto-complete)
+(provide 'setup-company)
 
 ;;; setup-auto-complete.el ends here
