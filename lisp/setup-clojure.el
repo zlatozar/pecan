@@ -1,7 +1,6 @@
 ;;; setup-clojure --- Clojure with CIDER configuration
 
-;;; Commentary:
-;;; Not enabled yet.
+;;; Commentary: Install 'Leiningen' and then copy lein/profiles.clj in ~/.lein/
 
 ;; Usage:
 
@@ -13,10 +12,6 @@
             (use-package clojure-mode
               :ensure t)
             (use-package clojure-cheatsheet
-              :ensure t)
-            (use-package clojure-test-mode
-              :ensure t)
-            (use-package ac-cider
               :ensure t)))
 
 ;;_______________________________________________________________________________

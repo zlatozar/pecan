@@ -567,6 +567,7 @@ With prefix P, create local abbrev. Otherwise it will be global."
 
 ;;; Clojure:
 
+(require 'setup-clojure)
 
 ;;; Prolog
 

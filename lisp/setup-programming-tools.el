@@ -118,26 +118,6 @@ Optionally BUF and STR could be passed."
 (add-hook 'prog-mode-hook (lambda ()
                             (add-hook 'before-save-hook 'delete-trailing-whitespace)))
 
-;;________________________________________________________________________________
-;;                                                              Aggressive indent
-
-(use-package aggressive-indent
-  :ensure t)
-
-(defun indent-defun ()
-  "Indent current defun.
-
-Do nothing if mark is active (to avoid deactivaing it), or if
-buffer is not modified (to avoid creating accidental modifications)."
-  (interactive)
-  (unless (or (region-active-p)
-              buffer-read-only
-              (null (buffer-modified-p)))
-    (let ((l (save-excursion (beginning-of-defun 1) (point)))
-          (r (save-excursion (end-of-defun 1) (point))))
-      (cl-letf (((symbol-function 'message) #'ignore))
-        (indent-region l r)))))
-
 (provide 'setup-programming-tools)
 
 ;;; setup-programming-tools.el ends here

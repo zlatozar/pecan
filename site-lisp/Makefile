@@ -84,21 +84,6 @@ emacs-neotree:
 	  else cd emacs-neotree; git pull --rebase; cd ..; fi;
 
 #_______________________________________________________________________________
-#                                                                       Clojure
-
-cider:
-	@ echo "$(OK_COLOR)===> Checkout or update to latest tag cider...$(NO_COLOR)"
-	@ if [ ! -d cider ]; then git clone https://github.com/clojure-emacs/cider.git; \
-	  else cd cider; git fetch --tags; cd ..; fi;
-	@ cd cider; sha=`git rev-list --tags --max-count=1`; latestTag=`git describe --tags $$sha`; echo "Latest Tag: " $$latestTag; \
-	  git checkout $$latestTag; cd ..;
-
-ac-cider:
-	@ echo "$(OK_COLOR)===> Checkout or update ac-cider...$(NO_COLOR)"
-	@ if [ ! -d ac-cider ]; then git clone https://github.com/clojure-emacs/ac-cider.git; \
-	  else cd ac-cider; git pull --rebase; cd ..; fi;
-
-#_______________________________________________________________________________
 #                                                                        Prolog
 
 prolog.el:
@@ -122,7 +107,7 @@ jslint-v8: _v8
 #_______________________________________________________________________________
 #                                                                  SYSTEM RULES
 
-.PHONY: clean dash helm helm-ag helm-ls-git emacs-neotree cider ac-cider
+.PHONY: clean dash helm helm-ag helm-ls-git emacs-neotree
 
 clean:
 	rm -f $(ELC)

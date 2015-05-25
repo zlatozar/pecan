@@ -5,6 +5,7 @@ following programming languages:
 
 * _Python_
 * _Common Lisp_
+* _Clojure_ (place *lein/profiles.clj* in *~/.lein*)
 * _SWI Prolog_
 * _Emacs Lisp_
 * _Racket Scheme_
