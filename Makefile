@@ -16,12 +16,19 @@ WARN_STRING  = $(WARN_COLOR)[WARNINGS]$(NO_COLOR)
 #_______________________________________________________________________________
 #                                                                      REQUIRED
 
-default: bootstrap
+default: bootstrap clojure
 
 bootstrap:
 	@ echo "$(OK_COLOR)===> Download packages needed to bootstrap...$(NO_COLOR)"
 	@ $(MAKE) -C site-lisp/
 	@ echo "$(OK_COLOR)DONE$(NO_COLOR)"
+
+clojure:
+	@ echo "$(OK_COLOR)===> Configure Leiningen and Boot ...$(NO_COLOR)"
+	@ if [ ! -d ~/.lein ]; then mkdir ~/.lein; fi;
+	@ cp clojure/lein/profiles.clj ~/.lein/
+	@ if [ ! -d ~/.boot ]; then mkdir ~/.boot; fi;
+	@ cp clojure/boot/.profile.boot ~/.boot/
 
 #_______________________________________________________________________________
 #                                                                      OPTIONAL
