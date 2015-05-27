@@ -490,7 +490,7 @@ With prefix P, create local abbrev. Otherwise it will be global."
 
 ;; File browser
 (use-package neotree
-  :load-path "site-lisp/emacs-neotree/"
+  :ensure t
   :config (bind-key "<f5>" 'neotree-toggle))
 
 ;; Line numbers
@@ -608,18 +608,18 @@ With prefix P, create local abbrev. Otherwise it will be global."
 
 ;;; Helm
 
-(use-package helm-config
-  :load-path "site-lisp/helm"
+(use-package helm
+  :ensure t
   :config
   (progn
     (key-chord-define-global "qm" 'helm-mini)
     (key-chord-define-global "qo" 'helm-occur)
     (key-chord-define-global "qf" 'helm-find-files)
     (use-package helm-ag
-      :load-path "site-lisp/emacs-helm-ag"
-      :config (key-chord-define-global "qp" 'helm-ag))
+      :ensure t
+      :config (key-chord-define-global "qy" 'helm-ag))
     (use-package helm-ls-git
-      :load-path "site-lisp/helm-ls-git"
+      :ensure t
       :config
       (progn
         (key-chord-define-global "qp" 'helm-browse-project)))))

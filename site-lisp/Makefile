@@ -42,7 +42,7 @@ endef
 default: all
 
 # Do not forget to update .PHONY
-all: dash helm helm-ag helm-ls-git emacs-neotree prolog.elc
+all: dash prolog.elc
 
 .el.elc:
 	@ echo "\n** Bite compiling ===> " $@
@@ -56,32 +56,6 @@ dash:
 	@ echo "$(OK_COLOR)===> Checkout or update dash.el...$(NO_COLOR)"
 	@ if [ ! -d dash.el ]; then git clone https://github.com/magnars/dash.el.git; \
 	  else cd dash.el; git pull --rebase; cd ..; fi;
-
-#_______________________________________________________________________________
-#                                                                         Helm
-
-helm:
-	@ echo "$(OK_COLOR)===> Checkout or update helm...$(NO_COLOR)"
-	@ if [ ! -d helm ]; then git clone https://github.com/emacs-helm/helm.git; else cd helm; git pull --rebase; cd ..; fi;
-	@ cd helm; make; cd -;
-
-helm-ag:
-	@ echo "$(OK_COLOR)===> Checkout or update helm-ag...$(NO_COLOR)"
-	@ if [ ! -d emacs-helm-ag ]; then git clone https://github.com/syohex/emacs-helm-ag.git; \
-	  else cd emacs-helm-ag; git pull --rebase; cd ..; fi;
-
-helm-ls-git:
-	@ echo "$(OK_COLOR)===> Checkout or update helm-ls-git...$(NO_COLOR)"
-	@ if [ ! -d helm-ls-git ]; then git clone https://github.com/emacs-helm/helm-ls-git.git; \
-	  else cd helm-ls-git; git pull --rebase; cd ..; fi;
-
-#_______________________________________________________________________________
-#                                                                       Neotree
-
-emacs-neotree:
-	@ echo "$(OK_COLOR)===> Checkout or update emacs-neotree...$(NO_COLOR)"
-	@ if [ ! -d emacs-neotree ]; then git clone https://github.com/jaypei/emacs-neotree.git; \
-	  else cd emacs-neotree; git pull --rebase; cd ..; fi;
 
 #_______________________________________________________________________________
 #                                                                        Prolog
@@ -107,7 +81,7 @@ jslint-v8: _v8
 #_______________________________________________________________________________
 #                                                                  SYSTEM RULES
 
-.PHONY: clean dash helm helm-ag helm-ls-git emacs-neotree
+.PHONY: clean dash
 
 clean:
 	rm -f $(ELC)
