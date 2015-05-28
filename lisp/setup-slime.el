@@ -8,6 +8,11 @@
 
 (use-package slime
   :ensure t
+  :init
+  (use-package slime-repl
+    :config
+    (add-hook 'slime-repl-mode-hook 'paredit-mode))
+
   :config
   (progn
     (setq slime-protocol-version                  'ignore

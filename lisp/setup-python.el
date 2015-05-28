@@ -16,8 +16,7 @@
   :ensure t
   :config
   (progn
-    (define-key python-mode-map (kbd "C-c C-z") 'run-python)
-    (define-key python-mode-map (kbd "<backtab>") 'python-back-indent)
+    (bind-key "C-c C-z" 'run-python python-mode-map)
 
     (defun my/company-jedi-setup ()
       (interactive)

@@ -9,12 +9,19 @@
 (use-package geiser
   :ensure t
   :init
-  (use-package ac-geiser
-    :ensure t
-    :init (add-hook 'geiser-mode-hook 'ac-geiser-setup))
+  (use-package geiser-repl
+    :config
+    (add-hook 'geiser-repl-mode-hook 'paredit-mode))
   :config (progn
-            (setq geiser-active-implementations '(racket))
-            (add-hook 'geiser-repl-mode-hook (lambda () (paredit-mode 1)))))
+            (setq geiser-active-implementations '(guile racket)
+                  geiser-mode-smart-tab-p t
+                  geiser-repl-autodoc-p t
+                  geiser-repl-history-filename "~/.emacs.d/data/geiser-history"
+                  geiser-repl-query-on-kill-p nil
+                  geiser-implementations-alist
+                  '(((regexp "\\.scm$") guile)
+                    ((regexp "\\.ss$") guile)
+                    ((regexp "\\.rkt$") racket)))))
 
 (provide 'setup-scheme)
 
