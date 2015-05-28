@@ -8,11 +8,6 @@
 
 (use-package slime
   :ensure t
-  :init
-  (use-package slime-repl
-    :config
-    (add-hook 'slime-repl-mode-hook 'paredit-mode))
-
   :config
   (progn
     (setq slime-protocol-version                  'ignore
@@ -28,9 +23,8 @@
           slime-repl-history-trim-whitespaces     t
           slime-export-symbol-representation-auto t)
 
-    (slime-setup '(slime-fancy
-                   slime-asdf
-                   slime-banner)))
+    (slime-setup '(slime-fancy slime-asdf
+                               slime-banner)))
   :bind ("C-z" . slime-selector))
 
 (use-package slime-company
