@@ -9,16 +9,17 @@
 
 ;;; Code:
 
-;; `use-package' is not loaded yet
-(require-package 'exec-path-from-shell)
-
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
-
-;; Needed environment variables
-(exec-path-from-shell-copy-env "PATH")
-(exec-path-from-shell-copy-env "SBCL_HOME")
-(exec-path-from-shell-copy-env "PYTHONPATH")
+(use-package exec-path-from-shell
+  :ensure t
+  :init
+  (when (memq window-system '(mac ns))
+    (exec-path-from-shell-initialize))
+  :config
+  (progn
+    ;; Needed environment variables
+    (exec-path-from-shell-copy-env "PATH")
+    (exec-path-from-shell-copy-env "SBCL_HOME")
+    (exec-path-from-shell-copy-env "PYTHONPATH")))
 
 (provide 'init-exec-path)
 
