@@ -6,47 +6,29 @@
 
 ;;; Code:
 
-(require 'dash)
-
-;; Syntax highlighting of dash functions
-(eval-after-load "dash" '(dash-enable-font-lock))
-
 (require 'package)
 
-;; Add melpa to package repos
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(setq package-enable-at-startup nil)
+
+(add-to-list 'package-archives '("mepla-stable" . "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("mepla" . "http://mepla.org/packages/") t)
 
 (package-initialize)
 
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defun packages-install (packages)
-  "Iterate over PACKAGES and install them."
-  (--each packages
-    (when (not (package-installed-p it))
-      (package-install it)))
-  (delete-other-windows))
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-;;; On-demand installation of packages
+;; Load packages that needed for bootstrap
+(require 'use-package)
+(require 'bind-key)
 
-(defun require-package (package &optional min-version no-refresh)
-  "Install given PACKAGE, optionally requiring MIN-VERSION.
-If NO-REFRESH is non-nil, the available package lists will not be
-re-downloaded in order to locate PACKAGE."
-  (if (package-installed-p package min-version)
-      t
-    (if (or (assoc package package-archive-contents) no-refresh)
-        (package-install package)
-      (progn
-        (package-refresh-contents)
-        (require-package package min-version t)))))
-
-(defun require-load (package)
-  "Simple function that install given PACKAGE and load it."
-  (progn
-    (require-package package)
-    (require package)))
+(use-package dash
+  :ensure t
+  :commands dash-enable-font-lock)
 
 (provide 'init-melpa)
 

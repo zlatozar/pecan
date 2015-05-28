@@ -39,19 +39,11 @@
 ;; Load all packages installed with Makefile
 (require 'load-site-lisp)
 
-;; Machinery for installing required packages (needs `dash')
+;; Machinery for installing required packages
 (require 'init-melpa)
 
 ;; Set up $PATH
 (require 'init-exec-path)
-
-;; Load packages that needed for bootstrap
-(require-load 'use-package)
-(require-load 'bind-key)
-
-;; Benchmark of calls to Emacs require and load functions
-(use-package benchmark-init
-  :ensure t)
 
 ;; Provides some package manager agnostic utilities
 (use-package packed
