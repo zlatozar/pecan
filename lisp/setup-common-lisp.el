@@ -9,7 +9,7 @@
 
 (defadvice slime-hyperspec-lookup (around browse-with-eww activate)
   "Show hyperspec in EWW browser."
-  (flet ((browse-url (url) (eww-browse-url url)))
+  (cl-flet ((browse-url (url) (eww-browse-url url)))
     ad-do-it))
 
 (defadvice slime-repl-insert-prompt
