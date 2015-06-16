@@ -7,6 +7,15 @@
 
 ;;; Code:
 
+;; 'C-h S' to describe symbol
+(require 'info-look)
+
+(info-lookup-add-help
+ :mode 'lisp-mode
+ :regexp "[^][()'\" \t\n]+"
+ :ignore-case t
+ :doc-spec '(("(ansicl)Symbol Index" nil nil nil)))
+
 (defadvice slime-hyperspec-lookup (around browse-with-eww activate)
   "Show hyperspec in EWW browser."
   (cl-flet ((browse-url (url) (eww-browse-url url)))

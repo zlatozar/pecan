@@ -542,14 +542,6 @@ With prefix P, create local abbrev. Otherwise it will be global."
 
 ;;; Common Lisp
 
-;; 'C-h S' to describe symbol
-(require 'info-look)
-(info-lookup-add-help
- :mode 'lisp-mode
- :regexp "[^][()'\" \t\n]+"
- :ignore-case t
- :doc-spec '(("(ansicl)Symbol Index" nil nil nil)))
-
 (require 'setup-slime)
 (require 'setup-common-lisp)
 

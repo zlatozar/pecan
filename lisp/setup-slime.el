@@ -13,8 +13,6 @@
     (setq slime-protocol-version                  'ignore
           slime-net-coding-system                 'utf-8-unix
           slime-load-failed-fasl                  'never
-          slime-complete-symbol*-fancy            t
-          slime-complete-symbol-function          'slime-fuzzy-complete-symbol
           slime-kill-without-query-p              t
           slime-description-autofocus             t
           slime-asdf-collect-notes                t
@@ -23,8 +21,7 @@
           slime-repl-history-trim-whitespaces     t
           slime-export-symbol-representation-auto t)
 
-    (slime-setup '(slime-fancy slime-asdf
-                               slime-banner)))
+    (slime-setup '(slime-fancy)))
   :bind ("C-z" . slime-selector))
 
 (use-package slime-company
