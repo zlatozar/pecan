@@ -35,5 +35,5 @@ clojure:
 
 cl-info:
 	@ echo "$(OK_COLOR)===> Install Common Lisp info pages...$(NO_COLOR)"
-	@ cp -r reference/common-lisp/ /usr/share/info/
+	@ cp reference/common-lisp/ansicl* /usr/share/info/
 	@ echo "$(OK_COLOR)Now you can use 'C-h S' to refer Common Lisp specification$(NO_COLOR)"
