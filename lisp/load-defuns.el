@@ -30,6 +30,13 @@
         (rename-buffer new-name)
         (set-visited-file-name new-name)))))
 
+(defun kill-all-buffers ()
+  "Kill all buffers, leaving *scratch* only"
+  (interactive)
+  (mapc (lambda (x) (kill-buffer x))
+    (buffer-list))
+  (delete-other-windows))
+
 (defun browse-current-file ()
   "Open the current file as a URL using `browse-url'."
   (interactive)
