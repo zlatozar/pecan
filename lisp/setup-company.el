@@ -6,7 +6,7 @@
 
 ;;; Code:
 
-;;; Company mode for auto-completion:
+;;; Company mode for auto completion:
 
 (use-package company
   :defer t
@@ -17,6 +17,7 @@
   :config
   (progn
     (setq company-idle-delay 0.2
+          company-echo-delay 0
           company-minimum-prefix-length 2
           company-selection-wrap-around t
           company-dabbrev-downcase nil
@@ -26,6 +27,12 @@
                ("C-p" . company-select-previous)
                ("C-d" . company-show-doc-buffer)
                ("<tab>" . company-complete))))
+
+;; Try it later
+
+;; (use-package company-quickhelp
+;;   :ensure t
+;;   :init (company-quickhelp-mode 1))
 
 (provide 'setup-company)
 
