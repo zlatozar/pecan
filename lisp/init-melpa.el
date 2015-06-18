@@ -8,22 +8,26 @@
 
 (require 'package)
 
-(setq package-enable-at-startup nil)
-
-(add-to-list 'package-archives '("mepla-stable" . "http://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives '("mepla" . "http://mepla.org/packages/") t)
+(setq package-archives '(("org" . "http://orgmode.org/elpa/")
+                         ("stable-melpa" . "http://stable.melpa.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")))
 
 (package-initialize)
+(setq package-enable-at-startup nil)
 
-(when (not package-archive-contents)
+(unless package-archive-contents
+  (message "Refreshing package archives...")
   (package-refresh-contents))
 
 (unless (package-installed-p 'use-package)
-  (package-refresh-contents)
+  (message "`use-package' not found.  Installing...")
   (package-install 'use-package))
 
 ;; Load packages that needed for bootstrap
+
 (require 'use-package)
+(setq  use-package-verbose t)
+
 (require 'bind-key)
 
 (use-package dash
