@@ -65,10 +65,26 @@
           (lambda ()
             (setq indent-tabs-mode nil)
             (setq tab-width 4)
-            (setq python-indent 4)))
+            (setq python-indent 4)
+            (setq python-fill-docstring-style 'onetwo)))
 
 ;;_______________________________________________________________________________
 ;;                                                                    Additional
+
+;; ReST mode in triple-quoted docstrings and Python everywhere else.
+(use-package mmm-mode
+  :ensure t
+  :init (progn
+          (setq mmm-global-mode 'maybe))
+  :config  (progn (mmm-add-classes
+                   '((python-rst
+                      :submode rst-mode
+                      :front "^ *[ru]?\"\"\"[^\"]*$"
+                      :back "^ *\"\"\""
+                      :include-front t
+                      :include-back t
+                      :end-not-begin t)))
+                  (mmm-add-mode-ext-class 'python-mode nil 'python-rst)))
 
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args ""
