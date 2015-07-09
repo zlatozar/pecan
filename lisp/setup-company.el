@@ -10,7 +10,7 @@
 
 (use-package company
   :defer t
-  :diminish ""
+  :diminish " ⍈"
   :bind (("C-<tab>" . company-complete)
          ("C-c n m" . global-company-mode))
   :init (add-hook 'after-init-hook 'global-company-mode)

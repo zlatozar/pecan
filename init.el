@@ -92,7 +92,7 @@
       delete-auto-save-files t
       case-fold-search t
       tooltip-delay 1
-      major-mode 'text-mode
+      initial-major-mode 'text-mode
       imenu-sort-function 'imenu--sort-by-name
       kill-read-only-ok t
       show-trailing-whitespace t
