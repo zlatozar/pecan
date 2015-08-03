@@ -13,6 +13,7 @@
     (setq slime-protocol-version                  'ignore
           slime-net-coding-system                 'utf-8-unix
           slime-load-failed-fasl                  'never
+          slime-kill-without-query-p              t
           slime-description-autofocus             t
           slime-repl-history-remove-duplicates    t
           slime-repl-history-trim-whitespaces     t
