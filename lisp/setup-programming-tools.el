@@ -13,6 +13,9 @@
 (use-package diff-mode
   :mode ("COMMIT_EDITMSG" . diff-mode))
 
+;;_______________________________________________________________________________
+;;                                                                           Git
+
 ;; Pop up commit messages for a current line
 (use-package git-messenger
   :ensure t
@@ -26,6 +29,7 @@
 
 (use-package magit
   :ensure t
+  :init (delete 'Git vc-handled-backends)
   :config
   (setq magit-completing-read-function 'magit-ido-completing-read
         magit-default-tracking-name-function 'magit-default-tracking-name-branch-only
@@ -35,14 +39,22 @@
         magit-save-some-buffers t
         magit-process-popup-time 10
         magit-set-upstream-on-push t
+        magit-commit-signoff t
+        magit-push-arguments '("--set-upstream")
         magit-auto-revert-mode-lighter "")
-  :bind (("C-c p s" . magit-status)
-         ("C-c p g" . magit-grep)))
+  :bind ("C-c p s" . magit-status))
+
+;; Required by `magit'
+(use-package ido-completing-read+
+  :ensure t)
 
 ;; Browse file versions. Exit with 'q'.
 ;; As alternative use 'C-x v g'
 (use-package git-timemachine
   :ensure t)
+
+;;_______________________________________________________________________________
+;;
 
 ;; Parentheses view
 (use-package highlight-parentheses
