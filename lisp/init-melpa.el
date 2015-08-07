@@ -9,11 +9,13 @@
 (require 'package)
 
 (setq package-archives '(("org" . "http://orgmode.org/elpa/")
-                         ("stable-melpa" . "http://stable.melpa.org/packages/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.org/packages/")))
 
 (package-initialize)
-(setq package-enable-at-startup nil)
+
+(setq package-enable-at-startup nil
+      package-check-signature nil)
 
 (unless package-archive-contents
   (message "Refreshing package archives...")

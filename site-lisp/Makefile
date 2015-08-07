@@ -42,20 +42,12 @@ endef
 default: all
 
 # Do not forget to update .PHONY
-all: dash prolog.elc
+all: prolog.elc
 
 .el.elc:
 	@ echo "\n** Bite compiling ===> " $@
 	$(EMACS) -batch -f batch-byte-compile $<
 	@ echo " **Finished."
-
-#_______________________________________________________________________________
-#                                                                     Bootstrap
-
-dash:
-	@ echo "$(OK_COLOR)===> Checkout or update dash.el...$(NO_COLOR)"
-	@ if [ ! -d dash.el ]; then git clone https://github.com/magnars/dash.el.git; \
-	  else cd dash.el; git pull --rebase; cd ..; fi;
 
 #_______________________________________________________________________________
 #                                                                        Prolog
@@ -81,7 +73,7 @@ jslint-v8: _v8
 #_______________________________________________________________________________
 #                                                                  SYSTEM RULES
 
-.PHONY: clean dash
+.PHONY: clean
 
 clean:
 	rm -f $(ELC)

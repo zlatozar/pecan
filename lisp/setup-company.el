@@ -9,7 +9,7 @@
 ;;; Company mode for auto completion:
 
 (use-package company
-  :defer t
+  :ensure t
   :diminish " ⍈"
   :bind (("C-<tab>" . company-complete)
          ("C-c n m" . global-company-mode))
@@ -27,12 +27,6 @@
                ("C-p" . company-select-previous)
                ("C-d" . company-show-doc-buffer)
                ("<tab>" . company-complete))))
-
-;; Try it later
-
-;; (use-package company-quickhelp
-;;   :ensure t
-;;   :init (company-quickhelp-mode 1))
 
 (provide 'setup-company)
 
