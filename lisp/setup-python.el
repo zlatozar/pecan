@@ -18,6 +18,15 @@
   (progn
     (bind-key "C-c C-z" 'run-python python-mode-map)
 
+    (jedi:setup)
+
+    (bind-key "M-." 'jedi:goto-definition python-mode-map)
+    (bind-key "M-," 'jedi:goto-definition-pop-marker python-mode-map)
+    (bind-key "C-c C-d" 'jedi:show-doc python-mode-map)
+
+    (add-hook 'prog-mode-hook '(lambda ()
+                                 (yas-minor-mode)))
+
     (defun my/company-jedi-setup ()
       (interactive)
       (use-package company-jedi
@@ -25,31 +34,7 @@
         :config
         (add-to-list 'company-backends 'company-jedi)))
 
-    (defun my/setup-jedi ()
-      (interactive)
-      (use-package jedi
-        :ensure t
-        :config
-        (progn
-          (jedi:setup)
-          (yas-global-mode t)
-
-          (setq jedi:setup-keys t
-                jedi:complete-on-dot t
-                jedi:tooltip-method nil)
-
-          (set-face-attribute 'jedi:highlight-function-argument nil
-                              :foreground "green")
-          (defvar jedi-config:vcs-root-sentinel ".git")
-          (defvar jedi-config:python-module-sentinel "__init__.py")
-
-          (bind-key "M-." 'jedi:goto-definition jedi-mode-map)
-          (bind-key "M-," 'jedi:goto-definition-pop-marker jedi-mode-map)
-          (bind-key "C-c C-d" 'jedi:show-doc jedi-mode-map)
-          (bind-key "C-c C-l" 'jedi:get-in-function-call jedi-mode-map))))
-
-    (add-hook 'python-mode-hook #'my/setup-jedi)
-    (add-hook 'python-mode-hook #'my/company-jedi-setup)))
+    (add-hook 'python-mode-hook #'my/company-jedi-setup) ))
 
 ;; 'pyflakes' should be in PATH
 (use-package flymake-python-pyflakes
@@ -71,21 +56,6 @@
 ;;_______________________________________________________________________________
 ;;                                                                    Additional
 
-;; ReST mode in triple-quoted docstrings and Python everywhere else.
-(use-package mmm-mode
-  :ensure t
-  :init (progn
-          (setq mmm-global-mode 'maybe))
-  :config  (progn (mmm-add-classes
-                   '((python-rst
-                      :submode rst-mode
-                      :front "^ *[ru]?\"\"\"[^\"]*$"
-                      :back "^ *\"\"\""
-                      :include-front t
-                      :include-back t
-                      :end-not-begin t)))
-                  (mmm-add-mode-ext-class 'python-mode nil 'python-rst)))
-
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args ""
       python-shell-prompt-regexp "In \\[[0-9]+\\]: "
@@ -105,12 +75,6 @@
             (venv-initialize-interactive-shells)
             (setq-default mode-line-format
                           (cons '(:exec venv-current-name) mode-line-format))))
-
-(use-package jedi-direx
-  :ensure t
-  :config (progn
-            (add-hook 'jedi-mode-hook 'jedi-direx:setup)
-            (bind-key "C-c p j" 'jedi-direx:pop-to-buffer jedi-mode-map)))
 
 ;;_______________________________________________________________________________
 ;;                                                                     Debugging
