@@ -9,10 +9,9 @@
 
 (use-package yasnippet
   :ensure t
-  :if (not noninteractive)
-  :diminish yas-minor-mode
-  :commands (yas-global-mode yas-minor-mode)
+  :diminish (yas-minor-mode . " Y")
   :config (progn
+            (yas-reload-all)
             (setq yas-verbosity 1
                   yas-wrap-around-region t
                   yas-snippet-dirs '("~/.emacs.d/snippets/"))

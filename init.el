@@ -252,16 +252,13 @@
   :init (key-chord-mode 1)
   :config
   (progn
-    (key-chord-define-global "EE" 'server-edit)
-    (key-chord-define-global "%%" 'ispell-buffer)
     ;; Pretty much everything in Enlish word beginning with 'q' is
     ;; follewed the vowel 'u'. These chords take advantage of that.
-    (key-chord-define-global "qq" 'read-only-mode)
-    (key-chord-define-global "qs" 'save-buffer)
+    (key-chord-define-global "q%" 'ispell-buffer)
     (key-chord-define-global "q0" 'delete-window)
-    (key-chord-define-global "qv" 'vc-next-action)
-    (key-chord-define-global "qh" 'mark-whole-buffer)
-    (key-chord-define-global "qf" 'ido-find-file)))
+    (key-chord-define-global "qe" 'server-edit)
+    (key-chord-define-global "qf" 'ido-find-file)
+    (key-chord-define-global "qn" 'read-only-mode)))
 
 ;;; Desktop management.
 

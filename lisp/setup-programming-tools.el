@@ -29,7 +29,6 @@
 
 (use-package magit
   :ensure t
-  :init (delete 'Git vc-handled-backends)
   :config
   (setq magit-completing-read-function 'magit-ido-completing-read
         magit-default-tracking-name-function 'magit-default-tracking-name-branch-only

@@ -14,27 +14,23 @@
 
 (use-package python
   :ensure t
-  :config
-  (progn
-    (bind-key "C-c C-z" 'run-python python-mode-map)
+  :config  (progn
+             (bind-key "C-c C-z" 'run-python python-mode-map)
 
-    (jedi:setup)
+             (jedi:setup)
 
-    (bind-key "M-." 'jedi:goto-definition python-mode-map)
-    (bind-key "M-," 'jedi:goto-definition-pop-marker python-mode-map)
-    (bind-key "C-c C-d" 'jedi:show-doc python-mode-map)
+             (bind-key "M-." 'jedi:goto-definition python-mode-map)
+             (bind-key "M-," 'jedi:goto-definition-pop-marker python-mode-map)
+             (bind-key "C-c C-d" 'jedi:show-doc python-mode-map)
 
-    (add-hook 'prog-mode-hook '(lambda ()
-                                 (yas-minor-mode)))
+             (defun my/company-jedi-setup ()
+               (interactive)
+               (use-package company-jedi
+                 :ensure t
+                 :config
+                 (add-to-list 'company-backends 'company-jedi)))
 
-    (defun my/company-jedi-setup ()
-      (interactive)
-      (use-package company-jedi
-        :ensure t
-        :config
-        (add-to-list 'company-backends 'company-jedi)))
-
-    (add-hook 'python-mode-hook #'my/company-jedi-setup) ))
+             (add-hook 'python-mode-hook #'my/company-jedi-setup)))
 
 ;; 'pyflakes' should be in PATH
 (use-package flymake-python-pyflakes
@@ -48,6 +44,8 @@
 
 (add-hook 'python-mode-hook
           (lambda ()
+            (yas-minor-mode)
+
             (setq indent-tabs-mode nil)
             (setq tab-width 4)
             (setq python-indent 4)
