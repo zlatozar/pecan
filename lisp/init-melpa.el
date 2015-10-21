@@ -36,6 +36,16 @@
   :ensure t
   :commands dash-enable-font-lock)
 
+(defun upgrade-packages ()
+  "Upgrade all packages, no questions asked."
+  (interactive)
+  (save-window-excursion
+    (list-packages)
+    (package-menu-mark-upgrades)
+    (package-menu-execute 'no-query)))
+
+(bind-key "C-c x u" 'upgrade-packages)
+
 (provide 'init-melpa)
 
 ;;; init-melpa.el ends here

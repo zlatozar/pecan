@@ -47,6 +47,7 @@ M-x describe-personal-keybindings
 
 Key&nbsp;Binding   | Interpretation               |  Description
 ---------   | --------------               |  --------------
+`C-c x u`   |                              |  Upgrade all installed packages
 `C-h C-m`   | `discover-my-major`          |  Shows available key bindings for current major mode
 `C-c x n`   | `manage-minor-mode`          |  Manage minor mode
 `C-=`       | `er/expand-region`           |  Increases the selected region by semantic units
@@ -69,10 +70,10 @@ Key&nbsp;Binding   | Interpretation               |  Description
 `C-c ;`     | `iedit`                      |  Edit one occurrence of word in a buffer (then `'M-H'` to narrow to function)
 `C-c x .`   | `goto-last-change`           |  Go to the last change
 `C-c C-i`   | `ido-imenu`                  |  Find method definition in the current buffer
-`M-.`       |                              |  Go to definition
-`M-,`       |                              |  Back from definition
-`C-c ! l`   |                              |  List all Flycheck errors
-`C-c C-d`   |                              |  Show documentation
+`M-.`       |                              |  (_programming_) Go to definition
+`M-,`       |                              |  (_programming_) Back from definition
+`C-c ! l`   |                              |  (_programming_) List all Flycheck errors
+`C-c C-d`   |                              |  (_programming_) Show documentation
 `C-c p s`   |  `magit-status`              |  Git status
 `C-c p g`   |  `magit-grep`                |  Grep git project
 `C-c p y`   | `yas-ido-expand`             |  (_python_) Code templates

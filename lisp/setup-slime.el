@@ -13,10 +13,12 @@
     (setq slime-protocol-version                  'ignore
           slime-net-coding-system                 'utf-8-unix
           slime-load-failed-fasl                  'never
+          slime-ed-use-dedicated-frame            nil
           slime-kill-without-query-p              t
           slime-description-autofocus             t
           slime-repl-history-remove-duplicates    t
           slime-repl-history-trim-whitespaces     t
+          slime-enable-evaluate-in-emacs          t
           slime-export-symbol-representation-auto t)
 
     (slime-setup '(slime-fancy)))
