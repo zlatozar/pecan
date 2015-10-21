@@ -29,6 +29,7 @@
 
 (use-package magit
   :ensure t
+  :init (add-hook 'git-commit-mode-hook 'flyspell-mode)
   :config
   (setq magit-completing-read-function 'magit-ido-completing-read
         magit-default-tracking-name-function 'magit-default-tracking-name-branch-only
