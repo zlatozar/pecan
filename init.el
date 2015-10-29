@@ -472,7 +472,7 @@ With prefix P, create local abbrev. Otherwise it will be global."
   :ensure t
   :config (key-chord-define-global "qd" 'duplicate-thing))
 
-;; Edit filenames at-point in dired
+;; Edit filenames at-point in `dired' mode
 (use-package dired-efap
   :ensure t
   :config (bind-key "<f2>" 'dired-efap dired-mode-map))
@@ -480,7 +480,21 @@ With prefix P, create local abbrev. Otherwise it will be global."
 ;; File browser
 (use-package neotree
   :ensure t
-  :config (bind-key "<f5>" 'neotree-toggle))
+  :bind (("<f5>" . neotree-toggle))
+  :config (progn
+            (bind-key "r" 'neotree-change-root neotree-mode-map)
+            (bind-key "<left>" 'neotree-select-up-node neotree-mode-map)
+            (bind-key "<right>" 'neotree-select-down-node neotree-mode-map)
+            (setq neo-window-width 32
+                  neo-create-file-auto-open t
+                  neo-banner-message nil
+                  neo-show-updir-line nil
+                  neo-mode-line-type 'neotree
+                  neo-smart-open t
+                  neo-dont-be-alone t
+                  neo-persist-show nil
+                  neo-show-hidden-files t
+                  neo-auto-indent-point t)))
 
 ;; Line numbers
 (use-package linum
@@ -603,6 +617,7 @@ With prefix P, create local abbrev. Otherwise it will be global."
       :ensure t
       :config
       (progn
+        (setq helm-ls-git-status-command 'magit-status)
         (key-chord-define-global "qp" 'helm-browse-project)))))
 
 ;; Search words through a whole buffer or across buffers

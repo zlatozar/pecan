@@ -42,7 +42,8 @@
   (save-window-excursion
     (list-packages)
     (package-menu-mark-upgrades)
-    (package-menu-execute 'no-query)))
+    (package-menu-execute 'no-query)
+    (message "If you want new features please restart.")))
 
 (bind-key "C-c x u" 'upgrade-packages)
 

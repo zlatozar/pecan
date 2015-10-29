@@ -4,7 +4,7 @@
 ;;;
 ;;; Install with 'pip':
 ;;; virtualevn, virtualenvwrapper, jedi, ipython, pyflakes
-;;; Also 'virtualenvwrapper' home directory should be ~/.virtualevns
+;;; Also 'virtualenvwrapper' home directory should be ~/.virtualenvs
 
 ;; Usage:
 
