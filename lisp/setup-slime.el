@@ -22,7 +22,8 @@
           slime-export-symbol-representation-auto t)
 
     (slime-setup '(slime-fancy)))
-  :bind ("C-z" . slime-selector))
+  :bind (("C-z" . slime-selector)
+         ("TAB" . company-indent-or-complete-common)))
 
 (use-package slime-company
   :ensure t

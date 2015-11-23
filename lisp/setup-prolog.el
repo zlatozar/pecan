@@ -3,7 +3,8 @@
 ;;; Commentary:
 ;;; Hint: http://www.swi-prolog.org/gtrace.html
 
-;; Usage:
+;; Usage: M-x run-prolog
+;;        C-c C-b allows to evaluate a buffer with prolog code.
 
 ;;; Code:
 
