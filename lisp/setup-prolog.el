@@ -1,7 +1,12 @@
-;;; setup-prolog --- Configure SWI Prolog
+;;; setup-prolog --- Configure SWI Prolog 7.2.3 or bigger
 
 ;;; Commentary:
 ;;; Hint: http://www.swi-prolog.org/gtrace.html
+;;;       ?- gtrace, <rule>
+
+;; Libraries: pack_install(func).     % Naming is hard
+;;            pack_install(mavis).    % Optional typing. Type is predicate!
+;;            pack_install(spawn).    % Concurrency
 
 ;; Usage: M-x run-prolog
 ;;        C-c C-b allows to evaluate a buffer with prolog code.
