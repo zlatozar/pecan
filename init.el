@@ -105,7 +105,7 @@
       save-interprogram-paste-before-kill t
       history-length 250
       tab-always-indent 'complete
-      save-abbrevs t
+      save-abbrevs 'silently
       require-final-newline t
       abbrev-file-name "~/.emacs.d/data/abbrev_defs"
       select-active-region t
@@ -127,7 +127,7 @@
             '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
 (setq-default truncate-lines t)
-(setq-default abbrev-mode 1)
+(setq-default abbrev-mode t)
 (setq-default indent-tabs-mode nil)
 (setq-default fill-column 90)
 
@@ -404,19 +404,26 @@
   :diminish ""
   :config
   (progn
-    (defun my/ispell-word-then-abbrev (p)
-      "Call `ispell-word'. Then create an abbrev for the correction made.
-With prefix P, create local abbrev. Otherwise it will be global."
-      (interactive "P")
-      (let ((bef (downcase (or (thing-at-point 'word) ""))) aft)
-        (call-interactively 'ispell-word)
-        (setq aft (downcase (or (thing-at-point 'word) "")))
-        (unless (string= aft bef)
-          (message "\"%s\" now expands to \"%s\" %sally"
-                   bef aft (if p "loc" "glob"))
-          (define-abbrev
-            (if p local-abbrev-table global-abbrev-table)
-            bef aft)))))
+    (defun endless/ispell-word-then-abbrev (p)
+        "Call `ispell-word', then create an abbrev for it.
+With prefix P, create local abbrev. Otherwise it will
+be global."
+        (interactive "P")
+        (let (bef aft)
+          (save-excursion
+            (while (progn
+                     (backward-word)
+                     (and (setq bef (thing-at-point 'word))
+                          (not (ispell-word nil 'quiet)))))
+            (setq aft (thing-at-point 'word)))
+          (when (and aft bef (not (equal aft bef)))
+            (setq aft (downcase aft))
+            (setq bef (downcase bef))
+            (define-abbrev
+              (if p local-abbrev-table global-abbrev-table)
+              bef aft)
+            (message "\"%s\" now expands to \"%s\" %sally"
+                                    bef aft (if p "loc" "glob"))))))
   :bind ("C-c x i" . my/ispell-word-then-abbrev))
 
 ;; Distraction-free writing mode
