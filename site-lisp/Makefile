@@ -42,7 +42,7 @@ endef
 default: all
 
 # Do not forget to update .PHONY
-all: prolog.elc
+all: prolog.elc parinfer-mode
 
 .el.elc:
 	@ echo "\n** Bite compiling ===> " $@
@@ -54,6 +54,13 @@ all: prolog.elc
 
 prolog.el:
 	wget -N http://bruda.ca/_media/emacs/prolog.el
+
+#_______________________________________________________________________________
+#                                                                      Parinfer
+
+parinfer-mode:
+	@ echo "$(OK_COLOR)===> Checkout or update parinfer-mode...$(NO_COLOR)"
+	@ if [ ! -d parinfer-mode ]; then git clone https://github.com/edpaget/parinfer-mode.git; else cd parinfer-mode; git pull --rebase; cd ..; fi;
 
 #_______________________________________________________________________________
 #                                                     ADDITIONAL/OPTIONAL RULES
@@ -74,20 +81,21 @@ jslint-v8: _v8
 #                                                                  SYSTEM RULES
 
 .PHONY: clean
-
 clean:
 	rm -f $(ELC)
 
+.PHONY: distclean
 distclean:
 	rm -f $(EL) $(ELC) *~ */*~ .\#* */.\#*
+
 usage:
 	@ echo
 	@ echo
-	@ echo "usage: make [foo.el | foo.elc | slime | usage | clean | distclean]"
+	@ echo "usage: make [foo.el | foo.elc | parinfer-mode | usage | clean | distclean]"
 	@ echo "       make foo.el     will fetch foo.el from the Internet"
 	@ echo "       make foo.elc    will byte-compile foo.el."
 	@ echo "                       (fetching foo.el first if necessary)."
-	@ echo "       make slime      checkout or update slime"
+	@ echo "       make parinfer-mode   checkout or update parinfer-mode"
 	@ echo
 	@ echo "       make clean      will remove all .elc files in this dir."
 	@ echo "       make distclean  will remove .el and .elc files in this dir."

@@ -542,7 +542,7 @@ be global."
             (global-flycheck-mode))
   :bind ("C-c n f" . flycheck-mode))
 
-;; Paredit during programming
+;; Parentheses during programming
 (require 'setup-paredit)
 
 ;;; Tools

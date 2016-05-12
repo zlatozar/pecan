@@ -66,10 +66,10 @@
 (use-package toggle-test
   :ensure t)
 
-;; FIXME/TODO/BUG/KLUDGE in special face only in comments and strings
+;; FIXME/TODO/BUG in special face only in comments and strings
 (use-package fic-mode
   :ensure t
-  :config (add-hook 'prog-mode-hook 'turn-on-fic-mode))
+  :init (add-hook 'prog-mode-hook 'fic-mode))
 
 (use-package highlight-numbers
   :ensure t
