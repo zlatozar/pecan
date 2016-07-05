@@ -30,7 +30,6 @@
 
          ("C-)"   . paredit-forward-slurp-sexp)
          ("C-}"   . paredit-forward-barf-sexp)
-         ("M-("   . paredit-wrap-round)
          ("M-\""  . paredit-meta-doublequote)
          ("M-S"   . paredit-split-sexp)
          ("M-J"   . paredit-join-sexp)
@@ -47,6 +46,16 @@
 (put 'paredit-forward-delete 'delete-selection 'supersede)
 (put 'paredit-backward-delete 'delete-selection 'supersede)
 (put 'paredit-newline 'delete-selection t)
+
+(global-set-key (kbd "C-M-u") #'paredit-backward-up)
+(global-set-key (kbd "C-M-n") #'paredit-forward-up)
+
+;; This one's surpisingly useful for writing prose.
+(global-set-key "\M-S" #'paredit-splice-sexp-killing-backward)
+(global-set-key "\M-R" #'paredit-raise-sexp)
+(global-set-key "\M-(" #'paredit-wrap-round)
+(global-set-key "\M-[" #'paredit-wrap-square)
+(global-set-key "\M-{" #'paredit-wrap-curly)
 
 (provide 'setup-paredit)
 
