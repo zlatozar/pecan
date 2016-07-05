@@ -21,9 +21,10 @@
           slime-enable-evaluate-in-emacs          t
           slime-export-symbol-representation-auto t)
 
-    (slime-setup '(slime-fancy)))
-  :bind (("C-z" . slime-selector)
-         ("TAB" . company-indent-or-complete-common)))
+    (bind-key "C-z" 'slime-selector slime-mode-map)
+    (bind-key "TAB" 'company-indent-or-complete-common slime-mode-map)
+
+    (slime-setup '(slime-fancy))))
 
 (use-package slime-company
   :ensure t
