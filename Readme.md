@@ -3,12 +3,12 @@
 This Emacs (ver. 24.4.1) configuration is suitable for programmers using one of the
 following programming languages:
 
-* _Python_
 * _Common Lisp_
-* _Clojure_
-* _SWI Prolog_
 * _Emacs Lisp_
 * _Racket Scheme_
+* _OCaml_
+* _Python_
+* _SWI Prolog_
 
 ### How to start using it?
 

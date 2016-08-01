@@ -295,10 +295,6 @@
 
 ;;; More buffer-related configuration.
 
-;; Intelligently group together open buffers
-(use-package kpm-list
-  :ensure t)
-
 ;; Swap buffer positions
 (use-package buffer-move
   :ensure t
@@ -567,13 +563,13 @@ be global."
 
 (require 'setup-scheme)
 
-;;; Clojure:
-
-(require 'setup-clojure)
-
 ;;; Prolog
 
 (require 'setup-prolog)
+
+;;; OCaml
+
+(require 'setup-ocaml)
 
 ;;________________________________________________________________________________
 ;;                                                            Programming Helpers
@@ -614,7 +610,7 @@ be global."
   :ensure t
   :config
   (progn
-    (key-chord-define-global "qm" 'helm-mini)
+    (key-chord-define-global "qm" 'helm-mini) ;; to switch buffers
     (key-chord-define-global "qo" 'helm-occur)
     (key-chord-define-global "qf" 'helm-find-files)
     (use-package helm-ag
