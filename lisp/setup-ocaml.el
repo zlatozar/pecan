@@ -17,8 +17,16 @@
 ;; $ opam install merlin
 ;; $ opam install tuareg
 ;; $ opam install ocp-indent
+;;
+;; $ eval `opam config env`
 
 ;; Usage:
+
+;; Place .dir-locals.el in your OCaml projecrt with following content:
+
+;; ((tuareg-mode .
+;;     ((utop-command . "utop -emacs -init <full path to .ocamlinit>")
+;;      (compile-command . "make -C <full path to the project>"))))
 
 ;;; Code:
 
@@ -72,6 +80,7 @@
      :map tuareg-mode-map
      ("RET" . reindent-then-newline-and-indent)
      ("C-c C-c" . tuareg-eval-buffer)
+     ("C-c h" . caml-help)
      ("C-c C-s" . utop))))
 
 (use-package merlin
