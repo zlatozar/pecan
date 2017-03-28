@@ -110,7 +110,7 @@
       abbrev-file-name "~/.emacs.d/data/abbrev_defs"
       select-active-region t
       shift-select-mode nil
-      x-select-enable-clipboard t
+      select-enable-clipboard t
       auto-hscroll-mode t
       linum-format " %03d "
       delete-active-region 'kill
@@ -529,14 +529,14 @@ be global."
 ;; Flycheck
 (use-package flycheck
   :ensure t
-  :diminish "fc"
-  :init (use-package flycheck-pos-tip
-          :ensure t)
-  :config (progn
-            (setq-default flycheck-disabled-checkers
-                          '(emacs-lisp-checkdoc))
-            (global-flycheck-mode))
-  :bind ("C-c n f" . flycheck-mode))
+  :bind ("C-c n f" . flycheck-mode)
+  :init
+  (setq flycheck-idle-change-delay 3
+        flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc)
+        flycheck-check-syntax-automatically '(save idle-change mode-enabled)
+        flycheck-shellcheck-excluded-warnings '("SC2086"))
+  :config
+  (add-hook 'after-init-hook #'global-flycheck-mode))
 
 ;; Parentheses during programming
 (require 'setup-paredit)

@@ -43,13 +43,21 @@
 
 ;;; Code:
 
+(use-package reason-mode
+  :load-path "site-lisp"
+  :config (add-hook 'reason-mode-hook (lambda ()
+                              (add-hook 'before-save-hook 'refmt-before-save)
+                              (merlin-mode)
+                              (paredit-mode))))
+
 (use-package opam
   :ensure t
   :preface
   (defun add-opam-load-path ()
     (interactive)
-    (setq opam-share (substring (shell-command-to-string "opam config var share 2> /dev/null") 0 -1))
-    (add-to-list 'load-path (concat opam-share "/emacs/site-lisp")))
+    (setq opam-share (substring (shell-command-to-string "opam config var prefix 2> /dev/null") 0 -1))
+    (add-to-list 'load-path (concat opam-share "/share/emacs/site-lisp"))
+    (setq refmt-command (concat opam-share "/bin/refmt")))
   :init
   (progn
     (opam-init)
