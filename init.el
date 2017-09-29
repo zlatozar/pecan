@@ -28,6 +28,13 @@
 
 ;;; Code:
 
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (setq load-prefer-newer t)
 
@@ -567,9 +574,9 @@ be global."
 
 (require 'setup-prolog)
 
-;;; OCaml
+;;; OCaml (enable when 'opam' is installed)
 
-(require 'setup-ocaml)
+;; (require 'setup-ocaml)
 
 ;;________________________________________________________________________________
 ;;                                                            Programming Helpers
@@ -652,3 +659,17 @@ be global."
 (provide 'init)
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (helm-swoop helm-ls-git helm-ag helm wand markdown-mode flycheck-ocaml merlin tuareg ocp-indent utop opam geiser slime-company slime virtualenvwrapper flymake-python-pyflakes macrostep litable elisp-slime-nav yasnippet iedit goto-chg recompile-on-save highlight-numbers fic-mode toggle-test highlight-parentheses git-timemachine ido-completing-read+ magit git-gutter+ git-messenger paredit flycheck company multi-term relative-line-numbers neotree dired-efap duplicate-thing smex anzu on-screen dedicated fancy-narrow centered-window-mode writeroom-mode writegood-mode operate-on-number typo easy-kill jump-char ace-link ace-jump-mode expand-region buffer-move undo-tree discover-my-major manage-minor-mode ido-vertical-mode flx-ido ample-regexps syntactic-sugar request makey noflet ht async popup f pkg-info epl key-chord guide-key fill-column-indicator auto-compile packed exec-path-from-shell dash use-package))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
