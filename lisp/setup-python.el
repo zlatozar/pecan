@@ -17,8 +17,6 @@
   :config  (progn
              (bind-key "C-c C-z" 'run-python python-mode-map)
 
-             (jedi:setup)
-
              (bind-key "M-." 'jedi:goto-definition python-mode-map)
              (bind-key "M-," 'jedi:goto-definition-pop-marker python-mode-map)
              (bind-key "C-c C-d" 'jedi:show-doc python-mode-map)
