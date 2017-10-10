@@ -643,11 +643,6 @@ be global."
 ;;________________________________________________________________________________
 ;;                                                          Interactive Functions
 
-(use-package forth-mode
-  :ensure t
-  :if (executable-find "gforth")
-  :commands forth-mode)
-
 (require 'load-defuns)
 
 ;;________________________________________________________________________________
