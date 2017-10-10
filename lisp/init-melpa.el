@@ -36,16 +36,12 @@
   :ensure t
   :commands dash-enable-font-lock)
 
-(defun upgrade-packages ()
-  "Upgrade all packages, no questions asked."
-  (interactive)
-  (save-window-excursion
-    (list-packages)
-    (package-menu-mark-upgrades)
-    (package-menu-execute 'no-query)
-    (message "If you want new features please restart.")))
-
-(bind-key "C-c x u" 'upgrade-packages)
+(use-package auto-package-update
+   :ensure t
+   :config
+   (setq auto-package-update-delete-old-versions t
+         auto-package-update-interval 5)
+   (auto-package-update-maybe))
 
 (provide 'init-melpa)
 

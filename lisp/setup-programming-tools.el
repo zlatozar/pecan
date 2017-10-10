@@ -44,10 +44,6 @@
         magit-auto-revert-mode-lighter "")
   :bind ("C-c p s" . magit-status))
 
-;; Required by `magit'
-(use-package ido-completing-read+
-  :ensure t)
-
 ;; Browse file versions. Exit with 'q'.
 ;; As alternative use 'C-x v g'
 (use-package git-timemachine

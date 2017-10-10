@@ -63,15 +63,6 @@
       python-shell-completion-string-code
       "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
-(use-package virtualenvwrapper
-  :ensure t
-  :commands venv-workon
-  :config (progn
-            (setq venv-location "~/.virtualenvs/")
-            (venv-initialize-interactive-shells)
-            (setq-default mode-line-format
-                          (cons '(:exec venv-current-name) mode-line-format))))
-
 ;;_______________________________________________________________________________
 ;;                                                                     Debugging
 

@@ -27,6 +27,7 @@ eshell
 .litable-lists.el
 *.dat
 .python-environments
+.last-package-update-day
 
 # OS
 .DS_Store
