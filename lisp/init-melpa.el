@@ -37,11 +37,12 @@
   :commands dash-enable-font-lock)
 
 (use-package auto-package-update
-   :ensure t
-   :config
-   (setq auto-package-update-delete-old-versions t
-         auto-package-update-interval 5)
-   (auto-package-update-maybe))
+  :ensure t
+  :bind ("C-c x u" . auto-package-update-now)
+  :config
+  (setq
+   auto-package-update-prompt-before-update t
+   auto-package-update-delete-old-versions t))
 
 (provide 'init-melpa)
 
