@@ -6,7 +6,7 @@ following programming languages:
 * _Common Lisp_
 * _Emacs Lisp_
 * _Racket Scheme_
-* _OCaml_
+* _F#_
 * _Python_
 * _SWI Prolog_
 
@@ -58,7 +58,6 @@ Key&nbsp;Binding   | Interpretation               |  Description
 `F2`        |                              |  Rename file in a `dired-mode`
 `C-c n l`   |                              |  Show line numbers
 `C-c n r`   |                              |  Show **relative** line numbers
-`C-c n d`   | `dedicated mode`             |  Pin buffer - `dedicated-mode`
 `C-c RET`   | `wand:execute`               |  Execute command on selected text
 `qo`        | `helm-occur`                 |  Find in a buffer
 `qp`        | `helm-browse-project`        |  Find file in a .git project
@@ -74,11 +73,8 @@ Key&nbsp;Binding   | Interpretation               |  Description
 `M-,`       |                              |  (_programming_) Back from definition
 `C-c ! l`   |                              |  (_programming_) List all Flycheck errors
 `C-c C-d`   |                              |  (_programming_) Show documentation
-`C-c p s`   |  `magit-status`              |  Git status
-`C-c p g`   |  `magit-grep`                |  Grep git project
 `C-c p y`   | `yas-ido-expand`             |  (_python_) Code templates
 `C-return`  | `cua-selection-mode`         |  Edit rectangles
-`M-w`       | `easy-kill`                  |  Various way to select and kill (`?` for help)
 `C-M-left`  |                              |  `( a b (|c d) ) -> ( a (b |c d) )` move left parent to the **left**
 `C-M-right` |                              |  `( a b (|c d) ) -> ( a b c (|d) )` move left parent to the **right**
 

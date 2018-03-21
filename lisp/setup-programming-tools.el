@@ -14,42 +14,6 @@
   :mode ("COMMIT_EDITMSG" . diff-mode))
 
 ;;_______________________________________________________________________________
-;;                                                                           Git
-
-;; Pop up commit messages for a current line
-(use-package git-messenger
-  :ensure t
-  :bind ("C-c x g" . git-messenger:popup-message))
-
-;; Show changed lines
-(use-package git-gutter+
-  :ensure t
-  :diminish ""
-  :config (global-git-gutter+-mode 1))
-
-(use-package magit
-  :ensure t
-  :init (add-hook 'git-commit-mode-hook 'flyspell-mode)
-  :config
-  (setq magit-completing-read-function 'magit-ido-completing-read
-        magit-default-tracking-name-function 'magit-default-tracking-name-branch-only
-        magit-status-buffer-switch-function 'switch-to-buffer
-        magit-diff-refine-hunk t
-        magit-rewrite-inclusive 'ask
-        magit-save-some-buffers t
-        magit-process-popup-time 10
-        magit-set-upstream-on-push t
-        magit-commit-signoff t
-        magit-push-arguments '("--set-upstream")
-        magit-auto-revert-mode-lighter "")
-  :bind ("C-c p s" . magit-status))
-
-;; Browse file versions. Exit with 'q'.
-;; As alternative use 'C-x v g'
-(use-package git-timemachine
-  :ensure t)
-
-;;_______________________________________________________________________________
 ;;
 
 ;; Parentheses view

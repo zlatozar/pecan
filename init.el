@@ -376,11 +376,6 @@
 
 ;;; These are packages I use for plain text in general.
 
-;; 'M-w' is a prefix
-(use-package easy-kill
-  :ensure t
-  :bind ("M-w" . easy-kill))
-
 (use-package typo
   :ensure t
   :commands typo-mode
@@ -434,21 +429,11 @@ be global."
   :ensure t
   :bind ("C-c n w" . writeroom-mode))
 
-;; Centers the text of the window when there's only one window in the frame
-(use-package centered-window-mode
-  :ensure t
-  :bind ("C-c m c" . centered-window-mode))
-
 ;; Imitate `narrow-to-region' with more eye-candy
 (use-package fancy-narrow
   :ensure t
   :commands fancy-narrow-mode
   :config (fancy-narrow-mode 1))
-
-;; Sticky window
-(use-package dedicated
-  :ensure t
-  :bind ("C-c x d" . dedicated-mode))
 
 ;; Highlights the previously visible buffer part after each scroll
 (use-package on-screen
@@ -510,25 +495,11 @@ be global."
 (use-package linum
   :bind ("C-c n l" . linum-mode))
 
-;; Relative line numbers
-(use-package relative-line-numbers
-  :ensure t
-  :bind ("C-c n r" . relative-line-numbers-mode))
-
-(use-package tex-mode
-  :init
-  (progn
-    (add-hook 'tex-mode-hook (lambda () (typo-mode -1)))
-    (add-hook 'tex-mode-hook (lambda () (flycheck-mode -1)))))
-
 ;; Shell using multi-term
 (require 'setup-shell)
 
 ;; Auto complete
 (require 'setup-company)
-
-;; Org mode
-(require 'setup-org-mode)
 
 ;;________________________________________________________________________________
 ;;                                                                    Programming
@@ -550,7 +521,7 @@ be global."
 
 ;;; Tools
 
-(require 'setup-programming-tools)
+;; (require 'setup-programming-tools)
 (require 'setup-yasnipped)
 
 ;;; Emacs Lisp
@@ -574,9 +545,9 @@ be global."
 
 (require 'setup-prolog)
 
-;;; OCaml (enable when 'opam' is installed)
+;;; F#
 
-;; (require 'setup-ocaml)
+(require 'setup-fsharp)
 
 ;;________________________________________________________________________________
 ;;                                                            Programming Helpers
@@ -659,3 +630,17 @@ be global."
 (provide 'init)
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (helm-swoop helm-ls-git helm-ag helm wand markdown-mode relative-line-numbers centered-window-mode yasnippet writeroom-mode writegood-mode use-package undo-tree typo toggle-test syntactic-sugar smex slime-company request recompile-on-save popup paredit operate-on-number on-screen noflet neotree multi-term manage-minor-mode litable key-chord jump-char iedit ido-vertical-mode ht highlight-parentheses highlight-numbers guide-key goto-chg geiser flymake-python-pyflakes flycheck flx-ido fill-column-indicator fic-mode fancy-narrow f expand-region exec-path-from-shell elisp-slime-nav duplicate-thing discover-my-major dired-efap dedicated buffer-move auto-package-update auto-compile async anzu ample-regexps ace-link ace-jump-mode))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
