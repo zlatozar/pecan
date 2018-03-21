@@ -549,6 +549,10 @@ be global."
 
 (require 'setup-fsharp)
 
+;;; Forth
+
+(require 'setup-forth)
+
 ;;________________________________________________________________________________
 ;;                                                            Programming Helpers
 
