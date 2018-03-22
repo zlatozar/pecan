@@ -521,8 +521,7 @@ be global."
 
 ;;; Tools
 
-;; (require 'setup-programming-tools)
-(require 'setup-yasnipped)
+(require 'setup-programming-tools)
 
 ;;; Emacs Lisp
 
@@ -641,7 +640,7 @@ be global."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (helm-swoop helm-ls-git helm-ag helm wand markdown-mode relative-line-numbers centered-window-mode yasnippet writeroom-mode writegood-mode use-package undo-tree typo toggle-test syntactic-sugar smex slime-company request recompile-on-save popup paredit operate-on-number on-screen noflet neotree multi-term manage-minor-mode litable key-chord jump-char iedit ido-vertical-mode ht highlight-parentheses highlight-numbers guide-key goto-chg geiser flymake-python-pyflakes flycheck flx-ido fill-column-indicator fic-mode fancy-narrow f expand-region exec-path-from-shell elisp-slime-nav duplicate-thing discover-my-major dired-efap dedicated buffer-move auto-package-update auto-compile async anzu ample-regexps ace-link ace-jump-mode))))
+    (forth-block-mode forth-mode git-gutter git-gutter+ helm-swoop helm-ls-git helm-ag helm wand markdown-mode relative-line-numbers centered-window-mode yasnippet writeroom-mode writegood-mode use-package undo-tree typo toggle-test syntactic-sugar smex slime-company request recompile-on-save popup paredit operate-on-number on-screen noflet neotree multi-term manage-minor-mode litable key-chord jump-char iedit ido-vertical-mode ht highlight-parentheses highlight-numbers guide-key goto-chg geiser flymake-python-pyflakes flycheck flx-ido fill-column-indicator fic-mode fancy-narrow f expand-region exec-path-from-shell elisp-slime-nav duplicate-thing discover-my-major dired-efap dedicated buffer-move auto-package-update auto-compile async anzu ample-regexps ace-link ace-jump-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

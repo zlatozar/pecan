@@ -10,18 +10,15 @@
         forth-hilight-level 3))
 
 (use-package forth-mode
+  :ensure t
   :if (executable-find "gforth")
   :mode "\\.f\\'"
-  :defines (forth-indent-level forth-minor-indent-level forth-hilight-level)
+  :defines (forth-indent-level
+            forth-minor-indent-level
+            forth-hilight-level)
   :init
-  (autoload 'forth-mode "/opt/install/gforth/gforth.el")
+  ;;(autoload 'forth-mode "/opt/install/gforth/gforth.el")
   (add-hook 'forth-mode-hook 'my/forth-mode))
-
-(use-package forth-block-mode
-  :if (executable-find "gforth")
-  :mode "\\.fb\\'"
-  :init
-  (autoload 'forth-block-mode "/opt/install/gforth/gforth.el"))
 
 (provide 'setup-forth)
 

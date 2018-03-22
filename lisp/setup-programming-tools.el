@@ -6,12 +6,14 @@
 
 ;;; Code:
 
-(use-package conf-mode
-  :mode ((".gitignore" . conf-mode)
-         (".gitconfig" . conf-mode)))
+;;_______________________________________________________________________________
+;;                                                                           Git
 
-(use-package diff-mode
-  :mode ("COMMIT_EDITMSG" . diff-mode))
+;; Show changed lines
+(use-package git-gutter
+  :ensure t
+  :diminish ""
+  :config (global-git-gutter-mode 1))
 
 ;;_______________________________________________________________________________
 ;;
@@ -21,10 +23,6 @@
   :ensure t
   :config (add-hook 'prog-mode-hook
                     (lambda () (highlight-parentheses-mode t))))
-
-;; Toggle tests for various programming languages
-(use-package toggle-test
-  :ensure t)
 
 ;; FIXME/TODO/BUG in special face only in comments and strings
 (use-package fic-mode

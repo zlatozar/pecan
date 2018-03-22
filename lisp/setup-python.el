@@ -2,9 +2,7 @@
 
 ;;; Commentary:
 ;;;
-;;; Install with 'pip':
-;;; virtualevn, virtualenvwrapper, jedi, ipython, pyflakes
-;;; Also 'virtualenvwrapper' home directory should be ~/.virtualenvs
+;;; Install with 'pip': jedi, ipython, pyflakes
 
 ;; Usage:
 
@@ -42,8 +40,6 @@
 
 (add-hook 'python-mode-hook
           (lambda ()
-            (yas-minor-mode)
-
             (setq indent-tabs-mode nil)
             (setq tab-width 4)
             (setq python-indent 4)
