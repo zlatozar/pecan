@@ -514,8 +514,7 @@ be global."
         flycheck-highlighting-mode 'lines
         flycheck-indication-mode 'left-fringe
         flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc)
-        flycheck-check-syntax-automatically '(save idle-change mode-enabled))
-  :config (add-hook 'after-init-hook #'global-flycheck-mode))
+        flycheck-check-syntax-automatically '(save idle-change mode-enabled)))
 
 ;; Parentheses during programming
 (require 'setup-paredit)
