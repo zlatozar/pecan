@@ -16,8 +16,9 @@
   :init (add-hook 'after-init-hook 'global-company-mode)
   :config
   (progn
-    (setq company-idle-delay 0.2
+    (setq company-idle-delay 0.03
           company-echo-delay 0
+          company-frontends (quote (company-pseudo-tooltip-frontend company-echo-metadata-frontend))
           company-minimum-prefix-length 2
           company-selection-wrap-around t
           company-dabbrev-downcase nil

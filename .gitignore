@@ -28,6 +28,7 @@ eshell
 *.dat
 .python-environments
 .last-package-update-day
+.cache
 
 # OS
 .DS_Store

@@ -119,7 +119,6 @@
       shift-select-mode nil
       select-enable-clipboard t
       auto-hscroll-mode t
-      linum-format " %03d "
       delete-active-region 'kill
       browse-url-browser-function 'eww-browse-url
       bookmark-default-file "~/.emacs.d/data/bookmarks")
@@ -457,7 +456,7 @@ be global."
   :bind (("M-x" . smex)
          ("M-X" . smex-major-mode-commands)))
 
-;; Save point position between sessions
+;; Save cursor position between sessions
 (use-package saveplace
   :ensure t
   :config (setq-default save-place t
@@ -493,7 +492,9 @@ be global."
 
 ;; Line numbers
 (use-package linum
-  :bind ("C-c n l" . linum-mode))
+  :bind ("C-c n l" . linum-mode)
+  ;; :config (setq linum-format "%4d \u2502 ")
+  :config (setq linum-format "%4d"))
 
 ;; Shell using multi-term
 (require 'setup-shell)
@@ -509,12 +510,12 @@ be global."
   :ensure t
   :bind ("C-c n f" . flycheck-mode)
   :init
-  (setq flycheck-idle-change-delay 3
+  (setq flycheck-idle-change-delay 0.3
+        flycheck-highlighting-mode 'lines
+        flycheck-indication-mode 'left-fringe
         flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc)
-        flycheck-check-syntax-automatically '(save idle-change mode-enabled)
-        flycheck-shellcheck-excluded-warnings '("SC2086"))
-  :config
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+        flycheck-check-syntax-automatically '(save idle-change mode-enabled))
+  :config (add-hook 'after-init-hook #'global-flycheck-mode))
 
 ;; Parentheses during programming
 (require 'setup-paredit)
@@ -566,25 +567,6 @@ be global."
             (add-hook 'markdown-mode-hook 'flyspell-mode)
             (add-hook 'markdown-mode-hook 'auto-fill-mode)))
 
-;; Allows users to select a piece of text and perform actions
-;; based on predefined patterns
-(use-package wand
-  :ensure t
-  :bind ("C-c RET" . wand:execute)
-  :config
-  (progn
-    (setq wand:*rules*
-          (list
-           (wand:create-rule :match ">>> "
-                             :capture :after
-                             :action python-shell-send-string)
-           (wand:create-rule :match "https?://"
-                             :capture :whole
-                             :action eww-browse-url)
-           (wand:create-rule :match "file:"
-                             :capture :after
-                             :action find-file-other-window)))))
-
 ;;; Helm
 
 (use-package helm
@@ -633,17 +615,3 @@ be global."
 (provide 'init)
 
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (forth-block-mode forth-mode git-gutter git-gutter+ helm-swoop helm-ls-git helm-ag helm wand markdown-mode relative-line-numbers centered-window-mode yasnippet writeroom-mode writegood-mode use-package undo-tree typo toggle-test syntactic-sugar smex slime-company request recompile-on-save popup paredit operate-on-number on-screen noflet neotree multi-term manage-minor-mode litable key-chord jump-char iedit ido-vertical-mode ht highlight-parentheses highlight-numbers guide-key goto-chg geiser flymake-python-pyflakes flycheck flx-ido fill-column-indicator fic-mode fancy-narrow f expand-region exec-path-from-shell elisp-slime-nav duplicate-thing discover-my-major dired-efap dedicated buffer-move auto-package-update auto-compile async anzu ample-regexps ace-link ace-jump-mode))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
