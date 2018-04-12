@@ -1,4 +1,4 @@
-;;; init-utils -- Handy functions used during Emacs programming
+;;; init-utils -- Handy functions used during Emacs setup
 
 ;;; Commentary:
 

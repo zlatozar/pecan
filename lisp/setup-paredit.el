@@ -25,7 +25,7 @@
 (use-package paredit
   :ensure t
   :diminish "(p)"
-  :init (add-hook 'prog-mode-hook (lambda () (paredit-mode 1)))
+  :init (add-hook 'lisp-mode-hook (lambda () (paredit-mode 1)))
   :bind (("C-M-l" . paredit-recentre-on-sexp)
 
          ("C-)"   . paredit-forward-slurp-sexp)

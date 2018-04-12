@@ -111,7 +111,6 @@
       visible-bell nil
       save-interprogram-paste-before-kill t
       history-length 250
-      tab-always-indent 'complete
       save-abbrevs 'silently
       require-final-newline t
       abbrev-file-name "~/.emacs.d/data/abbrev_defs"
@@ -134,7 +133,6 @@
 
 (setq-default truncate-lines t)
 (setq-default abbrev-mode t)
-(setq-default indent-tabs-mode nil)
 (setq-default fill-column 90)
 
 (transient-mark-mode t)
@@ -206,7 +204,6 @@
 
 ;;; Setup basic, global key bindings.
 
-(bind-key "<RET>" 'newline-and-indent)
 (bind-key "<C-return>" 'newline)
 (bind-key "<M-return>" 'indent-new-comment-line)
 (bind-key "M-/" 'hippie-expand)
@@ -252,20 +249,6 @@
 (bind-key "C-c x v" 'visit-tags-table)
 (bind-key "C-c x w" 'whitespace-cleanup)
 
-(use-package key-chord
-  :ensure t
-  :bind ("C-c n k" . key-chord-mode)
-  :init (key-chord-mode 1)
-  :config
-  (progn
-    ;; Pretty much everything in Enlish word beginning with 'q' is
-    ;; follewed the vowel 'u'. These chords take advantage of that.
-    (key-chord-define-global "q%" 'ispell-buffer)
-    (key-chord-define-global "q0" 'delete-window)
-    (key-chord-define-global "qe" 'server-edit)
-    (key-chord-define-global "qf" 'ido-find-file)
-    (key-chord-define-global "qn" 'read-only-mode)))
-
 ;;; Desktop management.
 
 (bind-key "C-c d c" 'desktop-clear)
@@ -295,7 +278,6 @@
 ;; Use Undo Tree instead of the Emacs default
 (use-package undo-tree
   :ensure t
-  :diminish ""
   :init (setq undo-tree-visualizer-diff t)
   :config (global-undo-tree-mode t))
 
@@ -345,13 +327,7 @@
 ;; Increases the selected region by semantic units
 (use-package expand-region
   :ensure t
-  :bind ("C-=" . er/expand-region)
-  :config
-  (progn
-    (use-package change-inner
-      :ensure t
-      :bind (("M-i" . change-inner)
-             ("M-o" . change-outer)))))
+  :bind ("C-=" . er/expand-region))
 
 ;;; These packages also help navigate through text but are more
 ;;; focused on jumping to specific characters or fixed positions.
@@ -366,25 +342,12 @@
   :commands ace-link-setup-default
   :config (ace-link-setup-default))
 
-(use-package jump-char
-  :ensure t
-  :commands jump-char-forward
-  :init
-  (progn
-    (key-chord-define-global "qj" 'jump-char-forward)))
-
 ;;; These are packages I use for plain text in general.
 
 (use-package typo
   :ensure t
   :commands typo-mode
   :bind ("C-c n t" . typo-mode))
-
-;; Easy way to double the number for example
-(use-package operate-on-number
-  :ensure t
-  :commands operate-on-number-at-point
-  :init (key-chord-define-global "NN" 'operate-on-number-at-point))
 
 ;; Minor mode to aid in finding common writing problems
 (use-package writegood-mode
@@ -397,42 +360,10 @@
   :config (flyspell-mode 1)
   :init (add-hook 'prog-mode-hook 'flyspell-prog-mode))
 
-(use-package abbrev
-  :diminish ""
-  :config
-  (progn
-    (defun endless/ispell-word-then-abbrev (p)
-        "Call `ispell-word', then create an abbrev for it.
-With prefix P, create local abbrev. Otherwise it will
-be global."
-        (interactive "P")
-        (let (bef aft)
-          (save-excursion
-            (while (progn
-                     (backward-word)
-                     (and (setq bef (thing-at-point 'word))
-                          (not (ispell-word nil 'quiet)))))
-            (setq aft (thing-at-point 'word)))
-          (when (and aft bef (not (equal aft bef)))
-            (setq aft (downcase aft))
-            (setq bef (downcase bef))
-            (define-abbrev
-              (if p local-abbrev-table global-abbrev-table)
-              bef aft)
-            (message "\"%s\" now expands to \"%s\" %sally"
-                                    bef aft (if p "loc" "glob"))))))
-  :bind ("C-c x i" . my/ispell-word-then-abbrev))
-
 ;; Distraction-free writing mode
 (use-package writeroom-mode
   :ensure t
   :bind ("C-c n w" . writeroom-mode))
-
-;; Imitate `narrow-to-region' with more eye-candy
-(use-package fancy-narrow
-  :ensure t
-  :commands fancy-narrow-mode
-  :config (fancy-narrow-mode 1))
 
 ;; Highlights the previously visible buffer part after each scroll
 (use-package on-screen
@@ -446,7 +377,6 @@ be global."
 ;; Displays current match and total matches in modeline
 (use-package anzu
   :ensure t
-  :diminish ""
   :config (global-anzu-mode 1))
 
 ;; Smart 'M-x'
@@ -461,10 +391,6 @@ be global."
   :ensure t
   :config (setq-default save-place t
                         save-place-file "~/.emacs.d/data/places"))
-
-(use-package duplicate-thing
-  :ensure t
-  :config (key-chord-define-global "qd" 'duplicate-thing))
 
 ;; Edit filenames at-point in `dired' mode
 (use-package dired-efap
@@ -544,13 +470,13 @@ be global."
 
 (require 'setup-prolog)
 
-;;; F#
-
-(require 'setup-fsharp)
-
 ;;; Forth
 
 (require 'setup-forth)
+
+;;; F#
+
+(require 'setup-fsharp)
 
 ;;________________________________________________________________________________
 ;;                                                            Programming Helpers
@@ -565,25 +491,6 @@ be global."
   :config (progn
             (add-hook 'markdown-mode-hook 'flyspell-mode)
             (add-hook 'markdown-mode-hook 'auto-fill-mode)))
-
-;;; Helm
-
-(use-package helm
-  :ensure t
-  :config
-  (progn
-    (key-chord-define-global "qm" 'helm-mini) ;; to switch buffers
-    (key-chord-define-global "qo" 'helm-occur)
-    (key-chord-define-global "qf" 'helm-find-files)
-    (use-package helm-ag
-      :ensure t
-      :config (key-chord-define-global "qy" 'helm-ag))
-    (use-package helm-ls-git
-      :ensure t
-      :config
-      (progn
-        (setq helm-ls-git-status-command 'magit-status)
-        (key-chord-define-global "qp" 'helm-browse-project)))))
 
 ;; Search words through a whole buffer or across buffers
 (use-package helm-swoop

@@ -15,7 +15,7 @@
         (width . 160) (height . 50)))
 
 ;; Increase font size (it is 160 on my Mac machine)
-(set-face-attribute 'default nil :height 140)
+(set-face-attribute 'default nil :height 120)
 
 ;; Setup registers for files I commonly edit
 (set-register ?e '(file . "~/.emacs.d/init.el"))

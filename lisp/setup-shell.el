@@ -24,7 +24,7 @@
                 (multi-term-dedicated-open))
               (multi-term-dedicated-select))
 
-            (key-chord-define-global "qe" 'scame-launch-term)))
+            (key-chord-define-global "C-c p t" 'scame-launch-term)))
 
 (use-package tramp
   :config
