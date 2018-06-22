@@ -31,10 +31,9 @@
   :config (bind-key "C-c C-e" 'macrostep-expand emacs-lisp-mode-map))
 
 (use-package eldoc
+  :diminish "eld"
   :config
   (progn
-    (use-package diminish
-      :init (diminish 'eldoc-mode "eld"))
     (setq eldoc-idle-delay 0.2)
     (set-face-attribute 'eldoc-highlight-function-argument nil
                         :underline t :foreground "blue"
