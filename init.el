@@ -521,3 +521,17 @@
 (provide 'init)
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (fstar-mode writeroom-mode writegood-mode use-package typo syntactic-sugar smex slime-company request recompile-on-save paredit on-screen noflet neotree multi-term markdown-mode manage-minor-mode litable iedit ido-vertical-mode ht highlight-parentheses highlight-numbers helm-swoop guide-key goto-chg git-gutter geiser fsharp-mode forth-mode flymake-python-pyflakes flx-ido fill-column-indicator fic-mode f expand-region exec-path-from-shell elisp-slime-nav discover-my-major dired-efap buffer-move auto-package-update auto-compile anzu ample-regexps ace-link ace-jump-mode))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
